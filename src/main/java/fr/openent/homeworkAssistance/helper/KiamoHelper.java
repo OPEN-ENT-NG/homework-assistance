@@ -112,6 +112,7 @@ public class KiamoHelper extends ControllerHelper {
         JsonArray parameters = mapBody(this.body);
         String encodedParameters = parameters.encode();
 
+        request.setTimeout(2000);
         request.write(encodedParameters);
         request.putHeader("Kiamo-Api-Token", this.config.getJsonObject("kiamo").getString("key"));
         request.putHeader("Content-type", "application/json");

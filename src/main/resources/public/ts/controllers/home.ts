@@ -63,7 +63,6 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
         if (dayValid && dateValid && timeValid) {
             let response = await callbackService.post(vm.callback);
             if (response.status == 200) {
-                // console.log(JSON.parse(response.data.body.parameters.toString()));
                 toasts.confirm(idiom.translate('student.send'));
             } else {
                 toasts.warning(response.data.toString());
@@ -89,8 +88,6 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
         else {
             vm.showLightbox('error');
         }
-        // console.log("saveConfig");
-        // console.log(vm.config);
         $scope.safeApply();
     };
 
@@ -161,7 +158,6 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
         }
         else {
             vm.showLightbox('error');
-            // console.log("[ERROR] One or several of these dates already exist.")
         }
     };
 
