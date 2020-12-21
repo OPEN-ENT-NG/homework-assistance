@@ -105,7 +105,6 @@ public class KiamoHelper extends ControllerHelper {
 
         request.exceptionHandler(event -> {
             log.error(event.getMessage(), event.getCause());
-            handler.handle(Future.failedFuture(event.getMessage()));
         });
 
         request.setChunked(true);
