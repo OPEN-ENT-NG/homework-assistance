@@ -96,10 +96,9 @@ public class KiamoHelper extends ControllerHelper {
                 });
                 response.endHandler(end -> handler.handle(Future.succeededFuture(buff)));
             } else {
-                log.error("[HomeworkAssistance@Kiamo] Fail to post webservice : " + response.toString());
-                response.bodyHandler(event -> {
-                    response.endHandler(end -> handler.handle(Future.failedFuture(response.toString())));
-                });
+                String errorMessage = response.toString();
+                log.error("[HomeworkAssistance@Kiamo] Fail to post webservice : " + errorMessage);
+                response.endHandler(end -> handler.handle(Future.failedFuture(errorMessage)));
             }
         });
 
