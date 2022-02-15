@@ -10,8 +10,8 @@
         </div>
         <div class="block-line">
             <p><i18n>student.subject</i18n></p>
-            <select ng-model="vm.callback.userdata.service" required>
-                <option ng-repeat="(name, number) in vm.services" value="[[number]]">[[name]]</option>
+            <select ng-model="vm.callback.userdata.matiere" ng-change="vm.setService()" required>
+                <option ng-repeat="(name, number) in vm.services" value="[[name]]">[[name]]</option>
             </select>
         </div>
         <div class="block-line">

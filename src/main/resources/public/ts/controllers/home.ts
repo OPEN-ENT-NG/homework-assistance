@@ -31,6 +31,7 @@ interface ViewModel {
     getHoursOpt(): number[];
     calculateMinutesOpt(): void;
     getServices(): Promise<void>;
+    setService(): void;
 }
 
 
@@ -279,6 +280,9 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
         }
     };
 
+    vm.setService = ():void=>{
+            vm.callback.userdata.service = vm.services[vm.callback.userdata.matiere];
+    }
 
 
     const loadConfig = async (): Promise<void> => {
