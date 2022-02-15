@@ -8,7 +8,7 @@ export class Userdata {
     nom: string;
     etablissement: string;
     classe: string;
-    service: number;
+    service: () => Number;
     matiere: string;
 }
 
