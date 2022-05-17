@@ -1,5 +1,5 @@
-# À propos de l'application Homework-assistance
-* Licence : [AGPL v3](http://www.gnu.org/licenses/agpl.txt)
+# À propos de l'application Demande d'aide aux devoirs
+* Licence : [AGPL v3](http://www.gnu.org/licenses/agpl.txt) - Copytight Région Nouvelle Aquitaine
 * Développeur(s) : CGI
 * Financeur(s) : Région Nouvelle Aquitaine
 * Description : Application d'envoi de demandes d'aide aux devoirs
@@ -12,21 +12,8 @@ Dans le fichier 'ent-core.json.template' du projet ong :
 Déclarer l'application homework-assistance dans `"external-modules"` :
 <pre>
 	{
-	  "name": "fr.openent~homework-assistance~0.1-SNAPSHOT",
 	  "config": {
-		"main" : "fr.openent.homeworkAssistance.HomeworkAssistance",
-		"port" : 8330,
-		"app-name" : "Homework-assistance",
-		"path-prefix" : "homework-assistance",
-		"app-address" : "/homework-assistance",
-		"app-icon" : "${host}/homework-assistance/public/img/logo.svg",
-		"host": "${host}",
-		"ssl" : $ssl,
-		"auto-redeploy": false,
-		"userbook-host": "${host}",
-		"app-registry.port" : 8012,
-		"mode" : "${mode}",
-		"entcore.port" : 8009,
+		...
 		"kiamo": {
 		  "key": "${kiamo_key}",
 		  "server": "${kiamo_server}"
@@ -34,6 +21,13 @@ Déclarer l'application homework-assistance dans `"external-modules"` :
 	  }
 	}
 </pre>
+
+Dans votre springboard, vous devez inclure des variables d'environnement : 
+<pre>
+kiamo_key=${String}
+kiamo_server=${String}
+</pre>
+
 
 # Présentation du module
 
