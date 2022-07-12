@@ -5,7 +5,7 @@ import io.vertx.core.Handler;
 import io.vertx.core.http.HttpServerRequest;
 import org.entcore.common.http.filter.ResourcesProvider;
 import org.entcore.common.user.UserInfos;
-import fr.openent.homeworkAssistance.enums.WorkflowActions;
+import fr.openent.homeworkAssistance.core.enums.WorkflowActions;
 import fr.openent.homeworkAssistance.helper.WorkflowHelper;
 
 public class UpdateConfigRight implements ResourcesProvider {
