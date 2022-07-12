@@ -1,4 +1,4 @@
-package fr.openent.homeworkAssistance.enums;
+package fr.openent.homeworkAssistance.core.enums;
 import fr.openent.homeworkAssistance.HomeworkAssistance;
 
 public enum WorkflowActions {

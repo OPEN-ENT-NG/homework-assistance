@@ -1,26 +1,44 @@
 package fr.openent.homeworkAssistance;
+import fr.openent.homeworkAssistance.config.KiamoConfig;
 import fr.openent.homeworkAssistance.controller.*;
 import fr.openent.homeworkAssistance.controller.HomeworkAssistanceController;
-import io.vertx.core.Vertx;
-import io.vertx.core.json.JsonObject;
+import fr.openent.homeworkAssistance.core.constants.Field;
+import fr.openent.homeworkAssistance.helper.KiamoHelper;
+import fr.openent.homeworkAssistance.service.ServiceFactory;
+import io.vertx.core.net.ProxyOptions;
+import io.vertx.ext.web.client.WebClient;
+import io.vertx.ext.web.client.WebClientOptions;
 import org.entcore.common.http.BaseServer;
 
 public class HomeworkAssistance extends BaseServer {
-
+	public static final int TIMEOUT_VALUE = 300;
 	public static final String ADMIN = "homework-assistance.admin";
 	public static final String STUDENT = "homework-assistance.student";
-	public static Vertx homassistVertx;
-	public static JsonObject homassistConfig;
 
 	@Override
 	public void start() throws Exception {
+
 		super.start();
 
-		homassistVertx = vertx;
-		homassistConfig = config;
+		WebClient webClient = initWebClient();
+		KiamoConfig kiamoConfig = new KiamoConfig(config);
+		KiamoHelper kiamoHelper = new KiamoHelper(kiamoConfig, webClient);
+		ServiceFactory serviceFactory = new ServiceFactory(vertx, config, webClient, kiamoHelper);
 
 		addController(new HomeworkAssistanceController());
 		addController(new ConfigurationController());
-		addController(new CallbackController(homassistVertx, config));
+		addController(new CallbackController(serviceFactory));
+	}
+
+	private WebClient initWebClient() {
+		WebClientOptions options = new WebClientOptions()
+				.setConnectTimeout(HomeworkAssistance.TIMEOUT_VALUE);
+		if (config.getJsonObject(Field.PROXY) != null) {
+			ProxyOptions proxyOptions = new ProxyOptions()
+					.setHost(config.getJsonObject(Field.PROXY).getString(Field.HOST))
+					.setPort(config.getJsonObject(Field.PROXY).getInteger(Field.PORT));
+			options.setProxyOptions(proxyOptions);
+		}
+		return WebClient.create(vertx, options);
 	}
 }
