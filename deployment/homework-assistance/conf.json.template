@@ -1,5 +1,5 @@
 {
-  "name": "fr.openent~homework-assistance~0.2-SNAPSHOT",
+  "name": "fr.openent~homework-assistance~0.2.3",
   "config": {
     "main" : "fr.openent.homeworkAssistance.HomeworkAssistance",
     "port" : 8330,
@@ -23,8 +23,7 @@
         "Espagnol": 81,
         "Français": 76,
         "Maths": 77,
-        "Physique": 78,
-        "Test": 251
+        "Physique": 78
     }
   }
 }
