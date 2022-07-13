@@ -58,11 +58,11 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
 
 
     vm.sendForm = async (): Promise<void> => {
-        let dayValid = checkCallbackDay();
-        let dateValid = checkCallbackDate();
-        let timeValid = checkCallbackTime();
+        let dayValid: boolean = checkCallbackDay();
+        let dateValid: boolean = checkCallbackDate();
+        let timeValid: boolean = checkCallbackTime();
         if (dayValid && dateValid && timeValid) {
-            let response = await callbackService.post(vm.callback);
+            let response = await callbackService.post(vm.callback.toJson());
             if (response.status == 200) {
                 toasts.confirm(idiom.translate('student.send'));
             } else {
