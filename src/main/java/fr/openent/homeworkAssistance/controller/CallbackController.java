@@ -6,11 +6,13 @@ import fr.openent.homeworkAssistance.service.ICallbackService;
 import fr.openent.homeworkAssistance.service.ServiceFactory;
 import fr.openent.homeworkAssistance.service.impl.DefaultCallbackService;
 import fr.wseduc.rs.*;
+import fr.wseduc.security.ActionType;
 import fr.wseduc.security.SecuredAction;
 import fr.wseduc.webutils.request.RequestUtils;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.json.JsonObject;
 import org.entcore.common.controller.ControllerHelper;
+import org.entcore.common.http.filter.ResourceFilter;
 import org.entcore.common.http.filter.Trace;
 import static org.entcore.common.http.response.DefaultResponseHandler.defaultResponseHandler;
 
@@ -45,6 +47,7 @@ public class CallbackController extends ControllerHelper {
 
     @Get("/services/all")
     @ApiDoc("Get services from config")
+    @SecuredAction(value = HomeworkAssistance.STUDENT, type = ActionType.RESOURCE)
     public void get(HttpServerRequest request) {
         callbackService.getServices(defaultResponseHandler(request));
     }

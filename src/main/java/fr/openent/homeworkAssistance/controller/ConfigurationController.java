@@ -4,6 +4,7 @@ import fr.openent.homeworkAssistance.HomeworkAssistance;
 import fr.openent.homeworkAssistance.service.IConfigurationService;
 import fr.openent.homeworkAssistance.service.impl.DefaultConfigurationService;
 import fr.wseduc.rs.*;
+import fr.wseduc.security.ActionType;
 import fr.wseduc.security.SecuredAction;
 import io.vertx.core.http.HttpServerRequest;
 import org.entcore.common.controller.ControllerHelper;
@@ -22,6 +23,7 @@ public class ConfigurationController extends ControllerHelper {
 
     @Get("/config")
     @ApiDoc("Get config")
+    @SecuredAction(value = HomeworkAssistance.ADMIN, type = ActionType.RESOURCE)
     public void get(HttpServerRequest request) {
         configurationService.get(defaultResponseHandler(request));
     }
