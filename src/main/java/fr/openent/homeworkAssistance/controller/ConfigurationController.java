@@ -17,7 +17,7 @@ import static org.entcore.common.http.response.DefaultResponseHandler.defaultRes
 
 public class ConfigurationController extends ControllerHelper {
 
-    private IConfigurationService configurationService;
+    private final IConfigurationService configurationService;
 
     public ConfigurationController() {
         super();
@@ -29,7 +29,7 @@ public class ConfigurationController extends ControllerHelper {
     @SecuredAction(HomeworkAssistance.ADMIN)
     public void update(HttpServerRequest request) {
         RequestUtils.bodyToJson(request, settings ->
-                configurationService.update(defaultResponseHandler(request), settings));
+                configurationService.save(defaultResponseHandler(request), settings));
     }
 
     @Get("/config")
