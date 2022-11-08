@@ -7,12 +7,15 @@ public class Field {
     }
 
     public static final String ID = "id";
+    public static final String _ID = "_id";
     public static final String USERDATA = "userdata";
     public static final String DESTINATION = "destination";
     public static final String ERROR = "error";
+    public static final String ok = "ok";
     public static final String STATUS = "status";
     public static final String OK = "OK";
     public static final String KO = "KO";
+    public static final String COUNT = "count";
     public static final String CALLBACK_DATE = "callback_date";
     public static final String CALLBACK_TIME = "callback_time";
     public static final String HOUR = "hour";
@@ -37,4 +40,5 @@ public class Field {
     public static final String MATIERE_AIDE = "matiere_aide";
     public static final String MATIERE = "matiere";
     public static final String INFORMATIONS_COMPLEMENTAIRES = "informations_complementaires";
+    public static final String MESSAGES = "messages";
 }

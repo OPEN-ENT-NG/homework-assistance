@@ -9,11 +9,11 @@ public interface IConfigurationService {
     /**
      * get platform configuration
      */
-    public void get(Handler<Either<String, JsonObject>> handler);
+    void get(Handler<Either<String, JsonObject>> handler);
 
     /**
      * update platform configuration
      */
-    public void update(Handler<Either<String, JsonObject>> handler, JsonObject settings);
+    void save(Handler<Either<String, JsonObject>> handler, JsonObject settings);
 
 }
