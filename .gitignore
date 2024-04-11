@@ -20,3 +20,4 @@ node_modules
 rev-manifest.json
 coverage/
 /src/main/resources/public/template/entcore
+/src/main/resources/public/css/
