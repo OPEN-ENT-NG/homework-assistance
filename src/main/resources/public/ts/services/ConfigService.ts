@@ -11,7 +11,7 @@ export const configService: ConfigService = {
 
     async get(): Promise<AxiosResponse> {
         try {
-            return await http.get('/homework-assistance/config');
+            return await http.get('/homework-assistance/infos');
         } catch (err) {
             throw err;
         }
@@ -19,7 +19,7 @@ export const configService: ConfigService = {
 
     async put(config: Config) : Promise<AxiosResponse> {
         try {
-            return await http.put('/homework-assistance/config', config.toJson());
+            return await http.put('/homework-assistance/infos', config.toJson());
         } catch (err) {
             toasts.warning(idiom.translate('admin.error.postConfig'));
             throw err;

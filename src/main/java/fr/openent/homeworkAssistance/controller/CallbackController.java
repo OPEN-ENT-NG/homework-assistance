@@ -15,6 +15,12 @@ import io.vertx.core.json.JsonObject;
 import org.entcore.common.controller.ControllerHelper;
 import org.entcore.common.http.filter.ResourceFilter;
 import org.entcore.common.http.filter.Trace;
+import org.entcore.common.user.UserUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static fr.openent.homeworkAssistance.core.constants.Field.DOLLAR;
 import static org.entcore.common.http.response.DefaultResponseHandler.defaultResponseHandler;
 
 public class CallbackController extends ControllerHelper {
@@ -35,9 +41,26 @@ public class CallbackController extends ControllerHelper {
             Integer serviceId = Integer.parseInt(request.getParam(Field.ID));
             RequestUtils.bodyToJson(request, form -> {
                 KiamoForm kiamoForm = new KiamoForm(form);
-                callbackService.send(serviceId, kiamoForm)
-                        .onSuccess(res -> renderJson(request, res))
-                        .onFailure(err -> renderError(request, new JsonObject().put(Field.ERROR, err.getMessage())));
+
+                UserUtils.getAuthenticatedUserInfos(eb, request)
+                    .compose(user -> {
+                        List<String> classNames = user.getClassNames().stream()
+                                .map(className -> className.substring(className.lastIndexOf(DOLLAR) + 1))
+                                .collect(Collectors.toList());
+                        kiamoForm.getUserData()
+                                .setFirstName(user.getFirstName())
+                                .setLastName(user.getLastName())
+                                .setStructures(user.getStructureNames())
+                                .setUais(user.getUai())
+                                .setGroups(classNames);
+                        return callbackService.send(serviceId, kiamoForm);
+                    })
+                    .onSuccess(result -> renderJson(request, result))
+                    .onFailure(err -> {
+                        String errorMessage = "[HomeworkAssistance@CallbackController::send] ";
+                        log.error(errorMessage + " : " + err.getMessage());
+                        renderError(request, new JsonObject().put(Field.ERROR, err.getMessage()));
+                    });
             });
         } catch (NumberFormatException err) {
             String message = String.format("[HomeworkAssistance@%s::send] An error has occurred: ", this.getClass().getSimpleName());
