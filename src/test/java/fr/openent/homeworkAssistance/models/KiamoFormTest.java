@@ -25,6 +25,7 @@ public class KiamoFormTest {
                     "   \"prenom\":\"Miradi\"," +
                     "   \"nom\":\"BON\"," +
                     "   \"etablissement\":\"Etablissement Formation 15613\"," +
+                    "   \"uai\":\"1016024A\"," +
                     "   \"classe\":\"6 3\"," +
                     "   \"matiere\":\"Test\"," +
                     "   \"service\":251\r\n   " +
@@ -38,10 +39,11 @@ public class KiamoFormTest {
                     "\"destination\": \"06000000\"," +
                     "\"callback_date\": \"2022-07-11T11:15:00+02:00\"," +
                     "\"userdata\": {" +
-                    "    \"prenom_eleve\": \"Miradi\"," +
-                    "    \"nom_eleve\": \"BON\"," +
-                    "    \"etablissement\": \"Etablissement Formation 15613\"," +
-                    "    \"classe\": \"6 3\"," +
+                    "    \"prenom_eleve\": \"\"," +
+                    "    \"nom_eleve\": \"\"," +
+                    "    \"etablissement\": []," +
+                    "    \"uai\": []," +
+                    "    \"classe\": []," +
                     "    \"matiere_aide\": \"Test\"," +
                     "    \"informations_complementaires\": \"test\"" +
                     " }" +
@@ -65,6 +67,7 @@ public class KiamoFormTest {
                         "   \"prenom\":\"Miradi\"," +
                         "   \"nom\":\"BON\"," +
                         "   \"etablissement\":\"Etablissement Formation 15613\"," +
+                        "   \"uai\":\"1016024A\"," +
                         "   \"classe\":\"6 3\"," +
                         "   \"matiere\":\"Test\"," +
                         "   \"service\":251\r\n   " +
@@ -75,18 +78,19 @@ public class KiamoFormTest {
 
         String expectedPayload = "[" +
                 "{" +
-                "\"destination\": \"06000000\"," +
-                "\"callback_date\": \"2022-07-14T11:15:00+02:00\"," +
-                "\"userdata\": {" +
-                "    \"prenom_eleve\": \"Miradi\"," +
-                "    \"nom_eleve\": \"BON\"," +
-                "    \"etablissement\": \"Etablissement Formation 15613\"," +
-                "    \"classe\": \"6 3\"," +
-                "    \"matiere_aide\": \"Test\"," +
-                "    \"informations_complementaires\": \"test\"" +
+                    "\"destination\": \"06000000\"," +
+                    "\"callback_date\": \"2022-07-14T11:15:00+02:00\"," +
+                    "\"userdata\": {" +
+                    "    \"prenom_eleve\": \"\"," +
+                    "    \"nom_eleve\": \"\"," +
+                    "    \"etablissement\": []," +
+                    "    \"uai\": []," +
+                    "    \"classe\": []," +
+                    "    \"matiere_aide\": \"Test\"," +
+                    "    \"informations_complementaires\": \"test\"" +
+                    " }" +
                 " }" +
-                " }" +
-                "]";
+            "]";
 
         ctx.assertEquals(new JsonArray(expectedPayload), kiamoForm.homeworkAssistanceToKiamo());
     }

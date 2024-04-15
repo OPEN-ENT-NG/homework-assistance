@@ -7,11 +7,13 @@ import io.vertx.core.json.JsonObject;
 import java.time.Instant;
 import java.time.OffsetTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KiamoForm {
-    private final String destination;
-    private final String dateTime;
-    private final UserData userData;
+    private String destination;
+    private String dateTime;
+    private UserData userData;
 
     public KiamoForm(JsonObject kiamoPayload) {
         this.destination = kiamoPayload.getString(Field.DESTINATION);
@@ -23,21 +25,113 @@ public class KiamoForm {
                 .setAdditionalInformation(kiamoPayload.getString(Field.INFORMATIONS_COMPLEMENTAIRES));
     }
 
+    // Getters
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public UserData getUserData() {
+        return userData;
+    }
+
+    // Setters
+
+    public KiamoForm setDestination(String destination) {
+        this.destination = destination;
+        return this;
+    }
+
+    public KiamoForm setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+        return this;
+    }
+
+    public KiamoForm setUserData(UserData userData) {
+        this.userData = userData;
+        return this;
+    }
+
     public static class UserData {
-        private final String firstName;
-        private final String lastName;
-        private final String structure;
-        private final String group;
-        private final String subject;
+        private String firstName;
+        private String lastName;
+        private List<String> structures;
+        private List<String> uais;
+        private List<String> groups;
+        private String subject;
         private String additionalInformation;
 
         public UserData(JsonObject userData) {
-            this.firstName = userData.getString(Field.PRENOM);
-            this.lastName = userData.getString(Field.NOM);
-            this.structure = userData.getString(Field.ETABLISSEMENT);
-            this.group = userData.getString(Field.CLASSE);
+            this.firstName = "";
+            this.lastName = "";
+            this.structures = new ArrayList<>();
+            this.uais = new ArrayList<>();
+            this.groups = new ArrayList<>();
             this.subject = userData.getString(Field.MATIERE);
             this.additionalInformation = null;
+        }
+
+        // Getters
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public List<String> getStructures() {
+            return structures;
+        }
+
+        public List<String> getUais() {
+            return uais;
+        }
+
+        public List<String> getGroups() {
+            return groups;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+
+        // Setters
+
+        public UserData setFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public UserData setLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public UserData setStructures(List<String> structures) {
+            this.structures = structures;
+            return this;
+        }
+
+        public UserData setUais(List<String> uais) {
+            this.uais = uais;
+            return this;
+        }
+
+        public UserData setGroups(List<String> groups) {
+            this.groups = groups;
+            return this;
+        }
+
+        public UserData setSubject(String subject) {
+            this.subject = subject;
+            return this;
         }
 
         public UserData setAdditionalInformation(String additionalInformation) {
@@ -49,8 +143,9 @@ public class KiamoForm {
             return new JsonObject()
                     .put(Field.PRENOM_ELEVE, this.firstName)
                     .put(Field.NOM_ELEVE, this.lastName)
-                    .put(Field.ETABLISSEMENT, this.structure)
-                    .put(Field.CLASSE, this.group)
+                    .put(Field.ETABLISSEMENT, this.structures)
+                    .put(Field.UAI, this.uais)
+                    .put(Field.CLASSE, this.groups)
                     .put(Field.MATIERE_AIDE, this.subject)
                     .put(Field.INFORMATIONS_COMPLEMENTAIRES, this.additionalInformation);
         }

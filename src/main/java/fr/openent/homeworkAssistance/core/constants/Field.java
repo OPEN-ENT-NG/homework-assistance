@@ -29,6 +29,8 @@ public class Field {
     public static final String KIAMO = "kiamo";
     public static final String SERVER = "server";
     public static final String KEY = "key";
+    public static final String DOLLAR = "$";
+    public static final String KIAMO_API_TOKEN = "Kiamo-Api-Token";
 
     // fr key data
     public static final String PRENOM = "prenom";
@@ -36,6 +38,7 @@ public class Field {
     public static final String NOM_ELEVE = "nom_eleve";
     public static final String NOM = "nom";
     public static final String ETABLISSEMENT = "etablissement";
+    public static final String UAI = "uai";
     public static final String CLASSE = "classe";
     public static final String MATIERE_AIDE = "matiere_aide";
     public static final String MATIERE = "matiere";
