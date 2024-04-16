@@ -8,7 +8,7 @@ import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
 
-import static fr.openent.homeworkAssistance.core.constants.Field.KIAMO_API_TOKEN;
+import static fr.openent.homeworkAssistance.core.constants.Field.*;
 
 public class KiamoHelper {
 
@@ -32,6 +32,7 @@ public class KiamoHelper {
         this.webClient
             .postAbs(this.endpoint(serviceId))
             .putHeader(KIAMO_API_TOKEN, this.kiamoConfig.key())
+            .putHeader(CONTENT_TYPE, APPLICATION_SLASH_JSON)
             .sendJson(kiamoForm.homeworkAssistanceToKiamo(), responseAsync -> {
                 if (responseAsync.failed()) {
                     String message = String.format("[HomeworkAssistance@%s::sendForm] An error has occurred during fetching endpoint : %s",

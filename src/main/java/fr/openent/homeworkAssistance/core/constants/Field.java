@@ -16,8 +16,8 @@ public class Field {
     public static final String OK = "OK";
     public static final String KO = "KO";
     public static final String COUNT = "count";
-    public static final String CALLBACK_DATE = "callback_date";
-    public static final String CALLBACK_TIME = "callback_time";
+    public static final String SCHEDULED_DATE = "scheduled_date";
+    public static final String SCHEDULED_TIME = "scheduled_time";
     public static final String HOUR = "hour";
     public static final String MINUTE = "minute";
     public static final String ZONE_EU = "Europe/Paris";
@@ -31,6 +31,8 @@ public class Field {
     public static final String KEY = "key";
     public static final String DOLLAR = "$";
     public static final String KIAMO_API_TOKEN = "Kiamo-Api-Token";
+    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String APPLICATION_SLASH_JSON = "application/json";
 
     // fr key data
     public static final String PRENOM = "prenom";

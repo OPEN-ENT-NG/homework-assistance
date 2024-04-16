@@ -17,10 +17,9 @@ public class KiamoForm {
 
     public KiamoForm(JsonObject kiamoPayload) {
         this.destination = kiamoPayload.getString(Field.DESTINATION);
-        this.dateTime = kiamoPayload.getString(Field.CALLBACK_DATE).substring(0, 11) +
-                kiamoPayload.getJsonObject(Field.CALLBACK_TIME).getValue(Field.HOUR) + ":" +
-                kiamoPayload.getJsonObject(Field.CALLBACK_TIME).getInteger(Field.MINUTE) + ":00" +
-                OffsetTime.ofInstant(Instant.now(), ZoneId.of(Field.ZONE_EU)).getOffset();
+        this.dateTime = kiamoPayload.getString(Field.SCHEDULED_DATE).substring(0, 10) + " " +
+                kiamoPayload.getJsonObject(Field.SCHEDULED_TIME).getValue(Field.HOUR) + ":" +
+                kiamoPayload.getJsonObject(Field.SCHEDULED_TIME).getInteger(Field.MINUTE) + ":00";
         this.userData = new UserData(kiamoPayload.getJsonObject(Field.USERDATA, new JsonObject()))
                 .setAdditionalInformation(kiamoPayload.getString(Field.INFORMATIONS_COMPLEMENTAIRES));
     }
@@ -149,13 +148,24 @@ public class KiamoForm {
                     .put(Field.MATIERE_AIDE, this.subject)
                     .put(Field.INFORMATIONS_COMPLEMENTAIRES, this.additionalInformation);
         }
+
+        private JsonObject formatForKiamo() {
+            JsonObject jo = this.toJSON();
+            for (String key : jo.fieldNames()) {
+                Object value = jo.getValue(key);
+                if (value instanceof JsonArray && !((JsonArray) value).isEmpty()) {
+                    jo.put(key, ((JsonArray) value).getValue(0));
+                }
+            }
+            return jo;
+        }
     }
 
     public JsonArray homeworkAssistanceToKiamo() {
         JsonObject kiamoPayload = new JsonObject();
         kiamoPayload.put(Field.DESTINATION, this.destination)
-                .put(Field.CALLBACK_DATE, this.dateTime)
-                .put(Field.USERDATA, this.userData.toJSON());
+                .put(Field.SCHEDULED_DATE, this.dateTime)
+                .put(Field.USERDATA, this.userData.formatForKiamo());
         return new JsonArray().add(kiamoPayload);
     }
 }

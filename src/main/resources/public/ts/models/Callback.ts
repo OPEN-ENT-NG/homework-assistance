@@ -16,15 +16,15 @@ export class Userdata {
 
 export class Callback {
     destination: string;
-    callback_date: any;
-    callback_time: Time;
+    scheduled_date: any;
+    scheduled_time: Time;
     userdata: Userdata;
     informations_complementaires: string;
 
     constructor() {
         this.destination = null;
-        this.callback_date = null;
-        this.callback_time = new Time();
+        this.scheduled_date = null;
+        this.scheduled_time = new Time();
         this.userdata = new Userdata();
         this.informations_complementaires = null;
     }
@@ -32,8 +32,8 @@ export class Callback {
     toJson(): Object {
         return {
             destination: this.destination,
-            callback_date: DateUtils.format(new Date(this.callback_date.toDateString()), DateUtils.FORMAT["YEAR-MONTH-DAY-HOUR-MIN-SEC-TIMEZONE"]),
-            callback_time: this.callback_time,
+            scheduled_date: DateUtils.format(new Date(this.scheduled_date.toDateString()), DateUtils.FORMAT["YEAR-MONTH-DAY-HOUR-MIN-SEC-TIMEZONE"]),
+            scheduled_time: this.scheduled_time,
             userdata: this.userdata,
             informations_complementaires: this.informations_complementaires
         }

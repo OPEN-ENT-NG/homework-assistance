@@ -241,7 +241,7 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
 
     vm.calculateMinutesOpt = (): void => {
         let minutes = [];
-        let selectedHour = parseInt(vm.callback.callback_time.hour.toString());
+        let selectedHour = parseInt(vm.callback.scheduled_time.hour.toString());
         let starth = parseInt(vm.config.times.start.hour.toString());
         let endh = parseInt(vm.config.times.end.hour.toString());
         let startm = parseInt(vm.config.times.start.minute.toString());
@@ -273,7 +273,7 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
 
         try {
             vm.minutesOpt = minutes;
-            vm.callback.callback_time.minute = vm.minutesOpt[0];
+            vm.callback.scheduled_time.minute = vm.minutesOpt[0];
         }
         catch (err) {
             throw err;
@@ -306,14 +306,14 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
             vm.callback.userdata.classe = vm.getClassName();
             vm.callback.userdata.matiere = Object.keys(vm.services)[0];
             vm.callback.userdata.service = vm.services[vm.callback.userdata.matiere];
-            vm.callback.callback_date = new Date();
-            vm.callback.callback_time.hour = vm.config.times.start.hour;
+            vm.callback.scheduled_date = new Date();
+            vm.callback.scheduled_time.hour = vm.config.times.start.hour;
             vm.calculateMinutesOpt();
             $scope.safeApply();
         };
 
     const checkCallbackDay = (): boolean => {
-        let dayChoice = new Date(vm.callback.callback_date).getDay();
+        let dayChoice = new Date(vm.callback.scheduled_date).getDay();
         if ((dayChoice === 1  && !vm.config.days.monday) ||
             (dayChoice === 2  && !vm.config.days.tuesday) ||
             (dayChoice === 3  && !vm.config.days.wednesday) ||
@@ -329,7 +329,7 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
 
     const checkCallbackDate = (): boolean => {
         let check = true;
-        let callbackDate: Date = vm.callback.callback_date;
+        let callbackDate: Date = vm.callback.scheduled_date;
         callbackDate.setHours(0,0,0,0);
         let today = new Date();
         today.setDate(today.getDate() - 1);
@@ -355,9 +355,9 @@ export const homeController = ng.controller('HomeController', ['$scope', 'Config
         /* if   (hour out of bounds) ||
                 (hour = startHour but minute is before start) ||
                 (hour = endHour but minute is after end)*/
-        if ((vm.callback.callback_time.hour < vm.config.times.start.hour || vm.callback.callback_time.hour > vm.config.times.end.hour) ||
-            (vm.callback.callback_time.hour === vm.config.times.start.hour && vm.callback.callback_time.minute < vm.config.times.start.minute) ||
-            (vm.callback.callback_time.hour === vm.config.times.end.hour && vm.callback.callback_time.minute > vm.config.times.end.minute)) {
+        if ((vm.callback.scheduled_time.hour < vm.config.times.start.hour || vm.callback.scheduled_time.hour > vm.config.times.end.hour) ||
+            (vm.callback.scheduled_time.hour === vm.config.times.start.hour && vm.callback.scheduled_time.minute < vm.config.times.start.minute) ||
+            (vm.callback.scheduled_time.hour === vm.config.times.end.hour && vm.callback.scheduled_time.minute > vm.config.times.end.minute)) {
             vm.error = 'studentTime';
             return false;
         }
