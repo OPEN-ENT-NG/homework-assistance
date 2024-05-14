@@ -16,8 +16,8 @@ public class KiamoFormTest {
         JsonObject homeworkCallbackForm = new JsonObject(
                 "{" +
                     "\"destination\":\"06000000\"," +
-                    "\"callback_date\":\"2022-07-11T22:00:00.000Z\"," +
-                    "\"callback_time\":{" +
+                    "\"scheduled_date\":\"2022-07-11T22:00:00.000Z\"," +
+                    "\"scheduled_time\":{" +
                     "    \"hour\":\"11\"," +
                     "    \"minute\":15" +
                     "}," +
@@ -37,7 +37,7 @@ public class KiamoFormTest {
         String expectedPayload = "[" +
                 "{" +
                     "\"destination\": \"06000000\"," +
-                    "\"callback_date\": \"2022-07-11T11:15:00+02:00\"," +
+                    "\"scheduled_date\": \"2022-07-11 11:15:00\"," +
                     "\"userdata\": {" +
                     "    \"prenom_eleve\": \"\"," +
                     "    \"nom_eleve\": \"\"," +
@@ -58,8 +58,8 @@ public class KiamoFormTest {
         JsonObject homeworkCallbackForm = new JsonObject(
                 "{" +
                         "\"destination\":\"06000000\"," +
-                        "\"callback_date\":\"2022-07-14T00:00:00Z\"," +
-                        "\"callback_time\":{" +
+                        "\"scheduled_date\":\"2022-07-14T00:00:00Z\"," +
+                        "\"scheduled_time\":{" +
                         "    \"hour\":\"11\"," +
                         "    \"minute\":15" +
                         "}," +
@@ -79,7 +79,7 @@ public class KiamoFormTest {
         String expectedPayload = "[" +
                 "{" +
                     "\"destination\": \"06000000\"," +
-                    "\"callback_date\": \"2022-07-14T11:15:00+02:00\"," +
+                    "\"scheduled_date\": \"2022-07-14 11:15:00\"," +
                     "\"userdata\": {" +
                     "    \"prenom_eleve\": \"\"," +
                     "    \"nom_eleve\": \"\"," +

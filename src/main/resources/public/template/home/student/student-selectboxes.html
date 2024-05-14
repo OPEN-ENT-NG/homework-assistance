@@ -5,7 +5,7 @@
              <date-picker ng-id="date"
                           name="startDate"
                           class="custom-select-2"
-                          ng-model="vm.callback.callback_date"
+                          ng-model="vm.callback.scheduled_date"
                           required>
              </date-picker>
         </span>
@@ -14,7 +14,7 @@
     <div class="inline">
         <i18n>student.rdv.from</i18n>
         <div class="inline custom-select-1 time-picker">
-            <select ng-model="vm.callback.callback_time.hour"
+            <select ng-model="vm.callback.scheduled_time.hour"
                     ng-options="vm.getTimeFormat(opt) for opt in vm.getHoursOpt()"
                     ng-change="vm.calculateMinutesOpt()"
                     required>
@@ -22,7 +22,7 @@
         </div>
         <i18n class="inline">student.rdv.connector</i18n>
         <div class="inline custom-select-2">
-            <select ng-model="vm.callback.callback_time.minute"
+            <select ng-model="vm.callback.scheduled_time.minute"
                     ng-options="vm.getTimeFormat(opt) for opt in vm.minutesOpt"
                     required>
             </select>
