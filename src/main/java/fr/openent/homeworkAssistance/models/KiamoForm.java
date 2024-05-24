@@ -4,11 +4,10 @@ import fr.openent.homeworkAssistance.core.constants.Field;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
-import java.time.Instant;
-import java.time.OffsetTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class KiamoForm {
     private String destination;
@@ -17,11 +16,19 @@ public class KiamoForm {
 
     public KiamoForm(JsonObject kiamoPayload) {
         this.destination = kiamoPayload.getString(Field.DESTINATION);
-        this.dateTime = kiamoPayload.getString(Field.SCHEDULED_DATE, kiamoPayload.getString(Field.CALLBACK_DATE)).substring(0, 10) + " " +
-                kiamoPayload.getJsonObject(Field.SCHEDULED_TIME, kiamoPayload.getJsonObject(Field.CALLBACK_TIME)).getValue(Field.HOUR) + ":" +
-                kiamoPayload.getJsonObject(Field.SCHEDULED_TIME, kiamoPayload.getJsonObject(Field.CALLBACK_TIME)).getInteger(Field.MINUTE) + ":00";
+        this.dateTime = this.formatDateTime(kiamoPayload);
         this.userData = new UserData(kiamoPayload.getJsonObject(Field.USERDATA, new JsonObject()))
                 .setAdditionalInformation(kiamoPayload.getString(Field.INFORMATIONS_COMPLEMENTAIRES));
+    }
+
+    private String formatDateTime (JsonObject kiamoPayload) {
+        TimeZone tz = TimeZone.getTimeZone("Europe/Paris");
+        int offset = tz.getOffset(new Date().getTime()) / 1000 / 60 / 60;
+
+        String date = kiamoPayload.getString(Field.SCHEDULED_DATE, kiamoPayload.getString(Field.CALLBACK_DATE)).substring(0, 10);
+        JsonObject localTime = kiamoPayload.getJsonObject(Field.SCHEDULED_TIME, kiamoPayload.getJsonObject(Field.CALLBACK_TIME));
+
+        return String.format("%s %s:%s:00", date, (localTime.getInteger(Field.HOUR) - offset), localTime.getInteger(Field.MINUTE));
     }
 
     // Getters

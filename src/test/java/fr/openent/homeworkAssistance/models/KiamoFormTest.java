@@ -18,7 +18,7 @@ public class KiamoFormTest {
                     "\"destination\":\"06000000\"," +
                     "\"scheduled_date\":\"2022-07-11T22:00:00.000Z\"," +
                     "\"scheduled_time\":{" +
-                    "    \"hour\":\"11\"," +
+                    "    \"hour\":11," +
                     "    \"minute\":15" +
                     "}," +
                     "\"userdata\":{" +
@@ -37,7 +37,7 @@ public class KiamoFormTest {
         String expectedPayload = "[" +
                 "{" +
                     "\"destination\": \"06000000\"," +
-                    "\"scheduled_date\": \"2022-07-11 11:15:00\"," +
+                    "\"scheduled_date\": \"2022-07-11 9:15:00\"," +
                     "\"userdata\": {" +
                     "    \"prenom_eleve\": \"\"," +
                     "    \"nom_eleve\": \"\"," +
@@ -60,7 +60,7 @@ public class KiamoFormTest {
                         "\"destination\":\"06000000\"," +
                         "\"scheduled_date\":\"2022-07-14T00:00:00Z\"," +
                         "\"scheduled_time\":{" +
-                        "    \"hour\":\"11\"," +
+                        "    \"hour\":11," +
                         "    \"minute\":15" +
                         "}," +
                         "\"userdata\":{" +
@@ -79,7 +79,7 @@ public class KiamoFormTest {
         String expectedPayload = "[" +
                 "{" +
                     "\"destination\": \"06000000\"," +
-                    "\"scheduled_date\": \"2022-07-14 11:15:00\"," +
+                    "\"scheduled_date\": \"2022-07-14 9:15:00\"," +
                     "\"userdata\": {" +
                     "    \"prenom_eleve\": \"\"," +
                     "    \"nom_eleve\": \"\"," +
