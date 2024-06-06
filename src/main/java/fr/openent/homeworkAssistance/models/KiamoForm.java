@@ -3,6 +3,8 @@ package fr.openent.homeworkAssistance.models;
 import fr.openent.homeworkAssistance.core.constants.Field;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
+import io.vertx.core.logging.Logger;
+import io.vertx.core.logging.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class KiamoForm {
+    final Logger log = LoggerFactory.getLogger(KiamoForm.class);
     private String destination;
     private String dateTime;
     private UserData userData;
@@ -28,7 +31,15 @@ public class KiamoForm {
         String date = kiamoPayload.getString(Field.SCHEDULED_DATE, kiamoPayload.getString(Field.CALLBACK_DATE)).substring(0, 10);
         JsonObject localTime = kiamoPayload.getJsonObject(Field.SCHEDULED_TIME, kiamoPayload.getJsonObject(Field.CALLBACK_TIME));
 
-        return String.format("%s %s:%s:00", date, (localTime.getInteger(Field.HOUR) - offset), localTime.getInteger(Field.MINUTE));
+        try {
+            int hour = Integer.parseInt(localTime.getValue(Field.HOUR, "00").toString());
+            int minute = Integer.parseInt(localTime.getValue(Field.MINUTE, "00").toString());
+            return String.format("%s %s:%s:00", date, (hour - offset), minute);
+        }
+        catch (NumberFormatException e) {
+            log.error("[HomeworkAssistance@KiamoForm::formatDateTime] Failed to format date and time of payload to make Kiamo model.");
+            throw e;
+        }
     }
 
     // Getters
