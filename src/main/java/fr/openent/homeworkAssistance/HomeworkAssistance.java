@@ -5,6 +5,7 @@ import fr.openent.homeworkAssistance.controller.HomeworkAssistanceController;
 import fr.openent.homeworkAssistance.core.constants.Field;
 import fr.openent.homeworkAssistance.helper.KiamoHelper;
 import fr.openent.homeworkAssistance.service.ServiceFactory;
+import io.vertx.core.Promise;
 import io.vertx.core.net.ProxyOptions;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.WebClientOptions;
@@ -16,9 +17,9 @@ public class HomeworkAssistance extends BaseServer {
 	public static final String STUDENT = "homework-assistance.student";
 
 	@Override
-	public void start() throws Exception {
+	public void start(Promise<Void> startPromise) throws Exception {
 
-		super.start();
+		super.start(startPromise);
 
 		WebClient webClient = initWebClient();
 		KiamoConfig kiamoConfig = new KiamoConfig(config);
@@ -28,6 +29,8 @@ public class HomeworkAssistance extends BaseServer {
 		addController(new HomeworkAssistanceController());
 		addController(new ConfigurationController());
 		addController(new CallbackController(serviceFactory));
+		startPromise.tryComplete();
+		startPromise.tryFail("[Homework-assistance@HomeworkAssistance::start] Fail to start Homework-assistance");
 	}
 
 	private WebClient initWebClient() {
