@@ -68,8 +68,12 @@ public class DefaultConfigurationService extends MongoDbCrudService implements I
     }
 
     private void updateConfig(Handler<Either<String, JsonObject>> handler, JsonObject settings) {
-        JsonObject configToUpdate = new JsonObject().put(Field._ID, settings.getString(Field._ID));
-        mongo.update(collection, configToUpdate, settings, event -> {
+        JsonObject query = new JsonObject().put(Field._ID, settings.getString(Field._ID));
+        JsonObject updateFields = settings.copy();
+        updateFields.remove(Field._ID);
+        JsonObject update = new JsonObject().put("$set", updateFields);
+
+        mongo.update(collection, query, update, event -> {
             if (event.body().getString(Field.STATUS).equals(Field.ok)) {
                 handler.handle(new Either.Right<>(settings));
             } else {
