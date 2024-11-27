@@ -1,0 +1,34 @@
+import { useRef as c, useState as i, useEffect as l } from "react";
+const u = (t, r, s) => {
+  const e = t[r];
+  return e ? typeof e == "function" ? e() : Promise.resolve(e) : new Promise((n, o) => {
+    (typeof queueMicrotask == "function" ? queueMicrotask : setTimeout)(
+      o.bind(
+        null,
+        new Error(
+          "Unknown variable dynamic import: " + r + (r.split("/").length !== s ? ". Note that variables only represent file names one level deep." : "")
+        )
+      )
+    );
+  });
+}, p = (t) => {
+  const r = c(), [s, e] = i(!1), [n, o] = i();
+  return l(() => {
+    e(!0), (async () => {
+      try {
+        r.current = (await u(/* @__PURE__ */ Object.assign({ "../../assets/client-error.svg": () => import("../client-error-B_-qjgAB.js"), "../../assets/error.svg": () => import("../error-CRNeivL7.js"), "../../assets/server-error.svg": () => import("../server-error-DMyaPFs8.js") }), `../../assets/${t}.svg`, 4)).default;
+      } catch (a) {
+        o(a);
+      } finally {
+        e(!1);
+      }
+    })();
+  }, [t]), {
+    error: n,
+    loading: s,
+    Svg: r.current
+  };
+};
+export {
+  p as useLazySvgImport
+};

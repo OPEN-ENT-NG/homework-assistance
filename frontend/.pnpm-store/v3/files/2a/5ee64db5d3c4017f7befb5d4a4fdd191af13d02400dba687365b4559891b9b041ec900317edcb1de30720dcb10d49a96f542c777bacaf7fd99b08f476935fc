@@ -1,0 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react';
+import { Dropzone } from '../Dropzone';
+declare const meta: Meta<typeof Dropzone>;
+export default meta;
+type Story = StoryObj<typeof Dropzone>;
+export declare const Default: Story;

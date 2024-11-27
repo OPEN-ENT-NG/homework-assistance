@@ -1,0 +1,1407 @@
+import { a as xt, u as Pt } from "./index-yb8koCDz.js";
+import { I as Et, H as Rt, P as i } from "./identifier-B7MO0PvI.js";
+import * as L from "react";
+import { jsx as be } from "react/jsx-runtime";
+import { o as ze } from "./ownerDocument-CUrv0DIK.js";
+import { P as Tt, H as we } from "./Portal-meM40OhI.js";
+import { c as At } from "./chainPropTypes-D9lkm76m.js";
+import { r as at, u as Ge } from "./refType-BqQbA6de.js";
+import { u as Je } from "./useForkRef-C_4o__cU.js";
+import { c as jt, s as Dt, u as Mt } from "./DefaultPropsProvider-BYFwNPLt.js";
+var B = "top", N = "bottom", V = "right", $ = "left", Ce = "auto", le = [B, N, V, $], ee = "start", fe = "end", Ct = "clippingParents", it = "viewport", ie = "popper", Bt = "reference", Ke = /* @__PURE__ */ le.reduce(function(e, t) {
+  return e.concat([t + "-" + ee, t + "-" + fe]);
+}, []), st = /* @__PURE__ */ [].concat(le, [Ce]).reduce(function(e, t) {
+  return e.concat([t, t + "-" + ee, t + "-" + fe]);
+}, []), $t = "beforeRead", kt = "read", St = "afterRead", Wt = "beforeMain", Lt = "main", Ht = "afterMain", Nt = "beforeWrite", Vt = "write", Ut = "afterWrite", qt = [$t, kt, St, Wt, Lt, Ht, Nt, Vt, Ut];
+function q(e) {
+  return e ? (e.nodeName || "").toLowerCase() : null;
+}
+function W(e) {
+  if (e == null)
+    return window;
+  if (e.toString() !== "[object Window]") {
+    var t = e.ownerDocument;
+    return t && t.defaultView || window;
+  }
+  return e;
+}
+function Z(e) {
+  var t = W(e).Element;
+  return e instanceof t || e instanceof Element;
+}
+function H(e) {
+  var t = W(e).HTMLElement;
+  return e instanceof t || e instanceof HTMLElement;
+}
+function Be(e) {
+  if (typeof ShadowRoot > "u")
+    return !1;
+  var t = W(e).ShadowRoot;
+  return e instanceof t || e instanceof ShadowRoot;
+}
+function It(e) {
+  var t = e.state;
+  Object.keys(t.elements).forEach(function(r) {
+    var o = t.styles[r] || {}, n = t.attributes[r] || {}, s = t.elements[r];
+    !H(s) || !q(s) || (Object.assign(s.style, o), Object.keys(n).forEach(function(c) {
+      var a = n[c];
+      a === !1 ? s.removeAttribute(c) : s.setAttribute(c, a === !0 ? "" : a);
+    }));
+  });
+}
+function Ft(e) {
+  var t = e.state, r = {
+    popper: {
+      position: t.options.strategy,
+      left: "0",
+      top: "0",
+      margin: "0"
+    },
+    arrow: {
+      position: "absolute"
+    },
+    reference: {}
+  };
+  return Object.assign(t.elements.popper.style, r.popper), t.styles = r, t.elements.arrow && Object.assign(t.elements.arrow.style, r.arrow), function() {
+    Object.keys(t.elements).forEach(function(o) {
+      var n = t.elements[o], s = t.attributes[o] || {}, c = Object.keys(t.styles.hasOwnProperty(o) ? t.styles[o] : r[o]), a = c.reduce(function(p, l) {
+        return p[l] = "", p;
+      }, {});
+      !H(n) || !q(n) || (Object.assign(n.style, a), Object.keys(s).forEach(function(p) {
+        n.removeAttribute(p);
+      }));
+    });
+  };
+}
+const Xt = {
+  name: "applyStyles",
+  enabled: !0,
+  phase: "write",
+  fn: It,
+  effect: Ft,
+  requires: ["computeStyles"]
+};
+function U(e) {
+  return e.split("-")[0];
+}
+var Q = Math.max, Oe = Math.min, te = Math.round;
+function De() {
+  var e = navigator.userAgentData;
+  return e != null && e.brands && Array.isArray(e.brands) ? e.brands.map(function(t) {
+    return t.brand + "/" + t.version;
+  }).join(" ") : navigator.userAgent;
+}
+function pt() {
+  return !/^((?!chrome|android).)*safari/i.test(De());
+}
+function re(e, t, r) {
+  t === void 0 && (t = !1), r === void 0 && (r = !1);
+  var o = e.getBoundingClientRect(), n = 1, s = 1;
+  t && H(e) && (n = e.offsetWidth > 0 && te(o.width) / e.offsetWidth || 1, s = e.offsetHeight > 0 && te(o.height) / e.offsetHeight || 1);
+  var c = Z(e) ? W(e) : window, a = c.visualViewport, p = !pt() && r, l = (o.left + (p && a ? a.offsetLeft : 0)) / n, f = (o.top + (p && a ? a.offsetTop : 0)) / s, h = o.width / n, b = o.height / s;
+  return {
+    width: h,
+    height: b,
+    top: f,
+    right: l + h,
+    bottom: f + b,
+    left: l,
+    x: l,
+    y: f
+  };
+}
+function $e(e) {
+  var t = re(e), r = e.offsetWidth, o = e.offsetHeight;
+  return Math.abs(t.width - r) <= 1 && (r = t.width), Math.abs(t.height - o) <= 1 && (o = t.height), {
+    x: e.offsetLeft,
+    y: e.offsetTop,
+    width: r,
+    height: o
+  };
+}
+function ft(e, t) {
+  var r = t.getRootNode && t.getRootNode();
+  if (e.contains(t))
+    return !0;
+  if (r && Be(r)) {
+    var o = t;
+    do {
+      if (o && e.isSameNode(o))
+        return !0;
+      o = o.parentNode || o.host;
+    } while (o);
+  }
+  return !1;
+}
+function X(e) {
+  return W(e).getComputedStyle(e);
+}
+function Yt(e) {
+  return ["table", "td", "th"].indexOf(q(e)) >= 0;
+}
+function z(e) {
+  return ((Z(e) ? e.ownerDocument : (
+    // $FlowFixMe[prop-missing]
+    e.document
+  )) || window.document).documentElement;
+}
+function Pe(e) {
+  return q(e) === "html" ? e : (
+    // this is a quicker (but less type safe) way to save quite some bytes from the bundle
+    // $FlowFixMe[incompatible-return]
+    // $FlowFixMe[prop-missing]
+    e.assignedSlot || // step into the shadow DOM of the parent of a slotted node
+    e.parentNode || // DOM Element detected
+    (Be(e) ? e.host : null) || // ShadowRoot detected
+    // $FlowFixMe[incompatible-call]: HTMLElement is a Node
+    z(e)
+  );
+}
+function Qe(e) {
+  return !H(e) || // https://github.com/popperjs/popper-core/issues/837
+  X(e).position === "fixed" ? null : e.offsetParent;
+}
+function zt(e) {
+  var t = /firefox/i.test(De()), r = /Trident/i.test(De());
+  if (r && H(e)) {
+    var o = X(e);
+    if (o.position === "fixed")
+      return null;
+  }
+  var n = Pe(e);
+  for (Be(n) && (n = n.host); H(n) && ["html", "body"].indexOf(q(n)) < 0; ) {
+    var s = X(n);
+    if (s.transform !== "none" || s.perspective !== "none" || s.contain === "paint" || ["transform", "perspective"].indexOf(s.willChange) !== -1 || t && s.willChange === "filter" || t && s.filter && s.filter !== "none")
+      return n;
+    n = n.parentNode;
+  }
+  return null;
+}
+function ue(e) {
+  for (var t = W(e), r = Qe(e); r && Yt(r) && X(r).position === "static"; )
+    r = Qe(r);
+  return r && (q(r) === "html" || q(r) === "body" && X(r).position === "static") ? t : r || zt(e) || t;
+}
+function ke(e) {
+  return ["top", "bottom"].indexOf(e) >= 0 ? "x" : "y";
+}
+function se(e, t, r) {
+  return Q(e, Oe(t, r));
+}
+function Gt(e, t, r) {
+  var o = se(e, t, r);
+  return o > r ? r : o;
+}
+function ct() {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0
+  };
+}
+function lt(e) {
+  return Object.assign({}, ct(), e);
+}
+function ut(e, t) {
+  return t.reduce(function(r, o) {
+    return r[o] = e, r;
+  }, {});
+}
+var Jt = function(t, r) {
+  return t = typeof t == "function" ? t(Object.assign({}, r.rects, {
+    placement: r.placement
+  })) : t, lt(typeof t != "number" ? t : ut(t, le));
+};
+function Kt(e) {
+  var t, r = e.state, o = e.name, n = e.options, s = r.elements.arrow, c = r.modifiersData.popperOffsets, a = U(r.placement), p = ke(a), l = [$, V].indexOf(a) >= 0, f = l ? "height" : "width";
+  if (!(!s || !c)) {
+    var h = Jt(n.padding, r), b = $e(s), u = p === "y" ? B : $, x = p === "y" ? N : V, v = r.rects.reference[f] + r.rects.reference[p] - c[p] - r.rects.popper[f], m = c[p] - r.rects.reference[p], w = ue(s), P = w ? p === "y" ? w.clientHeight || 0 : w.clientWidth || 0 : 0, O = v / 2 - m / 2, d = h[u], y = P - b[f] - h[x], g = P / 2 - b[f] / 2 + O, E = se(d, g, y), A = p;
+    r.modifiersData[o] = (t = {}, t[A] = E, t.centerOffset = E - g, t);
+  }
+}
+function Qt(e) {
+  var t = e.state, r = e.options, o = r.element, n = o === void 0 ? "[data-popper-arrow]" : o;
+  n != null && (typeof n == "string" && (n = t.elements.popper.querySelector(n), !n) || ft(t.elements.popper, n) && (t.elements.arrow = n));
+}
+const Zt = {
+  name: "arrow",
+  enabled: !0,
+  phase: "main",
+  fn: Kt,
+  effect: Qt,
+  requires: ["popperOffsets"],
+  requiresIfExists: ["preventOverflow"]
+};
+function oe(e) {
+  return e.split("-")[1];
+}
+var _t = {
+  top: "auto",
+  right: "auto",
+  bottom: "auto",
+  left: "auto"
+};
+function er(e, t) {
+  var r = e.x, o = e.y, n = t.devicePixelRatio || 1;
+  return {
+    x: te(r * n) / n || 0,
+    y: te(o * n) / n || 0
+  };
+}
+function Ze(e) {
+  var t, r = e.popper, o = e.popperRect, n = e.placement, s = e.variation, c = e.offsets, a = e.position, p = e.gpuAcceleration, l = e.adaptive, f = e.roundOffsets, h = e.isFixed, b = c.x, u = b === void 0 ? 0 : b, x = c.y, v = x === void 0 ? 0 : x, m = typeof f == "function" ? f({
+    x: u,
+    y: v
+  }) : {
+    x: u,
+    y: v
+  };
+  u = m.x, v = m.y;
+  var w = c.hasOwnProperty("x"), P = c.hasOwnProperty("y"), O = $, d = B, y = window;
+  if (l) {
+    var g = ue(r), E = "clientHeight", A = "clientWidth";
+    if (g === W(r) && (g = z(r), X(g).position !== "static" && a === "absolute" && (E = "scrollHeight", A = "scrollWidth")), g = g, n === B || (n === $ || n === V) && s === fe) {
+      d = N;
+      var R = h && g === y && y.visualViewport ? y.visualViewport.height : (
+        // $FlowFixMe[prop-missing]
+        g[E]
+      );
+      v -= R - o.height, v *= p ? 1 : -1;
+    }
+    if (n === $ || (n === B || n === N) && s === fe) {
+      O = V;
+      var T = h && g === y && y.visualViewport ? y.visualViewport.width : (
+        // $FlowFixMe[prop-missing]
+        g[A]
+      );
+      u -= T - o.width, u *= p ? 1 : -1;
+    }
+  }
+  var j = Object.assign({
+    position: a
+  }, l && _t), k = f === !0 ? er({
+    x: u,
+    y: v
+  }, W(r)) : {
+    x: u,
+    y: v
+  };
+  if (u = k.x, v = k.y, p) {
+    var M;
+    return Object.assign({}, j, (M = {}, M[d] = P ? "0" : "", M[O] = w ? "0" : "", M.transform = (y.devicePixelRatio || 1) <= 1 ? "translate(" + u + "px, " + v + "px)" : "translate3d(" + u + "px, " + v + "px, 0)", M));
+  }
+  return Object.assign({}, j, (t = {}, t[d] = P ? v + "px" : "", t[O] = w ? u + "px" : "", t.transform = "", t));
+}
+function tr(e) {
+  var t = e.state, r = e.options, o = r.gpuAcceleration, n = o === void 0 ? !0 : o, s = r.adaptive, c = s === void 0 ? !0 : s, a = r.roundOffsets, p = a === void 0 ? !0 : a, l = {
+    placement: U(t.placement),
+    variation: oe(t.placement),
+    popper: t.elements.popper,
+    popperRect: t.rects.popper,
+    gpuAcceleration: n,
+    isFixed: t.options.strategy === "fixed"
+  };
+  t.modifiersData.popperOffsets != null && (t.styles.popper = Object.assign({}, t.styles.popper, Ze(Object.assign({}, l, {
+    offsets: t.modifiersData.popperOffsets,
+    position: t.options.strategy,
+    adaptive: c,
+    roundOffsets: p
+  })))), t.modifiersData.arrow != null && (t.styles.arrow = Object.assign({}, t.styles.arrow, Ze(Object.assign({}, l, {
+    offsets: t.modifiersData.arrow,
+    position: "absolute",
+    adaptive: !1,
+    roundOffsets: p
+  })))), t.attributes.popper = Object.assign({}, t.attributes.popper, {
+    "data-popper-placement": t.placement
+  });
+}
+const rr = {
+  name: "computeStyles",
+  enabled: !0,
+  phase: "beforeWrite",
+  fn: tr,
+  data: {}
+};
+var ye = {
+  passive: !0
+};
+function or(e) {
+  var t = e.state, r = e.instance, o = e.options, n = o.scroll, s = n === void 0 ? !0 : n, c = o.resize, a = c === void 0 ? !0 : c, p = W(t.elements.popper), l = [].concat(t.scrollParents.reference, t.scrollParents.popper);
+  return s && l.forEach(function(f) {
+    f.addEventListener("scroll", r.update, ye);
+  }), a && p.addEventListener("resize", r.update, ye), function() {
+    s && l.forEach(function(f) {
+      f.removeEventListener("scroll", r.update, ye);
+    }), a && p.removeEventListener("resize", r.update, ye);
+  };
+}
+const nr = {
+  name: "eventListeners",
+  enabled: !0,
+  phase: "write",
+  fn: function() {
+  },
+  effect: or,
+  data: {}
+};
+var ar = {
+  left: "right",
+  right: "left",
+  bottom: "top",
+  top: "bottom"
+};
+function ge(e) {
+  return e.replace(/left|right|bottom|top/g, function(t) {
+    return ar[t];
+  });
+}
+var ir = {
+  start: "end",
+  end: "start"
+};
+function _e(e) {
+  return e.replace(/start|end/g, function(t) {
+    return ir[t];
+  });
+}
+function Se(e) {
+  var t = W(e), r = t.pageXOffset, o = t.pageYOffset;
+  return {
+    scrollLeft: r,
+    scrollTop: o
+  };
+}
+function We(e) {
+  return re(z(e)).left + Se(e).scrollLeft;
+}
+function sr(e, t) {
+  var r = W(e), o = z(e), n = r.visualViewport, s = o.clientWidth, c = o.clientHeight, a = 0, p = 0;
+  if (n) {
+    s = n.width, c = n.height;
+    var l = pt();
+    (l || !l && t === "fixed") && (a = n.offsetLeft, p = n.offsetTop);
+  }
+  return {
+    width: s,
+    height: c,
+    x: a + We(e),
+    y: p
+  };
+}
+function pr(e) {
+  var t, r = z(e), o = Se(e), n = (t = e.ownerDocument) == null ? void 0 : t.body, s = Q(r.scrollWidth, r.clientWidth, n ? n.scrollWidth : 0, n ? n.clientWidth : 0), c = Q(r.scrollHeight, r.clientHeight, n ? n.scrollHeight : 0, n ? n.clientHeight : 0), a = -o.scrollLeft + We(e), p = -o.scrollTop;
+  return X(n || r).direction === "rtl" && (a += Q(r.clientWidth, n ? n.clientWidth : 0) - s), {
+    width: s,
+    height: c,
+    x: a,
+    y: p
+  };
+}
+function Le(e) {
+  var t = X(e), r = t.overflow, o = t.overflowX, n = t.overflowY;
+  return /auto|scroll|overlay|hidden/.test(r + n + o);
+}
+function dt(e) {
+  return ["html", "body", "#document"].indexOf(q(e)) >= 0 ? e.ownerDocument.body : H(e) && Le(e) ? e : dt(Pe(e));
+}
+function pe(e, t) {
+  var r;
+  t === void 0 && (t = []);
+  var o = dt(e), n = o === ((r = e.ownerDocument) == null ? void 0 : r.body), s = W(o), c = n ? [s].concat(s.visualViewport || [], Le(o) ? o : []) : o, a = t.concat(c);
+  return n ? a : (
+    // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
+    a.concat(pe(Pe(c)))
+  );
+}
+function Me(e) {
+  return Object.assign({}, e, {
+    left: e.x,
+    top: e.y,
+    right: e.x + e.width,
+    bottom: e.y + e.height
+  });
+}
+function fr(e, t) {
+  var r = re(e, !1, t === "fixed");
+  return r.top = r.top + e.clientTop, r.left = r.left + e.clientLeft, r.bottom = r.top + e.clientHeight, r.right = r.left + e.clientWidth, r.width = e.clientWidth, r.height = e.clientHeight, r.x = r.left, r.y = r.top, r;
+}
+function et(e, t, r) {
+  return t === it ? Me(sr(e, r)) : Z(t) ? fr(t, r) : Me(pr(z(e)));
+}
+function cr(e) {
+  var t = pe(Pe(e)), r = ["absolute", "fixed"].indexOf(X(e).position) >= 0, o = r && H(e) ? ue(e) : e;
+  return Z(o) ? t.filter(function(n) {
+    return Z(n) && ft(n, o) && q(n) !== "body";
+  }) : [];
+}
+function lr(e, t, r, o) {
+  var n = t === "clippingParents" ? cr(e) : [].concat(t), s = [].concat(n, [r]), c = s[0], a = s.reduce(function(p, l) {
+    var f = et(e, l, o);
+    return p.top = Q(f.top, p.top), p.right = Oe(f.right, p.right), p.bottom = Oe(f.bottom, p.bottom), p.left = Q(f.left, p.left), p;
+  }, et(e, c, o));
+  return a.width = a.right - a.left, a.height = a.bottom - a.top, a.x = a.left, a.y = a.top, a;
+}
+function vt(e) {
+  var t = e.reference, r = e.element, o = e.placement, n = o ? U(o) : null, s = o ? oe(o) : null, c = t.x + t.width / 2 - r.width / 2, a = t.y + t.height / 2 - r.height / 2, p;
+  switch (n) {
+    case B:
+      p = {
+        x: c,
+        y: t.y - r.height
+      };
+      break;
+    case N:
+      p = {
+        x: c,
+        y: t.y + t.height
+      };
+      break;
+    case V:
+      p = {
+        x: t.x + t.width,
+        y: a
+      };
+      break;
+    case $:
+      p = {
+        x: t.x - r.width,
+        y: a
+      };
+      break;
+    default:
+      p = {
+        x: t.x,
+        y: t.y
+      };
+  }
+  var l = n ? ke(n) : null;
+  if (l != null) {
+    var f = l === "y" ? "height" : "width";
+    switch (s) {
+      case ee:
+        p[l] = p[l] - (t[f] / 2 - r[f] / 2);
+        break;
+      case fe:
+        p[l] = p[l] + (t[f] / 2 - r[f] / 2);
+        break;
+    }
+  }
+  return p;
+}
+function ce(e, t) {
+  t === void 0 && (t = {});
+  var r = t, o = r.placement, n = o === void 0 ? e.placement : o, s = r.strategy, c = s === void 0 ? e.strategy : s, a = r.boundary, p = a === void 0 ? Ct : a, l = r.rootBoundary, f = l === void 0 ? it : l, h = r.elementContext, b = h === void 0 ? ie : h, u = r.altBoundary, x = u === void 0 ? !1 : u, v = r.padding, m = v === void 0 ? 0 : v, w = lt(typeof m != "number" ? m : ut(m, le)), P = b === ie ? Bt : ie, O = e.rects.popper, d = e.elements[x ? P : b], y = lr(Z(d) ? d : d.contextElement || z(e.elements.popper), p, f, c), g = re(e.elements.reference), E = vt({
+    reference: g,
+    element: O,
+    strategy: "absolute",
+    placement: n
+  }), A = Me(Object.assign({}, O, E)), R = b === ie ? A : g, T = {
+    top: y.top - R.top + w.top,
+    bottom: R.bottom - y.bottom + w.bottom,
+    left: y.left - R.left + w.left,
+    right: R.right - y.right + w.right
+  }, j = e.modifiersData.offset;
+  if (b === ie && j) {
+    var k = j[n];
+    Object.keys(T).forEach(function(M) {
+      var I = [V, N].indexOf(M) >= 0 ? 1 : -1, F = [B, N].indexOf(M) >= 0 ? "y" : "x";
+      T[M] += k[F] * I;
+    });
+  }
+  return T;
+}
+function ur(e, t) {
+  t === void 0 && (t = {});
+  var r = t, o = r.placement, n = r.boundary, s = r.rootBoundary, c = r.padding, a = r.flipVariations, p = r.allowedAutoPlacements, l = p === void 0 ? st : p, f = oe(o), h = f ? a ? Ke : Ke.filter(function(x) {
+    return oe(x) === f;
+  }) : le, b = h.filter(function(x) {
+    return l.indexOf(x) >= 0;
+  });
+  b.length === 0 && (b = h);
+  var u = b.reduce(function(x, v) {
+    return x[v] = ce(e, {
+      placement: v,
+      boundary: n,
+      rootBoundary: s,
+      padding: c
+    })[U(v)], x;
+  }, {});
+  return Object.keys(u).sort(function(x, v) {
+    return u[x] - u[v];
+  });
+}
+function dr(e) {
+  if (U(e) === Ce)
+    return [];
+  var t = ge(e);
+  return [_e(e), t, _e(t)];
+}
+function vr(e) {
+  var t = e.state, r = e.options, o = e.name;
+  if (!t.modifiersData[o]._skip) {
+    for (var n = r.mainAxis, s = n === void 0 ? !0 : n, c = r.altAxis, a = c === void 0 ? !0 : c, p = r.fallbackPlacements, l = r.padding, f = r.boundary, h = r.rootBoundary, b = r.altBoundary, u = r.flipVariations, x = u === void 0 ? !0 : u, v = r.allowedAutoPlacements, m = t.options.placement, w = U(m), P = w === m, O = p || (P || !x ? [ge(m)] : dr(m)), d = [m].concat(O).reduce(function(_, Y) {
+      return _.concat(U(Y) === Ce ? ur(t, {
+        placement: Y,
+        boundary: f,
+        rootBoundary: h,
+        padding: l,
+        flipVariations: x,
+        allowedAutoPlacements: v
+      }) : Y);
+    }, []), y = t.rects.reference, g = t.rects.popper, E = /* @__PURE__ */ new Map(), A = !0, R = d[0], T = 0; T < d.length; T++) {
+      var j = d[T], k = U(j), M = oe(j) === ee, I = [B, N].indexOf(k) >= 0, F = I ? "width" : "height", D = ce(t, {
+        placement: j,
+        boundary: f,
+        rootBoundary: h,
+        altBoundary: b,
+        padding: l
+      }), C = I ? M ? V : $ : M ? N : B;
+      y[F] > g[F] && (C = ge(C));
+      var S = ge(C), G = [];
+      if (s && G.push(D[k] <= 0), a && G.push(D[C] <= 0, D[S] <= 0), G.every(function(_) {
+        return _;
+      })) {
+        R = j, A = !1;
+        break;
+      }
+      E.set(j, G);
+    }
+    if (A)
+      for (var de = x ? 3 : 1, Re = function(Y) {
+        var ae = d.find(function(me) {
+          var J = E.get(me);
+          if (J)
+            return J.slice(0, Y).every(function(Te) {
+              return Te;
+            });
+        });
+        if (ae)
+          return R = ae, "break";
+      }, ne = de; ne > 0; ne--) {
+        var ve = Re(ne);
+        if (ve === "break") break;
+      }
+    t.placement !== R && (t.modifiersData[o]._skip = !0, t.placement = R, t.reset = !0);
+  }
+}
+const mr = {
+  name: "flip",
+  enabled: !0,
+  phase: "main",
+  fn: vr,
+  requiresIfExists: ["offset"],
+  data: {
+    _skip: !1
+  }
+};
+function tt(e, t, r) {
+  return r === void 0 && (r = {
+    x: 0,
+    y: 0
+  }), {
+    top: e.top - t.height - r.y,
+    right: e.right - t.width + r.x,
+    bottom: e.bottom - t.height + r.y,
+    left: e.left - t.width - r.x
+  };
+}
+function rt(e) {
+  return [B, V, N, $].some(function(t) {
+    return e[t] >= 0;
+  });
+}
+function hr(e) {
+  var t = e.state, r = e.name, o = t.rects.reference, n = t.rects.popper, s = t.modifiersData.preventOverflow, c = ce(t, {
+    elementContext: "reference"
+  }), a = ce(t, {
+    altBoundary: !0
+  }), p = tt(c, o), l = tt(a, n, s), f = rt(p), h = rt(l);
+  t.modifiersData[r] = {
+    referenceClippingOffsets: p,
+    popperEscapeOffsets: l,
+    isReferenceHidden: f,
+    hasPopperEscaped: h
+  }, t.attributes.popper = Object.assign({}, t.attributes.popper, {
+    "data-popper-reference-hidden": f,
+    "data-popper-escaped": h
+  });
+}
+const yr = {
+  name: "hide",
+  enabled: !0,
+  phase: "main",
+  requiresIfExists: ["preventOverflow"],
+  fn: hr
+};
+function gr(e, t, r) {
+  var o = U(e), n = [$, B].indexOf(o) >= 0 ? -1 : 1, s = typeof r == "function" ? r(Object.assign({}, t, {
+    placement: e
+  })) : r, c = s[0], a = s[1];
+  return c = c || 0, a = (a || 0) * n, [$, V].indexOf(o) >= 0 ? {
+    x: a,
+    y: c
+  } : {
+    x: c,
+    y: a
+  };
+}
+function br(e) {
+  var t = e.state, r = e.options, o = e.name, n = r.offset, s = n === void 0 ? [0, 0] : n, c = st.reduce(function(f, h) {
+    return f[h] = gr(h, t.rects, s), f;
+  }, {}), a = c[t.placement], p = a.x, l = a.y;
+  t.modifiersData.popperOffsets != null && (t.modifiersData.popperOffsets.x += p, t.modifiersData.popperOffsets.y += l), t.modifiersData[o] = c;
+}
+const wr = {
+  name: "offset",
+  enabled: !0,
+  phase: "main",
+  requires: ["popperOffsets"],
+  fn: br
+};
+function Or(e) {
+  var t = e.state, r = e.name;
+  t.modifiersData[r] = vt({
+    reference: t.rects.reference,
+    element: t.rects.popper,
+    strategy: "absolute",
+    placement: t.placement
+  });
+}
+const xr = {
+  name: "popperOffsets",
+  enabled: !0,
+  phase: "read",
+  fn: Or,
+  data: {}
+};
+function Pr(e) {
+  return e === "x" ? "y" : "x";
+}
+function Er(e) {
+  var t = e.state, r = e.options, o = e.name, n = r.mainAxis, s = n === void 0 ? !0 : n, c = r.altAxis, a = c === void 0 ? !1 : c, p = r.boundary, l = r.rootBoundary, f = r.altBoundary, h = r.padding, b = r.tether, u = b === void 0 ? !0 : b, x = r.tetherOffset, v = x === void 0 ? 0 : x, m = ce(t, {
+    boundary: p,
+    rootBoundary: l,
+    padding: h,
+    altBoundary: f
+  }), w = U(t.placement), P = oe(t.placement), O = !P, d = ke(w), y = Pr(d), g = t.modifiersData.popperOffsets, E = t.rects.reference, A = t.rects.popper, R = typeof v == "function" ? v(Object.assign({}, t.rects, {
+    placement: t.placement
+  })) : v, T = typeof R == "number" ? {
+    mainAxis: R,
+    altAxis: R
+  } : Object.assign({
+    mainAxis: 0,
+    altAxis: 0
+  }, R), j = t.modifiersData.offset ? t.modifiersData.offset[t.placement] : null, k = {
+    x: 0,
+    y: 0
+  };
+  if (g) {
+    if (s) {
+      var M, I = d === "y" ? B : $, F = d === "y" ? N : V, D = d === "y" ? "height" : "width", C = g[d], S = C + m[I], G = C - m[F], de = u ? -A[D] / 2 : 0, Re = P === ee ? E[D] : A[D], ne = P === ee ? -A[D] : -E[D], ve = t.elements.arrow, _ = u && ve ? $e(ve) : {
+        width: 0,
+        height: 0
+      }, Y = t.modifiersData["arrow#persistent"] ? t.modifiersData["arrow#persistent"].padding : ct(), ae = Y[I], me = Y[F], J = se(0, E[D], _[D]), Te = O ? E[D] / 2 - de - J - ae - T.mainAxis : Re - J - ae - T.mainAxis, ht = O ? -E[D] / 2 + de + J + me + T.mainAxis : ne + J + me + T.mainAxis, Ae = t.elements.arrow && ue(t.elements.arrow), yt = Ae ? d === "y" ? Ae.clientTop || 0 : Ae.clientLeft || 0 : 0, He = (M = j == null ? void 0 : j[d]) != null ? M : 0, gt = C + Te - He - yt, bt = C + ht - He, Ne = se(u ? Oe(S, gt) : S, C, u ? Q(G, bt) : G);
+      g[d] = Ne, k[d] = Ne - C;
+    }
+    if (a) {
+      var Ve, wt = d === "x" ? B : $, Ot = d === "x" ? N : V, K = g[y], he = y === "y" ? "height" : "width", Ue = K + m[wt], qe = K - m[Ot], je = [B, $].indexOf(w) !== -1, Ie = (Ve = j == null ? void 0 : j[y]) != null ? Ve : 0, Fe = je ? Ue : K - E[he] - A[he] - Ie + T.altAxis, Xe = je ? K + E[he] + A[he] - Ie - T.altAxis : qe, Ye = u && je ? Gt(Fe, K, Xe) : se(u ? Fe : Ue, K, u ? Xe : qe);
+      g[y] = Ye, k[y] = Ye - K;
+    }
+    t.modifiersData[o] = k;
+  }
+}
+const Rr = {
+  name: "preventOverflow",
+  enabled: !0,
+  phase: "main",
+  fn: Er,
+  requiresIfExists: ["offset"]
+};
+function Tr(e) {
+  return {
+    scrollLeft: e.scrollLeft,
+    scrollTop: e.scrollTop
+  };
+}
+function Ar(e) {
+  return e === W(e) || !H(e) ? Se(e) : Tr(e);
+}
+function jr(e) {
+  var t = e.getBoundingClientRect(), r = te(t.width) / e.offsetWidth || 1, o = te(t.height) / e.offsetHeight || 1;
+  return r !== 1 || o !== 1;
+}
+function Dr(e, t, r) {
+  r === void 0 && (r = !1);
+  var o = H(t), n = H(t) && jr(t), s = z(t), c = re(e, n, r), a = {
+    scrollLeft: 0,
+    scrollTop: 0
+  }, p = {
+    x: 0,
+    y: 0
+  };
+  return (o || !o && !r) && ((q(t) !== "body" || // https://github.com/popperjs/popper-core/issues/1078
+  Le(s)) && (a = Ar(t)), H(t) ? (p = re(t, !0), p.x += t.clientLeft, p.y += t.clientTop) : s && (p.x = We(s))), {
+    x: c.left + a.scrollLeft - p.x,
+    y: c.top + a.scrollTop - p.y,
+    width: c.width,
+    height: c.height
+  };
+}
+function Mr(e) {
+  var t = /* @__PURE__ */ new Map(), r = /* @__PURE__ */ new Set(), o = [];
+  e.forEach(function(s) {
+    t.set(s.name, s);
+  });
+  function n(s) {
+    r.add(s.name);
+    var c = [].concat(s.requires || [], s.requiresIfExists || []);
+    c.forEach(function(a) {
+      if (!r.has(a)) {
+        var p = t.get(a);
+        p && n(p);
+      }
+    }), o.push(s);
+  }
+  return e.forEach(function(s) {
+    r.has(s.name) || n(s);
+  }), o;
+}
+function Cr(e) {
+  var t = Mr(e);
+  return qt.reduce(function(r, o) {
+    return r.concat(t.filter(function(n) {
+      return n.phase === o;
+    }));
+  }, []);
+}
+function Br(e) {
+  var t;
+  return function() {
+    return t || (t = new Promise(function(r) {
+      Promise.resolve().then(function() {
+        t = void 0, r(e());
+      });
+    })), t;
+  };
+}
+function $r(e) {
+  var t = e.reduce(function(r, o) {
+    var n = r[o.name];
+    return r[o.name] = n ? Object.assign({}, n, o, {
+      options: Object.assign({}, n.options, o.options),
+      data: Object.assign({}, n.data, o.data)
+    }) : o, r;
+  }, {});
+  return Object.keys(t).map(function(r) {
+    return t[r];
+  });
+}
+var ot = {
+  placement: "bottom",
+  modifiers: [],
+  strategy: "absolute"
+};
+function nt() {
+  for (var e = arguments.length, t = new Array(e), r = 0; r < e; r++)
+    t[r] = arguments[r];
+  return !t.some(function(o) {
+    return !(o && typeof o.getBoundingClientRect == "function");
+  });
+}
+function kr(e) {
+  e === void 0 && (e = {});
+  var t = e, r = t.defaultModifiers, o = r === void 0 ? [] : r, n = t.defaultOptions, s = n === void 0 ? ot : n;
+  return function(a, p, l) {
+    l === void 0 && (l = s);
+    var f = {
+      placement: "bottom",
+      orderedModifiers: [],
+      options: Object.assign({}, ot, s),
+      modifiersData: {},
+      elements: {
+        reference: a,
+        popper: p
+      },
+      attributes: {},
+      styles: {}
+    }, h = [], b = !1, u = {
+      state: f,
+      setOptions: function(w) {
+        var P = typeof w == "function" ? w(f.options) : w;
+        v(), f.options = Object.assign({}, s, f.options, P), f.scrollParents = {
+          reference: Z(a) ? pe(a) : a.contextElement ? pe(a.contextElement) : [],
+          popper: pe(p)
+        };
+        var O = Cr($r([].concat(o, f.options.modifiers)));
+        return f.orderedModifiers = O.filter(function(d) {
+          return d.enabled;
+        }), x(), u.update();
+      },
+      // Sync update – it will always be executed, even if not necessary. This
+      // is useful for low frequency updates where sync behavior simplifies the
+      // logic.
+      // For high frequency updates (e.g. `resize` and `scroll` events), always
+      // prefer the async Popper#update method
+      forceUpdate: function() {
+        if (!b) {
+          var w = f.elements, P = w.reference, O = w.popper;
+          if (nt(P, O)) {
+            f.rects = {
+              reference: Dr(P, ue(O), f.options.strategy === "fixed"),
+              popper: $e(O)
+            }, f.reset = !1, f.placement = f.options.placement, f.orderedModifiers.forEach(function(T) {
+              return f.modifiersData[T.name] = Object.assign({}, T.data);
+            });
+            for (var d = 0; d < f.orderedModifiers.length; d++) {
+              if (f.reset === !0) {
+                f.reset = !1, d = -1;
+                continue;
+              }
+              var y = f.orderedModifiers[d], g = y.fn, E = y.options, A = E === void 0 ? {} : E, R = y.name;
+              typeof g == "function" && (f = g({
+                state: f,
+                options: A,
+                name: R,
+                instance: u
+              }) || f);
+            }
+          }
+        }
+      },
+      // Async and optimistically optimized update – it will not be executed if
+      // not necessary (debounced to run at most once-per-tick)
+      update: Br(function() {
+        return new Promise(function(m) {
+          u.forceUpdate(), m(f);
+        });
+      }),
+      destroy: function() {
+        v(), b = !0;
+      }
+    };
+    if (!nt(a, p))
+      return u;
+    u.setOptions(l).then(function(m) {
+      !b && l.onFirstUpdate && l.onFirstUpdate(m);
+    });
+    function x() {
+      f.orderedModifiers.forEach(function(m) {
+        var w = m.name, P = m.options, O = P === void 0 ? {} : P, d = m.effect;
+        if (typeof d == "function") {
+          var y = d({
+            state: f,
+            name: w,
+            instance: u,
+            options: O
+          }), g = function() {
+          };
+          h.push(y || g);
+        }
+      });
+    }
+    function v() {
+      h.forEach(function(m) {
+        return m();
+      }), h = [];
+    }
+    return u;
+  };
+}
+var Sr = [nr, xr, rr, Xt, wr, mr, Rr, Zt, yr], Wr = /* @__PURE__ */ kr({
+  defaultModifiers: Sr
+});
+function Lr(e) {
+  return Rt("MuiPopper", e);
+}
+Et("MuiPopper", ["root"]);
+function Hr(e, t) {
+  if (t === "ltr")
+    return e;
+  switch (e) {
+    case "bottom-end":
+      return "bottom-start";
+    case "bottom-start":
+      return "bottom-end";
+    case "top-end":
+      return "top-start";
+    case "top-start":
+      return "top-end";
+    default:
+      return e;
+  }
+}
+function xe(e) {
+  return typeof e == "function" ? e() : e;
+}
+function Ee(e) {
+  return e.nodeType !== void 0;
+}
+function Nr(e) {
+  return !Ee(e);
+}
+const Vr = (e) => {
+  const {
+    classes: t
+  } = e;
+  return jt({
+    root: ["root"]
+  }, Lr, t);
+}, Ur = {}, qr = /* @__PURE__ */ L.forwardRef(function(t, r) {
+  const {
+    anchorEl: o,
+    children: n,
+    direction: s,
+    disablePortal: c,
+    modifiers: a,
+    open: p,
+    placement: l,
+    popperOptions: f,
+    popperRef: h,
+    slotProps: b = {},
+    slots: u = {},
+    TransitionProps: x,
+    // @ts-ignore internal logic
+    ownerState: v,
+    // prevent from spreading to DOM, it can come from the parent component e.g. Select.
+    ...m
+  } = t, w = L.useRef(null), P = Je(w, r), O = L.useRef(null), d = Je(O, h), y = L.useRef(d);
+  Ge(() => {
+    y.current = d;
+  }, [d]), L.useImperativeHandle(h, () => O.current, []);
+  const g = Hr(l, s), [E, A] = L.useState(g), [R, T] = L.useState(xe(o));
+  L.useEffect(() => {
+    O.current && O.current.forceUpdate();
+  }), L.useEffect(() => {
+    o && T(xe(o));
+  }, [o]), Ge(() => {
+    if (!R || !p)
+      return;
+    const F = (S) => {
+      A(S.placement);
+    };
+    if (process.env.NODE_ENV !== "production" && R && Ee(R) && R.nodeType === 1) {
+      const S = R.getBoundingClientRect();
+      process.env.NODE_ENV !== "test" && S.top === 0 && S.left === 0 && S.right === 0 && S.bottom === 0 && console.warn(["MUI: The `anchorEl` prop provided to the component is invalid.", "The anchor element should be part of the document layout.", "Make sure the element is present in the document or that it's not display none."].join(`
+`));
+    }
+    let D = [{
+      name: "preventOverflow",
+      options: {
+        altBoundary: c
+      }
+    }, {
+      name: "flip",
+      options: {
+        altBoundary: c
+      }
+    }, {
+      name: "onUpdate",
+      enabled: !0,
+      phase: "afterWrite",
+      fn: ({
+        state: S
+      }) => {
+        F(S);
+      }
+    }];
+    a != null && (D = D.concat(a)), f && f.modifiers != null && (D = D.concat(f.modifiers));
+    const C = Wr(R, w.current, {
+      placement: g,
+      ...f,
+      modifiers: D
+    });
+    return y.current(C), () => {
+      C.destroy(), y.current(null);
+    };
+  }, [R, c, a, p, f, g]);
+  const j = {
+    placement: E
+  };
+  x !== null && (j.TransitionProps = x);
+  const k = Vr(t), M = u.root ?? "div", I = xt({
+    elementType: M,
+    externalSlotProps: b.root,
+    externalForwardedProps: m,
+    additionalProps: {
+      role: "tooltip",
+      ref: P
+    },
+    ownerState: t,
+    className: k.root
+  });
+  return /* @__PURE__ */ be(M, {
+    ...I,
+    children: typeof n == "function" ? n(j) : n
+  });
+}), mt = /* @__PURE__ */ L.forwardRef(function(t, r) {
+  const {
+    anchorEl: o,
+    children: n,
+    container: s,
+    direction: c = "ltr",
+    disablePortal: a = !1,
+    keepMounted: p = !1,
+    modifiers: l,
+    open: f,
+    placement: h = "bottom",
+    popperOptions: b = Ur,
+    popperRef: u,
+    style: x,
+    transition: v = !1,
+    slotProps: m = {},
+    slots: w = {},
+    ...P
+  } = t, [O, d] = L.useState(!0), y = () => {
+    d(!1);
+  }, g = () => {
+    d(!0);
+  };
+  if (!p && !f && (!v || O))
+    return null;
+  let E;
+  if (s)
+    E = s;
+  else if (o) {
+    const T = xe(o);
+    E = T && Ee(T) ? ze(T).body : ze(null).body;
+  }
+  const A = !f && p && (!v || O) ? "none" : void 0, R = v ? {
+    in: f,
+    onEnter: y,
+    onExited: g
+  } : void 0;
+  return /* @__PURE__ */ be(Tt, {
+    disablePortal: a,
+    container: E,
+    children: /* @__PURE__ */ be(qr, {
+      anchorEl: o,
+      direction: c,
+      disablePortal: a,
+      modifiers: l,
+      ref: r,
+      open: v ? !O : f,
+      placement: h,
+      popperOptions: b,
+      popperRef: u,
+      slotProps: m,
+      slots: w,
+      ...P,
+      style: {
+        // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
+        position: "fixed",
+        // Fix Popper.js display issue
+        top: 0,
+        left: 0,
+        display: A,
+        ...x
+      },
+      TransitionProps: R,
+      children: n
+    })
+  });
+});
+process.env.NODE_ENV !== "production" && (mt.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
+   */
+  anchorEl: At(i.oneOfType([we, i.object, i.func]), (e) => {
+    if (e.open) {
+      const t = xe(e.anchorEl);
+      if (t && Ee(t) && t.nodeType === 1) {
+        const r = t.getBoundingClientRect();
+        if (process.env.NODE_ENV !== "test" && r.top === 0 && r.left === 0 && r.right === 0 && r.bottom === 0)
+          return new Error(["MUI: The `anchorEl` prop provided to the component is invalid.", "The anchor element should be part of the document layout.", "Make sure the element is present in the document or that it's not display none."].join(`
+`));
+      } else if (!t || typeof t.getBoundingClientRect != "function" || Nr(t) && t.contextElement != null && t.contextElement.nodeType !== 1)
+        return new Error(["MUI: The `anchorEl` prop provided to the component is invalid.", "It should be an HTML element instance or a virtualElement ", "(https://popper.js.org/docs/v2/virtual-elements/)."].join(`
+`));
+    }
+    return null;
+  }),
+  /**
+   * Popper render function or node.
+   */
+  children: i.oneOfType([i.node, i.func]),
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: i.oneOfType([we, i.func]),
+  /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: i.oneOf(["ltr", "rtl"]),
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: i.bool,
+  /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: i.bool,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: i.arrayOf(i.shape({
+    data: i.object,
+    effect: i.func,
+    enabled: i.bool,
+    fn: i.func,
+    name: i.any,
+    options: i.object,
+    phase: i.oneOf(["afterMain", "afterRead", "afterWrite", "beforeMain", "beforeRead", "beforeWrite", "main", "read", "write"]),
+    requires: i.arrayOf(i.string),
+    requiresIfExists: i.arrayOf(i.string)
+  })),
+  /**
+   * If `true`, the component is shown.
+   */
+  open: i.bool.isRequired,
+  /**
+   * Popper placement.
+   * @default 'bottom'
+   */
+  placement: i.oneOf(["auto-end", "auto-start", "auto", "bottom-end", "bottom-start", "bottom", "left-end", "left-start", "left", "right-end", "right-start", "right", "top-end", "top-start", "top"]),
+  /**
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * @default {}
+   */
+  popperOptions: i.shape({
+    modifiers: i.array,
+    onFirstUpdate: i.func,
+    placement: i.oneOf(["auto-end", "auto-start", "auto", "bottom-end", "bottom-start", "bottom", "left-end", "left-start", "left", "right-end", "right-start", "right", "top-end", "top-start", "top"]),
+    strategy: i.oneOf(["absolute", "fixed"])
+  }),
+  /**
+   * A ref that points to the used popper instance.
+   */
+  popperRef: at,
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps: i.shape({
+    root: i.oneOfType([i.func, i.object])
+  }),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: i.shape({
+    root: i.elementType
+  }),
+  /**
+   * Help supporting a react-transition-group/Transition component.
+   * @default false
+   */
+  transition: i.bool
+});
+const Ir = Dt(mt, {
+  name: "MuiPopper",
+  slot: "Root",
+  overridesResolver: (e, t) => t.root
+})({}), Fr = /* @__PURE__ */ L.forwardRef(function(t, r) {
+  const o = Pt(), n = Mt({
+    props: t,
+    name: "MuiPopper"
+  }), {
+    anchorEl: s,
+    component: c,
+    components: a,
+    componentsProps: p,
+    container: l,
+    disablePortal: f,
+    keepMounted: h,
+    modifiers: b,
+    open: u,
+    placement: x,
+    popperOptions: v,
+    popperRef: m,
+    transition: w,
+    slots: P,
+    slotProps: O,
+    ...d
+  } = n, y = (P == null ? void 0 : P.root) ?? (a == null ? void 0 : a.Root), g = {
+    anchorEl: s,
+    container: l,
+    disablePortal: f,
+    keepMounted: h,
+    modifiers: b,
+    open: u,
+    placement: x,
+    popperOptions: v,
+    popperRef: m,
+    transition: w,
+    ...d
+  };
+  return /* @__PURE__ */ be(Ir, {
+    as: c,
+    direction: o ? "rtl" : "ltr",
+    slots: {
+      root: y
+    },
+    slotProps: O ?? p,
+    ...g,
+    ref: r
+  });
+});
+process.env.NODE_ENV !== "production" && (Fr.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
+   */
+  anchorEl: i.oneOfType([we, i.object, i.func]),
+  /**
+   * Popper render function or node.
+   */
+  children: i.oneOfType([i.node, i.func]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: i.elementType,
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   *
+   * @deprecated use the `slots` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @default {}
+   */
+  components: i.shape({
+    Root: i.elementType
+  }),
+  /**
+   * The props used for each slot inside the Popper.
+   *
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. [How to migrate](/material-ui/migration/migrating-from-deprecated-apis/).
+   * @default {}
+   */
+  componentsProps: i.shape({
+    root: i.oneOfType([i.func, i.object])
+  }),
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: i.oneOfType([we, i.func]),
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: i.bool,
+  /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: i.bool,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: i.arrayOf(i.shape({
+    data: i.object,
+    effect: i.func,
+    enabled: i.bool,
+    fn: i.func,
+    name: i.any,
+    options: i.object,
+    phase: i.oneOf(["afterMain", "afterRead", "afterWrite", "beforeMain", "beforeRead", "beforeWrite", "main", "read", "write"]),
+    requires: i.arrayOf(i.string),
+    requiresIfExists: i.arrayOf(i.string)
+  })),
+  /**
+   * If `true`, the component is shown.
+   */
+  open: i.bool.isRequired,
+  /**
+   * Popper placement.
+   * @default 'bottom'
+   */
+  placement: i.oneOf(["auto-end", "auto-start", "auto", "bottom-end", "bottom-start", "bottom", "left-end", "left-start", "left", "right-end", "right-start", "right", "top-end", "top-start", "top"]),
+  /**
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * @default {}
+   */
+  popperOptions: i.shape({
+    modifiers: i.array,
+    onFirstUpdate: i.func,
+    placement: i.oneOf(["auto-end", "auto-start", "auto", "bottom-end", "bottom-start", "bottom", "left-end", "left-start", "left", "right-end", "right-start", "right", "top-end", "top-start", "top"]),
+    strategy: i.oneOf(["absolute", "fixed"])
+  }),
+  /**
+   * A ref that points to the used popper instance.
+   */
+  popperRef: at,
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  slotProps: i.shape({
+    root: i.oneOfType([i.func, i.object])
+  }),
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  slots: i.shape({
+    root: i.elementType
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: i.oneOfType([i.arrayOf(i.oneOfType([i.func, i.object, i.bool])), i.func, i.object]),
+  /**
+   * Help supporting a react-transition-group/Transition component.
+   * @default false
+   */
+  transition: i.bool
+});
+export {
+  Fr as P
+};

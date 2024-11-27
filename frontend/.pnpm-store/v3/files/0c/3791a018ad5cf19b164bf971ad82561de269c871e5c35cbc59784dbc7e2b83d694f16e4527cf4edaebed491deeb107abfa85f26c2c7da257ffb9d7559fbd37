@@ -1,0 +1,45 @@
+import { r as P, m as d, a as v } from "./resolveComponentProps-CYk57pLv.js";
+import { u as R } from "./useForkRef-C_4o__cU.js";
+import * as p from "react";
+import { P as n } from "./identifier-B7MO0PvI.js";
+import { jsx as x } from "react/jsx-runtime";
+function k(o) {
+  var s;
+  const {
+    elementType: r,
+    externalSlotProps: l,
+    ownerState: t,
+    skipResolvingSlotProps: i = !1,
+    ...u
+  } = o, e = i ? {} : P(l, t), {
+    props: c,
+    internalRef: f
+  } = d({
+    ...u,
+    externalSlotProps: e
+  }), m = R(f, e == null ? void 0 : e.ref, (s = o.additionalProps) == null ? void 0 : s.ref);
+  return v(r, {
+    ...c,
+    ref: m
+  }, t);
+}
+const a = /* @__PURE__ */ p.createContext();
+function S({
+  value: o,
+  ...r
+}) {
+  return /* @__PURE__ */ x(a.Provider, {
+    value: o ?? !0,
+    ...r
+  });
+}
+process.env.NODE_ENV !== "production" && (S.propTypes = {
+  children: n.node,
+  value: n.bool
+});
+const w = () => p.useContext(a) ?? !1;
+export {
+  S as R,
+  k as a,
+  w as u
+};

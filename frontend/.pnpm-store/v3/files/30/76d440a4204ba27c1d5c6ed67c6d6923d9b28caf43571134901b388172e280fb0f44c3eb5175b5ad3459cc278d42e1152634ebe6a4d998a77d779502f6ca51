@@ -1,0 +1,8 @@
+import { SerializedError } from '@reduxjs/toolkit';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+export interface QueryErrorProps {
+    error: FetchBaseQueryError | SerializedError | undefined;
+    statusPrefix?: string;
+}
+declare const QueryError: React.FunctionComponent<QueryErrorProps>;
+export default QueryError;

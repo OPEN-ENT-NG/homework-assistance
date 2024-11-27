@@ -1,0 +1,24 @@
+import { d as t } from "./DefaultPropsProvider-BYFwNPLt.js";
+import { T as u } from "./identifier-B7MO0PvI.js";
+import { u as p } from "./useThemeProps-BFeVem33.js";
+function l(o, e, s, m, r) {
+  if (process.env.NODE_ENV === "production")
+    return null;
+  const n = r || e;
+  return typeof o[e] < "u" ? new Error(`The prop \`${n}\` is not supported. Please remove it.`) : null;
+}
+function d({
+  props: o,
+  name: e
+}) {
+  return p({
+    props: o,
+    name: e,
+    defaultTheme: t,
+    themeId: u
+  });
+}
+export {
+  l as a,
+  d as u
+};

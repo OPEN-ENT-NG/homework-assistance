@@ -1,0 +1,4 @@
+import { LoadingButtonProps } from '@mui/lab/LoadingButton';
+export type ButtonProps = LoadingButtonProps;
+declare const Button: React.FunctionComponent<ButtonProps>;
+export default Button;

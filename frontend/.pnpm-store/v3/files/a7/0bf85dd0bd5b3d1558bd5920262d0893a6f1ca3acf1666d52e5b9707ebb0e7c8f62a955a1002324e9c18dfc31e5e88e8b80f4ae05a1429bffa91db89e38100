@@ -1,0 +1,52 @@
+{
+  "name": "@cgi-learning-hub/theme",
+  "version": "1.3.3-dev.1732633701",
+  "private": false,
+  "author": "CGI Learning-hub Team",
+  "description": "@cgi-learning-hub/theme is a theme compatible with tailwind and mui",
+  "keywords": [
+    "cgi-learning-hub",
+    "tailwind",
+    "tailwindcss",
+    "hub",
+    "hub-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
+    "directory": "packages/theme"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./config": {
+      "import": "./dist/hub-tw-theme.es.js",
+      "require": "./dist/hub-tw-theme.cjs.js"
+    }
+  },
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@mui/x-date-pickers": "^7",
+    "deepmerge": "4.3.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.14"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@mui/material": "^6"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:watch": "vite build --watch"
+  }
+}

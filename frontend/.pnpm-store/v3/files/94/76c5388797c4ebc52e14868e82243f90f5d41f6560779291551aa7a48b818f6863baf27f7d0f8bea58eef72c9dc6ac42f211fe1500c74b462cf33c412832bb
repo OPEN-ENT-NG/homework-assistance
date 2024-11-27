@@ -1,0 +1,86 @@
+import * as s from "react";
+import * as P from "react-dom";
+import { P as i } from "./identifier-B7MO0PvI.js";
+import { jsx as c } from "react/jsx-runtime";
+import { u as h, s as a } from "./useForkRef-C_4o__cU.js";
+import { g as y } from "./utils-jA5a7WHN.js";
+import { u as f } from "./refType-BqQbA6de.js";
+const N = "exact-prop: ​";
+function O(n) {
+  return process.env.NODE_ENV === "production" ? n : {
+    ...n,
+    [N]: (l) => {
+      const r = Object.keys(l).filter((e) => !n.hasOwnProperty(e));
+      return r.length > 0 ? new Error(`The following props are not supported: ${r.map((e) => `\`${e}\``).join(", ")}. Please remove them.`) : null;
+    }
+  };
+}
+function T(n, l, r, e, u) {
+  if (process.env.NODE_ENV === "production")
+    return null;
+  const t = n[l], o = u || l;
+  return t == null ? null : t && t.nodeType !== 1 ? new Error(`Invalid ${e} \`${o}\` supplied to \`${r}\`. Expected an HTMLElement.`) : null;
+}
+function g(n) {
+  return typeof n == "function" ? n() : n;
+}
+const p = /* @__PURE__ */ s.forwardRef(function(l, r) {
+  const {
+    children: e,
+    container: u,
+    disablePortal: t = !1
+  } = l, [o, m] = s.useState(null), d = h(/* @__PURE__ */ s.isValidElement(e) ? y(e) : null, r);
+  if (f(() => {
+    t || m(g(u) || document.body);
+  }, [u, t]), f(() => {
+    if (o && !t)
+      return a(r, o), () => {
+        a(r, null);
+      };
+  }, [r, o, t]), t) {
+    if (/* @__PURE__ */ s.isValidElement(e)) {
+      const E = {
+        ref: d
+      };
+      return /* @__PURE__ */ s.cloneElement(e, E);
+    }
+    return /* @__PURE__ */ c(s.Fragment, {
+      children: e
+    });
+  }
+  return /* @__PURE__ */ c(s.Fragment, {
+    children: o && /* @__PURE__ */ P.createPortal(e, o)
+  });
+});
+process.env.NODE_ENV !== "production" && (p.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │ To update them, edit the TypeScript types and run `pnpm proptypes`. │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The children to render into the `container`.
+   */
+  children: i.node,
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * You can also provide a callback, which is called in a React layout effect.
+   * This lets you set the container from a ref, and also makes server-side rendering possible.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: i.oneOfType([T, i.func]),
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: i.bool
+});
+process.env.NODE_ENV !== "production" && (p.propTypes = O(p.propTypes));
+export {
+  T as H,
+  p as P,
+  O as e
+};

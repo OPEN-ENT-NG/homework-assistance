@@ -1,0 +1,272 @@
+import * as c from "react";
+import { H as b, I as f, G as x, P as t, n as d } from "./identifier-B7MO0PvI.js";
+import { s as S, r as U, u as P, c as E } from "./DefaultPropsProvider-BYFwNPLt.js";
+import { m as F } from "./memoTheme-CqfvfBST.js";
+import { b as $ } from "./Menu-ysG9uY3e.js";
+import { jsx as M } from "react/jsx-runtime";
+import { B as G } from "./ButtonBase-z74SMnd9.js";
+import { u as j } from "./refType-BqQbA6de.js";
+import { u as D } from "./useForkRef-C_4o__cU.js";
+import { d as O } from "./dividerClasses-Bp7otbbC.js";
+function te(e) {
+  return b("MuiListItemIcon", e);
+}
+const T = f("MuiListItemIcon", ["root", "alignItemsFlexStart"]);
+function se(e) {
+  return b("MuiListItemText", e);
+}
+const k = f("MuiListItemText", ["root", "multiline", "dense", "inset", "primary", "secondary"]);
+function H(e) {
+  return b("MuiMenuItem", e);
+}
+const i = f("MuiMenuItem", ["root", "focusVisible", "dense", "disabled", "divider", "gutters", "selected"]), z = (e, s) => {
+  const {
+    ownerState: o
+  } = e;
+  return [s.root, o.dense && s.dense, o.divider && s.divider, !o.disableGutters && s.gutters];
+}, _ = (e) => {
+  const {
+    disabled: s,
+    dense: o,
+    divider: a,
+    disableGutters: l,
+    selected: p,
+    classes: n
+  } = e, r = E({
+    root: ["root", o && "dense", s && "disabled", !l && "gutters", a && "divider", p && "selected"]
+  }, H, n);
+  return {
+    ...n,
+    ...r
+  };
+}, W = S(G, {
+  shouldForwardProp: (e) => U(e) || e === "classes",
+  name: "MuiMenuItem",
+  slot: "Root",
+  overridesResolver: z
+})(F(({
+  theme: e
+}) => ({
+  ...e.typography.body1,
+  display: "flex",
+  justifyContent: "flex-start",
+  alignItems: "center",
+  position: "relative",
+  textDecoration: "none",
+  minHeight: 48,
+  paddingTop: 6,
+  paddingBottom: 6,
+  boxSizing: "border-box",
+  whiteSpace: "nowrap",
+  "&:hover": {
+    textDecoration: "none",
+    backgroundColor: (e.vars || e).palette.action.hover,
+    // Reset on touch devices, it doesn't add specificity
+    "@media (hover: none)": {
+      backgroundColor: "transparent"
+    }
+  },
+  [`&.${i.selected}`]: {
+    backgroundColor: e.vars ? `rgba(${e.vars.palette.primary.mainChannel} / ${e.vars.palette.action.selectedOpacity})` : d(e.palette.primary.main, e.palette.action.selectedOpacity),
+    [`&.${i.focusVisible}`]: {
+      backgroundColor: e.vars ? `rgba(${e.vars.palette.primary.mainChannel} / calc(${e.vars.palette.action.selectedOpacity} + ${e.vars.palette.action.focusOpacity}))` : d(e.palette.primary.main, e.palette.action.selectedOpacity + e.palette.action.focusOpacity)
+    }
+  },
+  [`&.${i.selected}:hover`]: {
+    backgroundColor: e.vars ? `rgba(${e.vars.palette.primary.mainChannel} / calc(${e.vars.palette.action.selectedOpacity} + ${e.vars.palette.action.hoverOpacity}))` : d(e.palette.primary.main, e.palette.action.selectedOpacity + e.palette.action.hoverOpacity),
+    // Reset on touch devices, it doesn't add specificity
+    "@media (hover: none)": {
+      backgroundColor: e.vars ? `rgba(${e.vars.palette.primary.mainChannel} / ${e.vars.palette.action.selectedOpacity})` : d(e.palette.primary.main, e.palette.action.selectedOpacity)
+    }
+  },
+  [`&.${i.focusVisible}`]: {
+    backgroundColor: (e.vars || e).palette.action.focus
+  },
+  [`&.${i.disabled}`]: {
+    opacity: (e.vars || e).palette.action.disabledOpacity
+  },
+  [`& + .${O.root}`]: {
+    marginTop: e.spacing(1),
+    marginBottom: e.spacing(1)
+  },
+  [`& + .${O.inset}`]: {
+    marginLeft: 52
+  },
+  [`& .${k.root}`]: {
+    marginTop: 0,
+    marginBottom: 0
+  },
+  [`& .${k.inset}`]: {
+    paddingLeft: 36
+  },
+  [`& .${T.root}`]: {
+    minWidth: 36
+  },
+  variants: [{
+    props: ({
+      ownerState: s
+    }) => !s.disableGutters,
+    style: {
+      paddingLeft: 16,
+      paddingRight: 16
+    }
+  }, {
+    props: ({
+      ownerState: s
+    }) => s.divider,
+    style: {
+      borderBottom: `1px solid ${(e.vars || e).palette.divider}`,
+      backgroundClip: "padding-box"
+    }
+  }, {
+    props: ({
+      ownerState: s
+    }) => !s.dense,
+    style: {
+      [e.breakpoints.up("sm")]: {
+        minHeight: "auto"
+      }
+    }
+  }, {
+    props: ({
+      ownerState: s
+    }) => s.dense,
+    style: {
+      minHeight: 32,
+      // https://m2.material.io/components/menus#specs > Dense
+      paddingTop: 4,
+      paddingBottom: 4,
+      ...e.typography.body2,
+      [`& .${T.root} svg`]: {
+        fontSize: "1.25rem"
+      }
+    }
+  }]
+}))), q = /* @__PURE__ */ c.forwardRef(function(s, o) {
+  const a = P({
+    props: s,
+    name: "MuiMenuItem"
+  }), {
+    autoFocus: l = !1,
+    component: p = "li",
+    dense: n = !1,
+    divider: g = !1,
+    disableGutters: r = !1,
+    focusVisibleClassName: L,
+    role: N = "menuitem",
+    tabIndex: y,
+    className: R,
+    ...w
+  } = a, v = c.useContext($), I = c.useMemo(() => ({
+    dense: n || v.dense || !1,
+    disableGutters: r
+  }), [v.dense, n, r]), u = c.useRef(null);
+  j(() => {
+    l && (u.current ? u.current.focus() : process.env.NODE_ENV !== "production" && console.error("MUI: Unable to set focus to a MenuItem whose component has not been rendered."));
+  }, [l]);
+  const V = {
+    ...a,
+    dense: I.dense,
+    divider: g,
+    disableGutters: r
+  }, m = _(a), B = D(u, o);
+  let C;
+  return a.disabled || (C = y !== void 0 ? y : -1), /* @__PURE__ */ M($.Provider, {
+    value: I,
+    children: /* @__PURE__ */ M(W, {
+      ref: B,
+      role: N,
+      tabIndex: C,
+      component: p,
+      focusVisibleClassName: x(m.focusVisible, L),
+      className: x(m.root, R),
+      ...w,
+      ownerState: V,
+      classes: m
+    })
+  });
+});
+process.env.NODE_ENV !== "production" && (q.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   * @default false
+   */
+  autoFocus: t.bool,
+  /**
+   * The content of the component.
+   */
+  children: t.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: t.object,
+  /**
+   * @ignore
+   */
+  className: t.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: t.elementType,
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input is used.
+   * The prop defaults to the value inherited from the parent Menu component.
+   * @default false
+   */
+  dense: t.bool,
+  /**
+   * @ignore
+   */
+  disabled: t.bool,
+  /**
+   * If `true`, the left and right padding is removed.
+   * @default false
+   */
+  disableGutters: t.bool,
+  /**
+   * If `true`, a 1px light border is added to the bottom of the menu item.
+   * @default false
+   */
+  divider: t.bool,
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: t.string,
+  /**
+   * @ignore
+   */
+  role: t.string,
+  /**
+   * If `true`, the component is selected.
+   * @default false
+   */
+  selected: t.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: t.oneOfType([t.arrayOf(t.oneOfType([t.func, t.object, t.bool])), t.func, t.object]),
+  /**
+   * @default 0
+   */
+  tabIndex: t.number
+});
+export {
+  q as M,
+  k as a,
+  se as b,
+  H as c,
+  te as g,
+  T as l,
+  i as m
+};

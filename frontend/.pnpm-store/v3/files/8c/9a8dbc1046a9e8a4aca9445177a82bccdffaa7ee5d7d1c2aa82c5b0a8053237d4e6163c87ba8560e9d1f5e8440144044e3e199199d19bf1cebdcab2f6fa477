@@ -1,0 +1,48 @@
+{
+  "name": "@cgi-learning-hub/icons",
+  "version": "1.3.3-dev.1732633701",
+  "private": false,
+  "author": "CGI Learning-hub Team",
+  "description": "@cgi-learning-hub/icons is an open-source React component library icons specific that implements icons for HUB's features",
+  "keywords": [
+    "cgi-learning-hub",
+    "react",
+    "react-component",
+    "hub",
+    "hub-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CGI-OPEN-ENT-NG/hub-ui.git",
+    "directory": "packages/icons"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    }
+  },
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@mui/material": "^6",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:watch": "vite build --watch"
+  }
+}

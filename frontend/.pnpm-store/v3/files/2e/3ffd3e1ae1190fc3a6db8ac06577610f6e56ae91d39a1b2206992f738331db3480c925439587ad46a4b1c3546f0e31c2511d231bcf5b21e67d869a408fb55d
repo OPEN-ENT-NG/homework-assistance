@@ -1,0 +1,13 @@
+import { jsxs as e, jsx as r } from "react/jsx-runtime";
+import { styled as l, Alert as i, AlertTitle as n } from "@mui/material";
+const d = l(i)(() => ({
+  "& .MuiAlertTitle-root": {
+    fontWeight: 600
+  }
+})), s = (t) => /* @__PURE__ */ e(d, { ...t, severity: t.severity, color: t.severity, variant: "standard", children: [
+  t.title && /* @__PURE__ */ r(n, { children: t.title }),
+  t.children
+] });
+export {
+  s as default
+};

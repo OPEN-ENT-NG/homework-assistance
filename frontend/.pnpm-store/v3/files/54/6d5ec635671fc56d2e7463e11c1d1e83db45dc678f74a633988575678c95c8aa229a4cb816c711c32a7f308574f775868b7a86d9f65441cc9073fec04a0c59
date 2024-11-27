@@ -1,0 +1,378 @@
+import { jsxs as y, jsx as s } from "react/jsx-runtime";
+import { C as S } from "../../Checkbox-Bmz9nh6k.js";
+import { a as $ } from "../../Radio-CW4v1BS4.js";
+import * as C from "react";
+import { I as x, H as T, L as i, P as t, n as f, s as R, q as z, G as O } from "../../identifier-B7MO0PvI.js";
+import { c as j } from "../../createSimplePaletteValueFilter-B7--0ryQ.js";
+import { S as B } from "../../SwitchBase-DBnju71w.js";
+import { m as d } from "../../memoTheme-CqfvfBST.js";
+import { s as p, u as L, c as M } from "../../DefaultPropsProvider-BYFwNPLt.js";
+import { r as P } from "../../refType-BqQbA6de.js";
+import { F as N } from "../../FormControlLabel-BDXTL5Eo.js";
+function I(o) {
+  return T("MuiSwitch", o);
+}
+const a = x("MuiSwitch", ["root", "edgeStart", "edgeEnd", "switchBase", "colorPrimary", "colorSecondary", "sizeSmall", "sizeMedium", "checked", "disabled", "input", "thumb", "track"]), D = (o) => {
+  const {
+    classes: e,
+    edge: r,
+    size: l,
+    color: b,
+    checked: u,
+    disabled: g
+  } = o, h = {
+    root: ["root", r && `edge${i(r)}`, `size${i(l)}`],
+    switchBase: ["switchBase", `color${i(b)}`, u && "checked", g && "disabled"],
+    thumb: ["thumb"],
+    track: ["track"],
+    input: ["input"]
+  }, m = M(h, I, e);
+  return {
+    ...e,
+    // forward the disabled and checked classes to the SwitchBase
+    ...m
+  };
+}, F = p("span", {
+  name: "MuiSwitch",
+  slot: "Root",
+  overridesResolver: (o, e) => {
+    const {
+      ownerState: r
+    } = o;
+    return [e.root, r.edge && e[`edge${i(r.edge)}`], e[`size${i(r.size)}`]];
+  }
+})({
+  display: "inline-flex",
+  width: 34 + 12 * 2,
+  height: 14 + 12 * 2,
+  overflow: "hidden",
+  padding: 12,
+  boxSizing: "border-box",
+  position: "relative",
+  flexShrink: 0,
+  zIndex: 0,
+  // Reset the stacking context.
+  verticalAlign: "middle",
+  // For correct alignment with the text.
+  "@media print": {
+    colorAdjust: "exact"
+  },
+  variants: [{
+    props: {
+      edge: "start"
+    },
+    style: {
+      marginLeft: -8
+    }
+  }, {
+    props: {
+      edge: "end"
+    },
+    style: {
+      marginRight: -8
+    }
+  }, {
+    props: {
+      size: "small"
+    },
+    style: {
+      width: 40,
+      height: 24,
+      padding: 7,
+      [`& .${a.thumb}`]: {
+        width: 16,
+        height: 16
+      },
+      [`& .${a.switchBase}`]: {
+        padding: 4,
+        [`&.${a.checked}`]: {
+          transform: "translateX(16px)"
+        }
+      }
+    }
+  }]
+}), q = p(B, {
+  name: "MuiSwitch",
+  slot: "SwitchBase",
+  overridesResolver: (o, e) => {
+    const {
+      ownerState: r
+    } = o;
+    return [e.switchBase, {
+      [`& .${a.input}`]: e.input
+    }, r.color !== "default" && e[`color${i(r.color)}`]];
+  }
+})(d(({
+  theme: o
+}) => ({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  zIndex: 1,
+  // Render above the focus ripple.
+  color: o.vars ? o.vars.palette.Switch.defaultColor : `${o.palette.mode === "light" ? o.palette.common.white : o.palette.grey[300]}`,
+  transition: o.transitions.create(["left", "transform"], {
+    duration: o.transitions.duration.shortest
+  }),
+  [`&.${a.checked}`]: {
+    transform: "translateX(20px)"
+  },
+  [`&.${a.disabled}`]: {
+    color: o.vars ? o.vars.palette.Switch.defaultDisabledColor : `${o.palette.mode === "light" ? o.palette.grey[100] : o.palette.grey[600]}`
+  },
+  [`&.${a.checked} + .${a.track}`]: {
+    opacity: 0.5
+  },
+  [`&.${a.disabled} + .${a.track}`]: {
+    opacity: o.vars ? o.vars.opacity.switchTrackDisabled : `${o.palette.mode === "light" ? 0.12 : 0.2}`
+  },
+  [`& .${a.input}`]: {
+    left: "-100%",
+    width: "300%"
+  }
+})), d(({
+  theme: o
+}) => ({
+  "&:hover": {
+    backgroundColor: o.vars ? `rgba(${o.vars.palette.action.activeChannel} / ${o.vars.palette.action.hoverOpacity})` : f(o.palette.action.active, o.palette.action.hoverOpacity),
+    // Reset on touch devices, it doesn't add specificity
+    "@media (hover: none)": {
+      backgroundColor: "transparent"
+    }
+  },
+  variants: [...Object.entries(o.palette).filter(j(["light"])).map(([e]) => ({
+    props: {
+      color: e
+    },
+    style: {
+      [`&.${a.checked}`]: {
+        color: (o.vars || o).palette[e].main,
+        "&:hover": {
+          backgroundColor: o.vars ? `rgba(${o.vars.palette[e].mainChannel} / ${o.vars.palette.action.hoverOpacity})` : f(o.palette[e].main, o.palette.action.hoverOpacity),
+          "@media (hover: none)": {
+            backgroundColor: "transparent"
+          }
+        },
+        [`&.${a.disabled}`]: {
+          color: o.vars ? o.vars.palette.Switch[`${e}DisabledColor`] : `${o.palette.mode === "light" ? R(o.palette[e].main, 0.62) : z(o.palette[e].main, 0.55)}`
+        }
+      },
+      [`&.${a.checked} + .${a.track}`]: {
+        backgroundColor: (o.vars || o).palette[e].main
+      }
+    }
+  }))]
+}))), U = p("span", {
+  name: "MuiSwitch",
+  slot: "Track",
+  overridesResolver: (o, e) => e.track
+})(d(({
+  theme: o
+}) => ({
+  height: "100%",
+  width: "100%",
+  borderRadius: 14 / 2,
+  zIndex: -1,
+  transition: o.transitions.create(["opacity", "background-color"], {
+    duration: o.transitions.duration.shortest
+  }),
+  backgroundColor: o.vars ? o.vars.palette.common.onBackground : `${o.palette.mode === "light" ? o.palette.common.black : o.palette.common.white}`,
+  opacity: o.vars ? o.vars.opacity.switchTrack : `${o.palette.mode === "light" ? 0.38 : 0.3}`
+}))), E = p("span", {
+  name: "MuiSwitch",
+  slot: "Thumb",
+  overridesResolver: (o, e) => e.thumb
+})(d(({
+  theme: o
+}) => ({
+  boxShadow: (o.vars || o).shadows[1],
+  backgroundColor: "currentColor",
+  width: 20,
+  height: 20,
+  borderRadius: "50%"
+}))), w = /* @__PURE__ */ C.forwardRef(function(e, r) {
+  const l = L({
+    props: e,
+    name: "MuiSwitch"
+  }), {
+    className: b,
+    color: u = "primary",
+    edge: g = !1,
+    size: h = "medium",
+    sx: m,
+    ...k
+  } = l, n = {
+    ...l,
+    color: u,
+    edge: g,
+    size: h
+  }, c = D(n), v = /* @__PURE__ */ s(E, {
+    className: c.thumb,
+    ownerState: n
+  });
+  return /* @__PURE__ */ y(F, {
+    className: O(c.root, b),
+    sx: m,
+    ownerState: n,
+    children: [/* @__PURE__ */ s(q, {
+      type: "checkbox",
+      icon: v,
+      checkedIcon: v,
+      ref: r,
+      ownerState: n,
+      ...k,
+      classes: {
+        ...c,
+        root: c.switchBase
+      }
+    }), /* @__PURE__ */ s(U, {
+      className: c.track,
+      ownerState: n
+    })]
+  });
+});
+process.env.NODE_ENV !== "production" && (w.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: t.bool,
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: t.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: t.object,
+  /**
+   * @ignore
+   */
+  className: t.string,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#custom-colors).
+   * @default 'primary'
+   */
+  color: t.oneOfType([t.oneOf(["default", "primary", "secondary", "error", "info", "success", "warning"]), t.string]),
+  /**
+   * The default checked state. Use when the component is not controlled.
+   */
+  defaultChecked: t.bool,
+  /**
+   * If `true`, the component is disabled.
+   */
+  disabled: t.bool,
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
+  disableRipple: t.bool,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   * @default false
+   */
+  edge: t.oneOf(["end", "start", !1]),
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: t.node,
+  /**
+   * The id of the `input` element.
+   */
+  id: t.string,
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps: t.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: P,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (string).
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: t.func,
+  /**
+   * If `true`, the `input` element is required.
+   * @default false
+   */
+  required: t.bool,
+  /**
+   * The size of the component.
+   * `small` is equivalent to the dense switch styling.
+   * @default 'medium'
+   */
+  size: t.oneOfType([t.oneOf(["medium", "small"]), t.string]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: t.oneOfType([t.arrayOf(t.oneOfType([t.func, t.object, t.bool])), t.func, t.object]),
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   * The browser uses "on" as the default value.
+   */
+  value: t.any
+});
+const A = (o) => /* @__PURE__ */ s(N, { ...o }), Z = {
+  title: "Components/FormControlLabel",
+  component: A,
+  argTypes: {
+    control: {
+      control: "object"
+    },
+    disabled: {
+      control: "boolean"
+    },
+    disableTypography: {
+      control: "boolean"
+    },
+    label: {
+      control: "object"
+    },
+    labelPlacement: {
+      control: "select",
+      options: ["bottom", "end", "start", "top"]
+    },
+    required: {
+      control: "boolean"
+    }
+  }
+}, oo = {
+  args: {
+    control: /* @__PURE__ */ s(S, {}),
+    checked: void 0,
+    disabled: void 0,
+    disableTypography: void 0,
+    label: "Label",
+    labelPlacement: "end",
+    required: void 0
+  }
+}, to = {
+  args: {
+    control: /* @__PURE__ */ s($, {}),
+    label: "Label"
+  }
+}, eo = {
+  args: {
+    control: /* @__PURE__ */ s(w, {}),
+    label: "Label"
+  }
+};
+export {
+  oo as Checkbox,
+  to as Radio,
+  eo as Switch,
+  Z as default
+};

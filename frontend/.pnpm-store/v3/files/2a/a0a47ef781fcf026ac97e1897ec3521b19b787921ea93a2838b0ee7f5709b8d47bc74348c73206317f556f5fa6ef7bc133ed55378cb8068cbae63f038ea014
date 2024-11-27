@@ -1,0 +1,1 @@
+"use strict";function i(u,c=166){let e;function t(...o){const n=()=>{u.apply(this,o)};clearTimeout(e),e=setTimeout(n,c)}return t.clear=()=>{clearTimeout(e)},t}exports.debounce=i;

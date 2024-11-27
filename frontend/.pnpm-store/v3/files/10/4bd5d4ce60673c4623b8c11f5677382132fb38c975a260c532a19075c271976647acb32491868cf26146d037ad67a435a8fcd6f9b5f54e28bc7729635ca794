@@ -1,0 +1,7 @@
+import { TooltipProps } from '@mui/material/Tooltip';
+import { Meta, StoryObj } from '@storybook/react';
+declare const Tooltip: (props: TooltipProps) => import("react/jsx-runtime").JSX.Element;
+declare const meta: Meta<typeof Tooltip>;
+export default meta;
+type Story = StoryObj<typeof Tooltip>;
+export declare const Default: Story;

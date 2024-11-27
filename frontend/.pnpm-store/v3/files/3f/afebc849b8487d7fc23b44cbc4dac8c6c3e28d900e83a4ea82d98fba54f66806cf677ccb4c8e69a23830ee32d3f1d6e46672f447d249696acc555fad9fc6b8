@@ -1,0 +1,1 @@
+"use strict";const i=require("react/jsx-runtime");require("react");const t=require("./FileListItem.cjs.js"),o=require("../../Box-Y_dUbq3W.cjs"),n=({files:r=[]})=>i.jsx(o.Box,{sx:{display:"flex",flexDirection:"column",rowGap:"0.5rem"},children:r.map((s,e)=>i.jsx(t,{file:s,uploading:e%2===0},e))});module.exports=n;

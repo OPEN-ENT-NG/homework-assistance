@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});function t(e){return typeof e=="object"&&e!=null&&"status"in e}function s(e){return typeof e=="object"&&e!=null&&"message"in e&&typeof e.message=="string"}exports.isErrorWithMessage=s;exports.isFetchBaseQueryError=t;

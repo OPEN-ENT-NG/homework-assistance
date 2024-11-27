@@ -1,0 +1,261 @@
+import * as P from "react";
+import { H as E, I as U, L, G as v, P as e } from "./identifier-B7MO0PvI.js";
+import { m as R } from "./memoTheme-CqfvfBST.js";
+import { f as A } from "./formControlState-vgaj2ksH.js";
+import { u as H } from "./useSlot-BSVkAc2J.js";
+import { jsx as I, jsxs as g } from "react/jsx-runtime";
+import { s as x, u as z, c as B } from "./DefaultPropsProvider-BYFwNPLt.js";
+import { u as G } from "./useFormControl-CatNKXAi.js";
+import { T } from "./Typography-CizHc1nM.js";
+import { r as V } from "./refType-BqQbA6de.js";
+function W(o) {
+  return E("MuiFormControlLabel", o);
+}
+const a = U("MuiFormControlLabel", ["root", "labelPlacementStart", "labelPlacementTop", "labelPlacementBottom", "disabled", "label", "error", "required", "asterisk"]), _ = (o) => {
+  const {
+    classes: r,
+    disabled: s,
+    labelPlacement: t,
+    error: d,
+    required: b
+  } = o, f = {
+    root: ["root", s && "disabled", `labelPlacement${L(t)}`, d && "error", b && "required"],
+    label: ["label", s && "disabled"],
+    asterisk: ["asterisk", d && "error"]
+  };
+  return B(f, W, r);
+}, J = x("label", {
+  name: "MuiFormControlLabel",
+  slot: "Root",
+  overridesResolver: (o, r) => {
+    const {
+      ownerState: s
+    } = o;
+    return [{
+      [`& .${a.label}`]: r.label
+    }, r.root, r[`labelPlacement${L(s.labelPlacement)}`]];
+  }
+})(R(({
+  theme: o
+}) => ({
+  display: "inline-flex",
+  alignItems: "center",
+  cursor: "pointer",
+  // For correct alignment with the text.
+  verticalAlign: "middle",
+  WebkitTapHighlightColor: "transparent",
+  marginLeft: -11,
+  marginRight: 16,
+  // used for row presentation of radio/checkbox
+  [`&.${a.disabled}`]: {
+    cursor: "default"
+  },
+  [`& .${a.label}`]: {
+    [`&.${a.disabled}`]: {
+      color: (o.vars || o).palette.text.disabled
+    }
+  },
+  variants: [{
+    props: {
+      labelPlacement: "start"
+    },
+    style: {
+      flexDirection: "row-reverse",
+      marginRight: -11
+    }
+  }, {
+    props: {
+      labelPlacement: "top"
+    },
+    style: {
+      flexDirection: "column-reverse"
+    }
+  }, {
+    props: {
+      labelPlacement: "bottom"
+    },
+    style: {
+      flexDirection: "column"
+    }
+  }, {
+    props: ({
+      labelPlacement: r
+    }) => r === "start" || r === "top" || r === "bottom",
+    style: {
+      marginLeft: 16
+      // used for row presentation of radio/checkbox
+    }
+  }]
+}))), K = x("span", {
+  name: "MuiFormControlLabel",
+  slot: "Asterisk",
+  overridesResolver: (o, r) => r.asterisk
+})(R(({
+  theme: o
+}) => ({
+  [`&.${a.error}`]: {
+    color: (o.vars || o).palette.error.main
+  }
+}))), Q = /* @__PURE__ */ P.forwardRef(function(r, s) {
+  const t = z({
+    props: r,
+    name: "MuiFormControlLabel"
+  }), {
+    checked: d,
+    className: b,
+    componentsProps: f = {},
+    control: n,
+    disabled: F,
+    disableTypography: q,
+    inputRef: X,
+    label: k,
+    labelPlacement: N = "end",
+    name: Y,
+    onChange: Z,
+    required: j,
+    slots: w = {},
+    slotProps: S = {},
+    value: ee,
+    ...$
+  } = t, i = G(), h = F ?? n.props.disabled ?? (i == null ? void 0 : i.disabled), u = j ?? n.props.required, C = {
+    disabled: h,
+    required: u
+  };
+  ["checked", "name", "onChange", "value", "inputRef"].forEach((m) => {
+    typeof n.props[m] > "u" && typeof t[m] < "u" && (C[m] = t[m]);
+  });
+  const O = A({
+    props: t,
+    muiFormControl: i,
+    states: ["error"]
+  }), p = {
+    ...t,
+    disabled: h,
+    labelPlacement: N,
+    required: u,
+    error: O.error
+  }, y = _(p), D = {
+    slots: w,
+    slotProps: {
+      ...f,
+      ...S
+    }
+  }, [M, c] = H("typography", {
+    elementType: T,
+    externalForwardedProps: D,
+    ownerState: p
+  });
+  let l = k;
+  return l != null && l.type !== T && !q && (l = /* @__PURE__ */ I(M, {
+    component: "span",
+    ...c,
+    className: v(y.label, c == null ? void 0 : c.className),
+    children: l
+  })), /* @__PURE__ */ g(J, {
+    className: v(y.root, b),
+    ownerState: p,
+    ref: s,
+    ...$,
+    children: [/* @__PURE__ */ P.cloneElement(n, C), u ? /* @__PURE__ */ g("div", {
+      children: [l, /* @__PURE__ */ g(K, {
+        ownerState: p,
+        "aria-hidden": !0,
+        className: y.asterisk,
+        children: [" ", "*"]
+      })]
+    }) : l]
+  });
+});
+process.env.NODE_ENV !== "production" && (Q.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * If `true`, the component appears selected.
+   */
+  checked: e.bool,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: e.object,
+  /**
+   * @ignore
+   */
+  className: e.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   * @deprecated use the `slotProps` prop instead. This prop will be removed in v7. See [Migrating from deprecated APIs](https://mui.com/material-ui/migration/migrating-from-deprecated-apis/) for more details.
+   */
+  componentsProps: e.shape({
+    typography: e.object
+  }),
+  /**
+   * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
+   */
+  control: e.element.isRequired,
+  /**
+   * If `true`, the control is disabled.
+   */
+  disabled: e.bool,
+  /**
+   * If `true`, the label is rendered as it is passed without an additional typography node.
+   */
+  disableTypography: e.bool,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: V,
+  /**
+   * A text or an element to be used in an enclosing label element.
+   */
+  label: e.node,
+  /**
+   * The position of the label.
+   * @default 'end'
+   */
+  labelPlacement: e.oneOf(["bottom", "end", "start", "top"]),
+  /**
+   * @ignore
+   */
+  name: e.string,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {React.SyntheticEvent} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: e.func,
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required: e.bool,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  slotProps: e.shape({
+    typography: e.oneOfType([e.func, e.object])
+  }),
+  /**
+   * The components used for each slot inside.
+   * @default {}
+   */
+  slots: e.shape({
+    typography: e.elementType
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: e.oneOfType([e.arrayOf(e.oneOfType([e.func, e.object, e.bool])), e.func, e.object]),
+  /**
+   * The value of the component.
+   */
+  value: e.any
+});
+export {
+  Q as F,
+  a as f,
+  W as g
+};

@@ -1,0 +1,4 @@
+import { g as m } from "../index-BNDJhXbm.js";
+export {
+  m as getMuiTheme
+};

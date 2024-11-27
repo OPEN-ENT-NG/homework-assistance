@@ -1,0 +1,95 @@
+import * as u from "react";
+import { H as f, I as w, G as y, P as o } from "./identifier-B7MO0PvI.js";
+import { u as F } from "./useFormControl-CatNKXAi.js";
+import { f as G } from "./formControlState-vgaj2ksH.js";
+import { jsx as d } from "react/jsx-runtime";
+import { s as C, u as x, c as v } from "./DefaultPropsProvider-BYFwNPLt.js";
+function b(r) {
+  return f("MuiFormGroup", r);
+}
+const T = w("MuiFormGroup", ["root", "row", "error"]), g = (r) => {
+  const {
+    classes: s,
+    row: e,
+    error: t
+  } = r;
+  return v({
+    root: ["root", e && "row", t && "error"]
+  }, b, s);
+}, N = C("div", {
+  name: "MuiFormGroup",
+  slot: "Root",
+  overridesResolver: (r, s) => {
+    const {
+      ownerState: e
+    } = r;
+    return [s.root, e.row && s.row];
+  }
+})({
+  display: "flex",
+  flexDirection: "column",
+  flexWrap: "wrap",
+  variants: [{
+    props: {
+      row: !0
+    },
+    style: {
+      flexDirection: "row"
+    }
+  }]
+}), R = /* @__PURE__ */ u.forwardRef(function(s, e) {
+  const t = x({
+    props: s,
+    name: "MuiFormGroup"
+  }), {
+    className: a,
+    row: c = !1,
+    ...l
+  } = t, p = F(), i = G({
+    props: t,
+    muiFormControl: p,
+    states: ["error"]
+  }), n = {
+    ...t,
+    row: c,
+    error: i.error
+  }, m = g(n);
+  return /* @__PURE__ */ d(N, {
+    className: y(m.root, a),
+    ownerState: n,
+    ref: e,
+    ...l
+  });
+});
+process.env.NODE_ENV !== "production" && (R.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: o.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: o.object,
+  /**
+   * @ignore
+   */
+  className: o.string,
+  /**
+   * Display group of elements in a compact row.
+   * @default false
+   */
+  row: o.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: o.oneOfType([o.arrayOf(o.oneOfType([o.func, o.object, o.bool])), o.func, o.object])
+});
+export {
+  R as F,
+  T as f,
+  b as g
+};

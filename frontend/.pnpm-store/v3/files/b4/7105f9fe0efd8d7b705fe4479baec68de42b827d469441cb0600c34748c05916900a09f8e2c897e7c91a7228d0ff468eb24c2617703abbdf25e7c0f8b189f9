@@ -1,0 +1,31 @@
+import { jsxs as c, jsx as t } from "react/jsx-runtime";
+import { useLazySvgImport as h } from "../../hooks/lazySvgImport.es.js";
+import { S as p } from "../../Stack-DbWQHN5i.js";
+import { T as i } from "../../Typography-CizHc1nM.js";
+const y = ({
+  svgName: o,
+  title: n,
+  description: r,
+  descriptionProps: m,
+  svgProps: a,
+  titleProps: l,
+  ...s
+}) => {
+  const { Svg: e } = h(o);
+  return e ? /* @__PURE__ */ c(p, { direction: "column", alignItems: "center", margin: "auto", ...s, children: [
+    /* @__PURE__ */ t("div", { style: { width: 200, maxHeight: 200 }, children: /* @__PURE__ */ t(
+      e,
+      {
+        width: "100%",
+        height: "100%",
+        preserveAspectRatio: "xMinYMin slice",
+        ...a
+      }
+    ) }),
+    /* @__PURE__ */ t(i, { variant: "h2", fontWeight: 500, mt: 3, ...l, children: n }),
+    r ? /* @__PURE__ */ t(i, { color: "grey", mt: 2, ...m, children: r }) : null
+  ] }) : null;
+};
+export {
+  y as default
+};

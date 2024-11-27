@@ -1,0 +1,170 @@
+import * as h from "react";
+import { I as P, H as T, G as A, P as e, L as u } from "./identifier-B7MO0PvI.js";
+import { u as C, F as x } from "./useFormControl-CatNKXAi.js";
+import { m as L } from "./memoTheme-CqfvfBST.js";
+import { jsx as l, jsxs as N } from "react/jsx-runtime";
+import { s as S, u as O, c as R } from "./DefaultPropsProvider-BYFwNPLt.js";
+import { T as w } from "./Typography-CizHc1nM.js";
+function z(t) {
+  return T("MuiInputAdornment", t);
+}
+const b = P("MuiInputAdornment", ["root", "filled", "standard", "outlined", "positionStart", "positionEnd", "disablePointerEvents", "hiddenLabel", "sizeSmall"]);
+var y;
+const j = (t, o) => {
+  const {
+    ownerState: n
+  } = t;
+  return [o.root, o[`position${u(n.position)}`], n.disablePointerEvents === !0 && o.disablePointerEvents, o[n.variant]];
+}, F = (t) => {
+  const {
+    classes: o,
+    disablePointerEvents: n,
+    hiddenLabel: i,
+    position: s,
+    size: a,
+    variant: p
+  } = t, d = {
+    root: ["root", n && "disablePointerEvents", s && `position${u(s)}`, p, i && "hiddenLabel", a && `size${u(a)}`]
+  };
+  return R(d, z, o);
+}, M = S("div", {
+  name: "MuiInputAdornment",
+  slot: "Root",
+  overridesResolver: j
+})(L(({
+  theme: t
+}) => ({
+  display: "flex",
+  maxHeight: "2em",
+  alignItems: "center",
+  whiteSpace: "nowrap",
+  color: (t.vars || t).palette.action.active,
+  variants: [{
+    props: {
+      variant: "filled"
+    },
+    style: {
+      [`&.${b.positionStart}&:not(.${b.hiddenLabel})`]: {
+        marginTop: 16
+      }
+    }
+  }, {
+    props: {
+      position: "start"
+    },
+    style: {
+      marginRight: 8
+    }
+  }, {
+    props: {
+      position: "end"
+    },
+    style: {
+      marginLeft: 8
+    }
+  }, {
+    props: {
+      disablePointerEvents: !0
+    },
+    style: {
+      pointerEvents: "none"
+    }
+  }]
+}))), U = /* @__PURE__ */ h.forwardRef(function(o, n) {
+  const i = O({
+    props: o,
+    name: "MuiInputAdornment"
+  }), {
+    children: s,
+    className: a,
+    component: p = "div",
+    disablePointerEvents: d = !1,
+    disableTypography: g = !1,
+    position: v,
+    variant: c,
+    ...E
+  } = i, r = C() || {};
+  let m = c;
+  c && r.variant && process.env.NODE_ENV !== "production" && c === r.variant && console.error("MUI: The `InputAdornment` variant infers the variant prop you do not have to provide one."), r && !m && (m = r.variant);
+  const f = {
+    ...i,
+    hiddenLabel: r.hiddenLabel,
+    size: r.size,
+    disablePointerEvents: d,
+    position: v,
+    variant: m
+  }, I = F(f);
+  return /* @__PURE__ */ l(x.Provider, {
+    value: null,
+    children: /* @__PURE__ */ l(M, {
+      as: p,
+      ownerState: f,
+      className: A(I.root, a),
+      ref: n,
+      ...E,
+      children: typeof s == "string" && !g ? /* @__PURE__ */ l(w, {
+        color: "textSecondary",
+        children: s
+      }) : /* @__PURE__ */ N(h.Fragment, {
+        children: [v === "start" ? (
+          /* notranslate needed while Google Translate will not fix zero-width space issue */
+          y || (y = /* @__PURE__ */ l("span", {
+            className: "notranslate",
+            children: "​"
+          }))
+        ) : null, s]
+      })
+    })
+  });
+});
+process.env.NODE_ENV !== "production" && (U.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component, normally an `IconButton` or string.
+   */
+  children: e.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: e.object,
+  /**
+   * @ignore
+   */
+  className: e.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: e.elementType,
+  /**
+   * Disable pointer events on the root.
+   * This allows for the content of the adornment to focus the `input` on click.
+   * @default false
+   */
+  disablePointerEvents: e.bool,
+  /**
+   * If children is a string then disable wrapping in a Typography component.
+   * @default false
+   */
+  disableTypography: e.bool,
+  /**
+   * The position this adornment should appear relative to the `Input`.
+   */
+  position: e.oneOf(["end", "start"]).isRequired,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: e.oneOfType([e.arrayOf(e.oneOfType([e.func, e.object, e.bool])), e.func, e.object]),
+  /**
+   * The variant to use.
+   * Note: If you are using the `TextField` component or the `FormControl` component
+   * you do not have to set this manually.
+   */
+  variant: e.oneOf(["filled", "outlined", "standard"])
+});
+export {
+  U as I
+};

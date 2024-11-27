@@ -1,0 +1,7 @@
+import { DatePickerProps as MuiDatePickerProps } from '@mui/x-date-pickers/DatePicker';
+import { Dayjs } from 'dayjs';
+export type DatePickerProps = {
+    adapterLocale?: string;
+} & MuiDatePickerProps<Dayjs>;
+declare const DatePicker: React.FunctionComponent<DatePickerProps>;
+export default DatePicker;

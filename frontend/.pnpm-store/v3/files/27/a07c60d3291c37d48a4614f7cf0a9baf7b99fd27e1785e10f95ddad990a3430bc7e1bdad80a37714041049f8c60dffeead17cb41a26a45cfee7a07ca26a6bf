@@ -1,0 +1,261 @@
+import * as D from "react";
+import { H as G, I as H, G as V, P as e, L as _ } from "./identifier-B7MO0PvI.js";
+import { s as C, r as $, c as A } from "./DefaultPropsProvider-BYFwNPLt.js";
+import { u as J } from "./useFormControl-CatNKXAi.js";
+import { jsxs as K, jsx as M } from "react/jsx-runtime";
+import { B as Q } from "./ButtonBase-z74SMnd9.js";
+import { u as W } from "./useControlled-BYdyS7Pn.js";
+import { r as X } from "./refType-BqQbA6de.js";
+function Y(s) {
+  return G("PrivateSwitchBase", s);
+}
+H("PrivateSwitchBase", ["root", "checked", "disabled", "input", "edgeStart", "edgeEnd"]);
+const Z = (s) => {
+  const {
+    classes: t,
+    checked: d,
+    disabled: c,
+    edge: n
+  } = s, l = {
+    root: ["root", d && "checked", c && "disabled", n && `edge${_(n)}`],
+    input: ["input"]
+  };
+  return A(l, Y, t);
+}, ee = C(Q)({
+  padding: 9,
+  borderRadius: "50%",
+  variants: [{
+    props: {
+      edge: "start",
+      size: "small"
+    },
+    style: {
+      marginLeft: -3
+    }
+  }, {
+    props: ({
+      edge: s,
+      ownerState: t
+    }) => s === "start" && t.size !== "small",
+    style: {
+      marginLeft: -12
+    }
+  }, {
+    props: {
+      edge: "end",
+      size: "small"
+    },
+    style: {
+      marginRight: -3
+    }
+  }, {
+    props: ({
+      edge: s,
+      ownerState: t
+    }) => s === "end" && t.size !== "small",
+    style: {
+      marginRight: -12
+    }
+  }]
+}), oe = C("input", {
+  shouldForwardProp: $
+})({
+  cursor: "inherit",
+  position: "absolute",
+  opacity: 0,
+  width: "100%",
+  height: "100%",
+  top: 0,
+  left: 0,
+  margin: 0,
+  padding: 0,
+  zIndex: 1
+}), se = /* @__PURE__ */ D.forwardRef(function(t, d) {
+  const {
+    autoFocus: c,
+    checked: n,
+    checkedIcon: l,
+    className: w,
+    defaultChecked: p,
+    disabled: F,
+    disableFocusRipple: f = !1,
+    edge: R = !1,
+    icon: S,
+    id: x,
+    inputProps: P,
+    inputRef: I,
+    name: q,
+    onBlur: h,
+    onChange: m,
+    onFocus: b,
+    readOnly: v,
+    required: z = !1,
+    tabIndex: N,
+    type: i,
+    value: g,
+    ...O
+  } = t, [y, j] = W({
+    controlled: n,
+    default: !!p,
+    name: "SwitchBase",
+    state: "checked"
+  }), a = J(), E = (o) => {
+    b && b(o), a && a.onFocus && a.onFocus(o);
+  }, L = (o) => {
+    h && h(o), a && a.onBlur && a.onBlur(o);
+  }, T = (o) => {
+    if (o.nativeEvent.defaultPrevented)
+      return;
+    const B = o.target.checked;
+    j(B), m && m(o, B);
+  };
+  let r = F;
+  a && typeof r > "u" && (r = a.disabled);
+  const U = i === "checkbox" || i === "radio", u = {
+    ...t,
+    checked: y,
+    disabled: r,
+    disableFocusRipple: f,
+    edge: R
+  }, k = Z(u);
+  return /* @__PURE__ */ K(ee, {
+    component: "span",
+    className: V(k.root, w),
+    centerRipple: !0,
+    focusRipple: !f,
+    disabled: r,
+    tabIndex: null,
+    role: void 0,
+    onFocus: E,
+    onBlur: L,
+    ownerState: u,
+    ref: d,
+    ...O,
+    children: [/* @__PURE__ */ M(oe, {
+      autoFocus: c,
+      checked: n,
+      defaultChecked: p,
+      className: k.input,
+      disabled: r,
+      id: U ? x : void 0,
+      name: q,
+      onChange: T,
+      readOnly: v,
+      ref: I,
+      required: z,
+      ownerState: u,
+      tabIndex: N,
+      type: i,
+      ...i === "checkbox" && g === void 0 ? {} : {
+        value: g
+      },
+      ...P
+    }), y ? l : S]
+  });
+});
+process.env.NODE_ENV !== "production" && (se.propTypes = {
+  /**
+   * If `true`, the `input` element is focused during the first mount.
+   */
+  autoFocus: e.bool,
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: e.bool,
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: e.node.isRequired,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: e.object,
+  /**
+   * @ignore
+   */
+  className: e.string,
+  /**
+   * @ignore
+   */
+  defaultChecked: e.bool,
+  /**
+   * If `true`, the component is disabled.
+   */
+  disabled: e.bool,
+  /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple: e.bool,
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   * @default false
+   */
+  edge: e.oneOf(["end", "start", !1]),
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: e.node.isRequired,
+  /**
+   * The id of the `input` element.
+   */
+  id: e.string,
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   */
+  inputProps: e.object,
+  /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: X,
+  /*
+   * @ignore
+   */
+  name: e.string,
+  /**
+   * @ignore
+   */
+  onBlur: e.func,
+  /**
+   * Callback fired when the state is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
+   */
+  onChange: e.func,
+  /**
+   * @ignore
+   */
+  onFocus: e.func,
+  /**
+   * It prevents the user from changing the value of the field
+   * (not from interacting with the field).
+   */
+  readOnly: e.bool,
+  /**
+   * If `true`, the `input` element is required.
+   */
+  required: e.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: e.object,
+  /**
+   * @ignore
+   */
+  tabIndex: e.oneOfType([e.number, e.string]),
+  /**
+   * The input component prop `type`.
+   */
+  type: e.string.isRequired,
+  /**
+   * The value of the component.
+   */
+  value: e.any
+});
+export {
+  se as S
+};

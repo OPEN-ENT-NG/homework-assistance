@@ -1,0 +1,21 @@
+import * as u from "react";
+let n = 0;
+function o(t) {
+  const [e, a] = u.useState(t), c = t || e;
+  return u.useEffect(() => {
+    e == null && (n += 1, a(`mui-${n}`));
+  }, [e]), c;
+}
+const f = {
+  ...u
+}, s = f.useId;
+function l(t) {
+  if (s !== void 0) {
+    const e = s();
+    return t ?? e;
+  }
+  return o(t);
+}
+export {
+  l as u
+};

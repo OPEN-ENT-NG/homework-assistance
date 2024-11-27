@@ -1,0 +1,14 @@
+import { SvgIconComponent } from '@mui/icons-material';
+import { Color, SvgIconProps } from '@mui/material';
+import { StackProps } from '@mui/material/Stack';
+import { TypographyProps } from '@mui/material/Typography';
+export type HeadingProps = {
+    title: string;
+    IconComponent?: SvgIconComponent;
+    iconColor?: Color;
+    iconProps?: SvgIconProps;
+    iconSize?: number;
+    titleProps?: TypographyProps;
+} & StackProps;
+declare const Heading: React.FunctionComponent<HeadingProps>;
+export default Heading;

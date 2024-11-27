@@ -1,0 +1,4 @@
+export interface LoaderProps {
+}
+declare const Loader: React.FunctionComponent<LoaderProps>;
+export default Loader;

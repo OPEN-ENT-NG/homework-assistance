@@ -1,0 +1,4 @@
+import { TextFieldProps } from '@mui/material/TextField';
+export type InputTextProps = {} & TextFieldProps;
+declare const TextInput: React.FunctionComponent<InputTextProps>;
+export default TextInput;

@@ -1,0 +1,12 @@
+export interface File {
+    name: string;
+    size: number;
+    uploading?: boolean;
+}
+export interface FileListItemProps<T extends File> {
+    file: T;
+    uploading?: boolean;
+    onDelete?: (file: T) => void;
+}
+declare const FileListItem: <T extends File>({ file, uploading, onDelete, }: FileListItemProps<T>) => import("react/jsx-runtime").JSX.Element;
+export default FileListItem;

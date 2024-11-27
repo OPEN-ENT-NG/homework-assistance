@@ -1,0 +1,193 @@
+import { jsx as n, jsxs as m } from "react/jsx-runtime";
+import S from "../Button/Button.es.js";
+import { C as T } from "../../Card-mAtxoJ0p.js";
+import * as u from "react";
+import { I as f, H as C, G as y, P as o } from "../../identifier-B7MO0PvI.js";
+import { s as v, u as g, c as b } from "../../DefaultPropsProvider-BYFwNPLt.js";
+import { T as c } from "../../Typography-CizHc1nM.js";
+function N(t) {
+  return C("MuiCardActions", t);
+}
+f("MuiCardActions", ["root", "spacing"]);
+const j = (t) => {
+  const {
+    classes: e,
+    disableSpacing: s
+  } = t;
+  return b({
+    root: ["root", !s && "spacing"]
+  }, N, e);
+}, M = v("div", {
+  name: "MuiCardActions",
+  slot: "Root",
+  overridesResolver: (t, e) => {
+    const {
+      ownerState: s
+    } = t;
+    return [e.root, !s.disableSpacing && e.spacing];
+  }
+})({
+  display: "flex",
+  alignItems: "center",
+  padding: 8,
+  variants: [{
+    props: {
+      disableSpacing: !1
+    },
+    style: {
+      "& > :not(style) ~ :not(style)": {
+        marginLeft: 8
+      }
+    }
+  }]
+}), h = /* @__PURE__ */ u.forwardRef(function(e, s) {
+  const r = g({
+    props: e,
+    name: "MuiCardActions"
+  }), {
+    disableSpacing: l = !1,
+    className: i,
+    ...d
+  } = r, a = {
+    ...r,
+    disableSpacing: l
+  }, p = j(a);
+  return /* @__PURE__ */ n(M, {
+    className: y(p.root, i),
+    ownerState: a,
+    ref: s,
+    ...d
+  });
+});
+process.env.NODE_ENV !== "production" && (h.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: o.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: o.object,
+  /**
+   * @ignore
+   */
+  className: o.string,
+  /**
+   * If `true`, the actions do not have additional margin.
+   * @default false
+   */
+  disableSpacing: o.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: o.oneOfType([o.arrayOf(o.oneOfType([o.func, o.object, o.bool])), o.func, o.object])
+});
+function R(t) {
+  return C("MuiCardContent", t);
+}
+f("MuiCardContent", ["root"]);
+const w = (t) => {
+  const {
+    classes: e
+  } = t;
+  return b({
+    root: ["root"]
+  }, R, e);
+}, A = v("div", {
+  name: "MuiCardContent",
+  slot: "Root",
+  overridesResolver: (t, e) => e.root
+})({
+  padding: 16,
+  "&:last-child": {
+    paddingBottom: 24
+  }
+}), x = /* @__PURE__ */ u.forwardRef(function(e, s) {
+  const r = g({
+    props: e,
+    name: "MuiCardContent"
+  }), {
+    className: l,
+    component: i = "div",
+    ...d
+  } = r, a = {
+    ...r,
+    component: i
+  }, p = w(a);
+  return /* @__PURE__ */ n(A, {
+    as: i,
+    className: y(p.root, l),
+    ownerState: a,
+    ref: s,
+    ...d
+  });
+});
+process.env.NODE_ENV !== "production" && (x.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * The content of the component.
+   */
+  children: o.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: o.object,
+  /**
+   * @ignore
+   */
+  className: o.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: o.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: o.oneOfType([o.arrayOf(o.oneOfType([o.func, o.object, o.bool])), o.func, o.object])
+});
+const O = (t) => /* @__PURE__ */ m(T, { sx: { minWidth: 275 }, ...t, children: [
+  /* @__PURE__ */ m(x, { children: [
+    /* @__PURE__ */ n(c, { gutterBottom: !0, sx: { color: "text.secondary", fontSize: 14 }, children: "Word of the Day" }),
+    /* @__PURE__ */ n(c, { variant: "h5", component: "div", children: "be-nev-o-lent" }),
+    /* @__PURE__ */ n(c, { sx: { color: "text.secondary", mb: 1.5 }, children: "adjective" }),
+    /* @__PURE__ */ m(c, { variant: "body2", children: [
+      "well meaning and kindly.",
+      /* @__PURE__ */ n("br", {}),
+      '"a benevolent smile"'
+    ] })
+  ] }),
+  /* @__PURE__ */ n(h, { children: /* @__PURE__ */ n(S, { variant: "text", size: "small", children: "Learn More" }) })
+] }), z = {
+  title: "Components/Card",
+  component: O,
+  argTypes: {
+    elevation: {
+      control: "number"
+    },
+    square: {
+      control: "boolean"
+    },
+    variant: {
+      control: "select",
+      options: ["elevation", "outlined"]
+    }
+  }
+}, I = {
+  args: {
+    elevation: 1,
+    square: !1,
+    variant: "elevation"
+  }
+};
+export {
+  I as Default,
+  z as default
+};

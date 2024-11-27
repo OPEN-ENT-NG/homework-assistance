@@ -1,0 +1,10 @@
+const t = (e) => ({
+  extend: {
+    colors: {
+      ...e.palette
+    }
+  }
+});
+export {
+  t as getTailwindThemeConfig
+};

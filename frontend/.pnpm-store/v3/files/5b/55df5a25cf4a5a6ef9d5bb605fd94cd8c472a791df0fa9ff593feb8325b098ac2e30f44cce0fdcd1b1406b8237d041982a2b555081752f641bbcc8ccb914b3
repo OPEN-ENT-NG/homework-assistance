@@ -1,0 +1,8 @@
+function o(r, e) {
+  return process.env.NODE_ENV === "production" ? () => null : function(...n) {
+    return r(...n) || e(...n);
+  };
+}
+export {
+  o as c
+};

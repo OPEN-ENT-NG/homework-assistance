@@ -1,0 +1,28 @@
+import { jsx as r, jsxs as c } from "react/jsx-runtime";
+import { D as n } from "../../Delete-Dip-1l7n.js";
+import { c as a } from "../../createSvgIcon-BS0Qe85N.js";
+import { S as p } from "../../Stack-DbWQHN5i.js";
+import { B as d } from "../../Box-D9cHa8GX.js";
+import { T as s } from "../../Typography-CizHc1nM.js";
+import { I as l } from "../../IconButton-DLcGpM1F.js";
+import { C as I } from "../../CircularProgress-B5osG37N.js";
+const f = a(/* @__PURE__ */ r("path", {
+  d: "M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm7 7V3.5L18.5 9z"
+}), "InsertDriveFile"), B = ({
+  file: o,
+  uploading: i,
+  onDelete: t
+}) => {
+  const e = `${o.size} octets`, m = () => t == null ? void 0 : t(o);
+  return /* @__PURE__ */ c(p, { direction: "row", alignItems: "center", spacing: 2, children: [
+    /* @__PURE__ */ r(f, { color: "primary" }),
+    /* @__PURE__ */ c(d, { sx: { width: "100%" }, children: [
+      /* @__PURE__ */ r(s, { children: o.name }),
+      /* @__PURE__ */ r(s, { fontSize: "0.875rem", color: "grey", children: e })
+    ] }),
+    /* @__PURE__ */ r(l, { onClick: m, disabled: i, children: i ? /* @__PURE__ */ r(I, { size: 24 }) : /* @__PURE__ */ r(n, {}) })
+  ] });
+};
+export {
+  B as default
+};

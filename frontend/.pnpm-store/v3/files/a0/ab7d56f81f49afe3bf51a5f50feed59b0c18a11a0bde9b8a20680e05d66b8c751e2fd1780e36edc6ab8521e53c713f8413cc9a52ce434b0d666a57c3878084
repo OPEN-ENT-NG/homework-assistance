@@ -1,0 +1,17 @@
+import { Theme } from '../types';
+declare const theme: Theme;
+declare const muiTheme: import('@mui/material').Theme;
+declare const tailwindThemeConfig: {
+    extend: {
+        colors: {
+            primary: import('../types').ColorShades;
+            secondary: import('../types').ColorShades;
+            grey: Omit<import('../types').ColorShades, "contrastText">;
+            red: Omit<import('../types').ColorShades, "darker" | "lighter">;
+            blue: Omit<import('../types').ColorShades, "darker" | "lighter">;
+            green: Omit<import('../types').ColorShades, "darker" | "lighter">;
+            yellow: Omit<import('../types').ColorShades, "darker" | "lighter">;
+        };
+    };
+};
+export { muiTheme as defaultMuiTheme, tailwindThemeConfig as defaultTailwindThemeConfig, theme as defaultTheme, };

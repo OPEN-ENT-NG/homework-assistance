@@ -1,0 +1,8 @@
+import { DropzoneProps as ReactDropzoneProps } from 'react-dropzone';
+export type DropzoneProps = {
+    defaultLabel?: string;
+    dragLabel?: string;
+    information?: string;
+} & ReactDropzoneProps;
+declare const Dropzone: React.FunctionComponent<DropzoneProps>;
+export default Dropzone;

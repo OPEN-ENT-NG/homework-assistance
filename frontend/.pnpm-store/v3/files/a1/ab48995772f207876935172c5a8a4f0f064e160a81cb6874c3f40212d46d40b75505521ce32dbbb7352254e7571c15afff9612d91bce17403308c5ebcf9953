@@ -1,0 +1,7 @@
+import { DialogProps } from '@mui/material/Dialog';
+import { Meta, StoryObj } from '@storybook/react';
+declare const Dialog: (props: DialogProps) => import("react/jsx-runtime").JSX.Element;
+declare const meta: Meta<typeof Dialog>;
+export default meta;
+type Story = StoryObj<typeof Dialog>;
+export declare const Default: Story;

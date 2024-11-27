@@ -1,0 +1,46 @@
+import { jsx as t } from "react/jsx-runtime";
+import { T as e } from "../../Tooltip-41rGxwva.js";
+import { B as r } from "../../Button-Cx05eP88.js";
+const l = (o) => /* @__PURE__ */ t(e, { ...o, children: /* @__PURE__ */ t(r, { children: "Hover to display tooltip" }) }), i = {
+  title: "Components/Tooltip",
+  component: l,
+  argTypes: {
+    arrow: {
+      control: "boolean"
+    },
+    followCursor: {
+      control: "boolean"
+    },
+    placement: {
+      control: "select",
+      options: [
+        "bottom-end",
+        "bottom-start",
+        "bottom",
+        "left-end",
+        "left-start",
+        "left",
+        "right-end",
+        "right-start",
+        "right",
+        "top-end",
+        "top-start",
+        "top"
+      ]
+    },
+    title: {
+      control: "text"
+    }
+  }
+}, p = {
+  args: {
+    arrow: !1,
+    followCursor: !1,
+    placement: "bottom",
+    title: "Title"
+  }
+};
+export {
+  p as Default,
+  i as default
+};

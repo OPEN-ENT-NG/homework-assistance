@@ -1,0 +1,13 @@
+import e from "../SearchInput/SearchInput.es.js";
+const o = {
+  title: "Components/SearchInput",
+  component: e
+}, r = {
+  args: {
+    placeholder: "Rechercher"
+  }
+};
+export {
+  r as Default,
+  o as default
+};

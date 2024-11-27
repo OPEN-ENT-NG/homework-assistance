@@ -1,0 +1,11 @@
+import o from "../Loader/Loader.es.js";
+const e = {
+  title: "Components/Loader",
+  component: o
+}, a = {
+  args: {}
+};
+export {
+  a as Default,
+  e as default
+};

@@ -1,0 +1,193 @@
+import * as f from "react";
+import { P as n } from "./identifier-B7MO0PvI.js";
+import { u as V } from "./useTheme-CzzAEESs.js";
+import { jsx as W } from "react/jsx-runtime";
+import { g as k, e as B, T as J, r as M, a as v } from "./utils-jA5a7WHN.js";
+import { u as Q } from "./useTimeout-Znm_nF2D.js";
+import { u as U } from "./useForkRef-C_4o__cU.js";
+function h(l) {
+  return `scale(${l}, ${l ** 2})`;
+}
+const X = {
+  entering: {
+    opacity: 1,
+    transform: h(1)
+  },
+  entered: {
+    opacity: 1,
+    transform: "none"
+  }
+}, E = typeof navigator < "u" && /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) && /(os |version\/)15(.|_)4/i.test(navigator.userAgent), y = /* @__PURE__ */ f.forwardRef(function(D, L) {
+  const {
+    addEndListener: x,
+    appear: j = !0,
+    children: m,
+    easing: T,
+    in: R,
+    onEnter: b,
+    onEntered: w,
+    onEntering: H,
+    onExit: A,
+    onExited: O,
+    onExiting: P,
+    style: p,
+    timeout: r = "auto",
+    // eslint-disable-next-line react/prop-types
+    TransitionComponent: F = J,
+    ...G
+  } = D, C = Q(), g = f.useRef(), s = V(), c = f.useRef(null), N = U(c, k(m), L), a = (t) => (i) => {
+    if (t) {
+      const o = c.current;
+      i === void 0 ? t(o) : t(o, i);
+    }
+  }, S = a(H), _ = a((t, i) => {
+    M(t);
+    const {
+      duration: o,
+      delay: d,
+      easing: e
+    } = v({
+      style: p,
+      timeout: r,
+      easing: T
+    }, {
+      mode: "enter"
+    });
+    let u;
+    r === "auto" ? (u = s.transitions.getAutoHeightDuration(t.clientHeight), g.current = u) : u = o, t.style.transition = [s.transitions.create("opacity", {
+      duration: u,
+      delay: d
+    }), s.transitions.create("transform", {
+      duration: E ? u : u * 0.666,
+      delay: d,
+      easing: e
+    })].join(","), b && b(t, i);
+  }), $ = a(w), q = a(P), z = a((t) => {
+    const {
+      duration: i,
+      delay: o,
+      easing: d
+    } = v({
+      style: p,
+      timeout: r,
+      easing: T
+    }, {
+      mode: "exit"
+    });
+    let e;
+    r === "auto" ? (e = s.transitions.getAutoHeightDuration(t.clientHeight), g.current = e) : e = i, t.style.transition = [s.transitions.create("opacity", {
+      duration: e,
+      delay: o
+    }), s.transitions.create("transform", {
+      duration: E ? e : e * 0.666,
+      delay: E ? o : o || e * 0.333,
+      easing: d
+    })].join(","), t.style.opacity = 0, t.style.transform = h(0.75), A && A(t);
+  }), K = a(O);
+  return /* @__PURE__ */ W(F, {
+    appear: j,
+    in: R,
+    nodeRef: c,
+    onEnter: _,
+    onEntered: $,
+    onEntering: S,
+    onExit: z,
+    onExited: K,
+    onExiting: q,
+    addEndListener: (t) => {
+      r === "auto" && C.start(g.current || 0, t), x && x(c.current, t);
+    },
+    timeout: r === "auto" ? null : r,
+    ...G,
+    children: (t, i) => /* @__PURE__ */ f.cloneElement(m, {
+      style: {
+        opacity: 0,
+        transform: h(0.75),
+        visibility: t === "exited" && !R ? "hidden" : void 0,
+        ...X[t],
+        ...p,
+        ...m.props.style
+      },
+      ref: N,
+      ...i
+    })
+  });
+});
+process.env.NODE_ENV !== "production" && (y.propTypes = {
+  // ┌────────────────────────────── Warning ──────────────────────────────┐
+  // │ These PropTypes are generated from the TypeScript type definitions. │
+  // │    To update them, edit the d.ts file and run `pnpm proptypes`.     │
+  // └─────────────────────────────────────────────────────────────────────┘
+  /**
+   * Add a custom transition end trigger. Called with the transitioning DOM
+   * node and a done callback. Allows for more fine grained transition end
+   * logic. Note: Timeouts are still used as a fallback if provided.
+   */
+  addEndListener: n.func,
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
+  appear: n.bool,
+  /**
+   * A single child content element.
+   */
+  children: B.isRequired,
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing: n.oneOfType([n.shape({
+    enter: n.string,
+    exit: n.string
+  }), n.string]),
+  /**
+   * If `true`, the component will transition in.
+   */
+  in: n.bool,
+  /**
+   * @ignore
+   */
+  onEnter: n.func,
+  /**
+   * @ignore
+   */
+  onEntered: n.func,
+  /**
+   * @ignore
+   */
+  onEntering: n.func,
+  /**
+   * @ignore
+   */
+  onExit: n.func,
+  /**
+   * @ignore
+   */
+  onExited: n.func,
+  /**
+   * @ignore
+   */
+  onExiting: n.func,
+  /**
+   * @ignore
+   */
+  style: n.object,
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   *
+   * Set to 'auto' to automatically calculate transition time based on height.
+   * @default 'auto'
+   */
+  timeout: n.oneOfType([n.oneOf(["auto"]), n.number, n.shape({
+    appear: n.number,
+    enter: n.number,
+    exit: n.number
+  })])
+});
+y && (y.muiSupportAuto = !0);
+export {
+  y as G
+};

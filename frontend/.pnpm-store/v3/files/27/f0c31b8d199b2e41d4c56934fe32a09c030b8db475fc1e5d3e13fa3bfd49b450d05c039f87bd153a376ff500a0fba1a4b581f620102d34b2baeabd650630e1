@@ -1,0 +1,1 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("../Dropzone/Dropzone.cjs.js"),o={title:"Components/Dropzone",component:e},t={args:{information:"SVG, PNG, JPG or GIF (max. 3MB)",onDrop:n=>alert("dropped")}};exports.Default=t;exports.default=o;

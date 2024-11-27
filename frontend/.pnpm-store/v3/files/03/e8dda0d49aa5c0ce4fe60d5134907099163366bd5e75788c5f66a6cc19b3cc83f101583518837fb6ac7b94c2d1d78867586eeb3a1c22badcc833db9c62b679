@@ -1,0 +1,7 @@
+import * as f from "react";
+import { P as e } from "./identifier-B7MO0PvI.js";
+const t = typeof window < "u" ? f.useLayoutEffect : f.useEffect, s = e.oneOfType([e.func, e.object]);
+export {
+  s as r,
+  t as u
+};
