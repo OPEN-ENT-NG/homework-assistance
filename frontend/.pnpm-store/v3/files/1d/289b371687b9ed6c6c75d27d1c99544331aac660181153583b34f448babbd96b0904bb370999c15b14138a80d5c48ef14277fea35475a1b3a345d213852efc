@@ -1,0 +1,13 @@
+import { App, ResourceType } from "../..";
+import { CreateParameters, CreateResult, MindmapUpdate, UpdateResult } from "../interface";
+import { ResourceService } from "../ResourceService";
+export declare class MindmapResourceService extends ResourceService {
+    getEditUrl(resourceId?: string | undefined): string;
+    create(parameters: CreateParameters): Promise<CreateResult>;
+    update(parameters: MindmapUpdate): Promise<UpdateResult>;
+    getResourceType(): ResourceType;
+    getApplication(): App | string;
+    getFormUrl(folderId?: string): string;
+    getViewUrl(resourceId: string): string;
+    getPrintUrl(resourceId: string): string;
+}

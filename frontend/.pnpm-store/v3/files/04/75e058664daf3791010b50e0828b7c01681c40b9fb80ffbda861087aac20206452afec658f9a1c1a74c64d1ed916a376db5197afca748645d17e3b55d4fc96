@@ -1,0 +1,11 @@
+import { ViewsDetails } from "edifice-ts-client";
+export interface ViewsModalProps {
+    viewsDetails: ViewsDetails;
+    isOpen: boolean;
+    onModalClose: () => void;
+}
+declare const ViewsModal: {
+    ({ viewsDetails, isOpen, onModalClose, }: ViewsModalProps): import("react").ReactPortal;
+    displayName: string;
+};
+export default ViewsModal;
