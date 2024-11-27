@@ -1,6 +1,0 @@
-import { default as IconButton } from '@mui/material/IconButton';
-import { Meta, StoryObj } from '@storybook/react';
-declare const meta: Meta<typeof IconButton>;
-export default meta;
-type Story = StoryObj<typeof IconButton>;
-export declare const Default: Story;

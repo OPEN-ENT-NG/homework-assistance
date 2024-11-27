@@ -1,6 +1,0 @@
-import { jsx as a } from "react/jsx-runtime";
-import { T as r } from "../../TextField-DVUnQAd7.js";
-const i = (t) => /* @__PURE__ */ a(r, { ...t, variant: t.variant || "standard" });
-export {
-  i as default
-};

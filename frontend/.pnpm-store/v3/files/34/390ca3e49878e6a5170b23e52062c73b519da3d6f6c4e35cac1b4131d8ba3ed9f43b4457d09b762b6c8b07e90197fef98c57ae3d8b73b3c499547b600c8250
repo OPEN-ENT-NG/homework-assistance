@@ -1,1 +1,0 @@
-"use strict";const e=require("react/jsx-runtime"),r=require("../../TextField-C23FnJYk.cjs"),n=t=>e.jsx(r.TextField,{...t,variant:t.variant||"standard"});module.exports=n;

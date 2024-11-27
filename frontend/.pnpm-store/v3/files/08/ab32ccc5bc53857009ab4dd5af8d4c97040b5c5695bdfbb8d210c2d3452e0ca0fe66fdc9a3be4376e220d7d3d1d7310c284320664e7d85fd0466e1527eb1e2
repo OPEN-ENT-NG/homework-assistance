@@ -1,4 +1,0 @@
-import { default as r } from "./Dropzone.es.js";
-export {
-  r as Dropzone
-};

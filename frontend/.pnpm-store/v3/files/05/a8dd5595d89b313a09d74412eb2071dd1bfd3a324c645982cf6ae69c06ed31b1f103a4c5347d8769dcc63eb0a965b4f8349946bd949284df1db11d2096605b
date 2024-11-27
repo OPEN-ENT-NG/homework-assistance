@@ -1,5 +1,0 @@
-import { ReactNode } from "react";
-export interface BadgeProps {
-    children: ReactNode;
-}
-export declare function Badge({ children }: BadgeProps): import("react/jsx-runtime").JSX.Element;

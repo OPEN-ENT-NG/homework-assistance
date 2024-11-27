@@ -1,4 +1,0 @@
-import { default as d } from "./Heading.es.js";
-export {
-  d as Heading
-};

@@ -1,7 +1,0 @@
-import { MenuProps } from '@mui/material/Menu';
-import { Meta, StoryObj } from '@storybook/react';
-declare const Menu: (props: MenuProps) => import("react/jsx-runtime").JSX.Element;
-declare const meta: Meta<typeof Menu>;
-export default meta;
-type Story = StoryObj<typeof Menu>;
-export declare const Default: Story;

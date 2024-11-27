@@ -1,4 +1,0 @@
-import { default as o } from "./QueryError.es.js";
-export {
-  o as QueryError
-};

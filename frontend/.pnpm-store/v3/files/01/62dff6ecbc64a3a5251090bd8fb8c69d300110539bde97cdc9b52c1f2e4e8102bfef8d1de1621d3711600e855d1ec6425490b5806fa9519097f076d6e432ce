@@ -1,2 +1,0 @@
-import { IWebApp } from "edifice-ts-client";
-export default function useBookmark(): IWebApp[] | undefined;

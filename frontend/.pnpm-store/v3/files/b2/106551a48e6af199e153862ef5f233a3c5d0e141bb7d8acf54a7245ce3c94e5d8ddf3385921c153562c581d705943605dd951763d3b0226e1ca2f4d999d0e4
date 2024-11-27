@@ -1,3 +1,0 @@
-import { CssVarsThemeOptions, Theme as MuiTheme } from '@mui/material/styles';
-import { Theme } from '../types';
-export declare const getMuiTheme: (theme: Theme, options?: Partial<CssVarsThemeOptions>) => MuiTheme;

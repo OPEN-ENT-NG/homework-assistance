@@ -1,6 +1,0 @@
-import { default as Typography } from '@mui/material/Typography';
-import { Meta, StoryObj } from '@storybook/react';
-declare const meta: Meta<typeof Typography>;
-export default meta;
-type Story = StoryObj<typeof Typography>;
-export declare const Default: Story;

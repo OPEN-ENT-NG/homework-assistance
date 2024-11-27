@@ -1,4 +1,0 @@
-export declare const useLanguageOptions: () => {
-    value: string;
-    label: string;
-}[];

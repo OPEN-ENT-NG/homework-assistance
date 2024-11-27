@@ -1,1 +1,0 @@
-"use strict";function i({props:r,states:u,muiFormControl:e}){return u.reduce((n,f)=>(n[f]=r[f],e&&typeof r[f]>"u"&&(n[f]=e[f]),n),{})}exports.formControlState=i;

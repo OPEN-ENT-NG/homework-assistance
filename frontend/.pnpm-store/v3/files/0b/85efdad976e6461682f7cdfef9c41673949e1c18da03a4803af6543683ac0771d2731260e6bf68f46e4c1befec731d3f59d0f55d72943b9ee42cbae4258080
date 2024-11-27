@@ -1,5 +1,0 @@
-export default function useCookiesConsent(): {
-    showCookiesConsent: boolean;
-    handleConsultCookies: () => void;
-    handleCloseCookiesConsent: () => void;
-};

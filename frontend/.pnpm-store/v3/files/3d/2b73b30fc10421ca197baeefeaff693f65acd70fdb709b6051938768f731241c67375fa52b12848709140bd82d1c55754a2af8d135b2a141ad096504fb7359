@@ -1,7 +1,0 @@
-import { TabListProps } from '@mui/lab/TabList';
-import { Meta, StoryObj } from '@storybook/react';
-declare const TabList: (props: TabListProps) => import("react/jsx-runtime").JSX.Element;
-declare const meta: Meta<typeof TabList>;
-export default meta;
-type Story = StoryObj<typeof TabList>;
-export declare const Default: Story;

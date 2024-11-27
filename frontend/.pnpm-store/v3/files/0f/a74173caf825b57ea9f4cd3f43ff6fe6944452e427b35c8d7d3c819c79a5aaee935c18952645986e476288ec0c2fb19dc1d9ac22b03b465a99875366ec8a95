@@ -1,2 +1,0 @@
-import { IAction } from "edifice-ts-client";
-export declare const isActionAvailable: (workflow: string, actions: IAction[] | undefined) => boolean | undefined;

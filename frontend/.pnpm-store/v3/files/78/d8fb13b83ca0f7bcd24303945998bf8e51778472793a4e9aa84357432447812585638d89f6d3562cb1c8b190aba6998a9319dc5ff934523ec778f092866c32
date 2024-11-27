@@ -1,6 +1,0 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { LoaderBackdrop } from '../LoaderBackdrop';
-declare const meta: Meta<typeof LoaderBackdrop>;
-export default meta;
-type Story = StoryObj<typeof LoaderBackdrop>;
-export declare const Default: Story;

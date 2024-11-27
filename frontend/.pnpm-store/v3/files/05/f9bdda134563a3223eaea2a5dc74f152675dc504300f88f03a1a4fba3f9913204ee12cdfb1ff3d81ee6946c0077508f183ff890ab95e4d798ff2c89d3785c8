@@ -1,6 +1,0 @@
-import { AlertProps as MUIAlertProps } from '@mui/material';
-type AlertProps = {
-    title?: string;
-} & Omit<MUIAlertProps, "variant" | "color">;
-declare const Alert: React.FunctionComponent<AlertProps>;
-export default Alert;

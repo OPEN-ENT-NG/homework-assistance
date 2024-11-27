@@ -1,4 +1,0 @@
-import { default as e } from "./EmptyState.es.js";
-export {
-  e as EmptyState
-};

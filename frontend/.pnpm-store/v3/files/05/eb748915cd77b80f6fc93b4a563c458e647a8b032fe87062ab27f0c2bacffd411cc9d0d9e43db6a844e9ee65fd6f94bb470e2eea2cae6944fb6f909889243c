@@ -1,4 +1,0 @@
-import { default as r } from "./PasswordInput.es.js";
-export {
-  r as PasswordInput
-};

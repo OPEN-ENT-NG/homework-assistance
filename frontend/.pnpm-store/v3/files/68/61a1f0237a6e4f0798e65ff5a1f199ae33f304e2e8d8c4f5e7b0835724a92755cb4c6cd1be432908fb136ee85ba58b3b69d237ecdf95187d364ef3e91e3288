@@ -1,1 +1,0 @@
-"use strict";const o=require("./ownerDocument-4MViGo3k.cjs");function e(n){return o.ownerDocument(n).defaultView||window}exports.ownerWindow=e;

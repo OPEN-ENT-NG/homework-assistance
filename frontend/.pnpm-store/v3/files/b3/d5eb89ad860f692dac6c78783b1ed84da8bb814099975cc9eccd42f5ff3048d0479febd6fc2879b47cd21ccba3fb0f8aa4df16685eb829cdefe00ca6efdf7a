@@ -1,5 +1,0 @@
-import { default as a, default as d } from "./Moodle.es.js";
-export {
-  a as Moodle,
-  d as MoodleIcon
-};

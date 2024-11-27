@@ -1,4 +1,0 @@
-import { default as o } from "./Loader.es.js";
-export {
-  o as Loader
-};
