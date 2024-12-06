@@ -2,7 +2,6 @@ import { odeServices } from "edifice-ts-client";
 
 import { AppProps } from "~/core/types";
 
-
 export type UpdateAppProps = Pick<AppProps, "name" | "map">;
 
 export const getApp = async (url: string): Promise<void> => {
