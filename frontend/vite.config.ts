@@ -88,6 +88,15 @@ export default ({ mode }: { mode: string }) => {
     globals: true,
     environment: "happy-dom",
     setupFiles: "./src/tests/setup.ts",
+    include: ["src/**/*.{test,spec}.{js,jsx,ts,tsx}"],
+    coverage: {
+      reporter: ["text", "json", "html"],
+      exclude: ["node_modules/", "src/tests/setup.ts"],
+    },
+    deps: {
+      inline: ["@cgi-learning-hub/ui", "@cgi-learning-hub/theme"],
+    },
+    css: true,
   };
 
   const optimizeDeps = {
@@ -105,7 +114,7 @@ export default ({ mode }: { mode: string }) => {
         "@cgi-learning-hub": path.resolve(
           __dirname,
           "node_modules/@cgi-learning-hub",
-        )
+        ),
       },
     },
   });

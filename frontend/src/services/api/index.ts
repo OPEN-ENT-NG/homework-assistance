@@ -2,7 +2,6 @@ import { odeServices } from "edifice-ts-client";
 
 import { AppProps } from "~/core/types";
 
-
 export type UpdateAppProps = Pick<AppProps, "name" | "map">;
 
 export const getApp = async (url: string): Promise<void> => {
@@ -11,6 +10,7 @@ export const getApp = async (url: string): Promise<void> => {
 
 export const updateApp = async (url: string, appBody: UpdateAppProps) => {
   console.log({ appBody });
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return await odeServices.http().putJson(url, appBody);
 };
 
