@@ -8,6 +8,7 @@ public class Field {
 
     public static final String ID = "id";
     public static final String _ID = "_id";
+    public static final String USER = "user";
     public static final String USERDATA = "userdata";
     public static final String DESTINATION = "destination";
     public static final String ERROR = "error";
@@ -24,6 +25,17 @@ public class Field {
     public static final String MINUTE = "minute";
     public static final String ZONE_EU = "Europe/Paris";
     public static final String RESULT = "result";
+    public static final String RESOURCES = "resources";
+    public static final String MODULE = "module";
+    public static final String HOMEWORK_ASSISTANCE = "homework-assistance";
+
+    public static final String ID_RESSOURCE = "idRessource";
+    public static final String NOM_RESSOURCE = "nomRessource";
+    public static final String URL_VIGNETTE = "urlVignette";
+    public static final String URL_ACCES_RESSOURCE = "urlAccesRessource";
+    public static final String DESCRIPTION = "description";
+
+    public static final String MEDIACENTRE_ADDRESS = "fr.openent.mediacentre.featured.resources";
 
     public static final String PROXY = "proxy";
     public static final String HOST = "host";
