@@ -4,7 +4,8 @@ import fr.openent.homeworkAssistance.HomeworkAssistance;
 
 public enum WorkflowActions {
     STUDENT_RIGHT (HomeworkAssistance.STUDENT),
-    ADMIN_RIGHT (HomeworkAssistance.ADMIN);
+    ADMIN_RIGHT (HomeworkAssistance.ADMIN),
+    VIEW_RIGHT (HomeworkAssistance.VIEW);
 
     private final String actionName;
 

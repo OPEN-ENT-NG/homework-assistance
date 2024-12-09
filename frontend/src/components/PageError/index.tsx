@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
-export default function PageError() {
+export const PageError = () => {
   const error = useRouteError();
 
   console.error("An error has occurred:", error);
@@ -29,4 +29,4 @@ export default function PageError() {
       </p>
     </div>
   );
-}
+};

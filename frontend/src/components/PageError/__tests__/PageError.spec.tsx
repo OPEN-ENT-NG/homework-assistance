@@ -1,9 +1,10 @@
 import { render } from "@testing-library/react";
 import { describe, it, vi } from "vitest";
 
-import PageError from "..";
+import { PageError } from "..";
 
-// Mock useRouteError hook
+
+
 vi.mock("react-router-dom", () => ({
   useRouteError: () => ({}),
   isRouteErrorResponse: () => false,

@@ -15,6 +15,7 @@ public class HomeworkAssistance extends BaseServer {
 	public static final int TIMEOUT_VALUE = 300;
 	public static final String ADMIN = "homework-assistance.admin";
 	public static final String STUDENT = "homework-assistance.student";
+	public static final String VIEW = "view";
 
 	@Override
 	public void start(Promise<Void> startPromise) throws Exception {
@@ -29,6 +30,7 @@ public class HomeworkAssistance extends BaseServer {
 		addController(new HomeworkAssistanceController());
 		addController(new ConfigurationController());
 		addController(new CallbackController(serviceFactory));
+		addController(new ResourcesController(vertx));
 		startPromise.tryComplete();
 		startPromise.tryFail("[Homework-assistance@HomeworkAssistance::start] Fail to start Homework-assistance");
 	}
