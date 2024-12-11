@@ -46,10 +46,10 @@ export default ({ mode }: { mode: string }) => {
       proxyObj,
     "/blog": proxyObj,
     "/explorer": proxyObj,
-    "/appointments": proxyObj,
+    "/homework-assistance": proxyObj,
   };
 
-  const base = mode === "production" ? "/appointments" : "";
+  const base = mode === "production" ? "/homework-assistance" : "";
 
   const build = {
     assetsDir: "public",

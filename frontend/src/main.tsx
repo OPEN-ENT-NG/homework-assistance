@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React from "react";
 
-import { OdeClientProvider } from "@edifice-ui/react";
+import { OdeClientProvider, ThemeProvider } from "@edifice-ui/react";
 import {
   QueryCache,
   QueryClient,
@@ -46,10 +46,12 @@ root.render(
     <Provider store={store}>
       <OdeClientProvider
         params={{
-          app: "appointments",
+          app: "homework-assistance",
         }}
       >
-        <RouterProvider router={router} />
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
       </OdeClientProvider>
     </Provider>
     <ReactQueryDevtools initialIsOpen={false} />

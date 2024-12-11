@@ -1,16 +1,18 @@
 package fr.openent.homeworkAssistance.controller;
 
+import java.util.Map;
+
+import org.entcore.common.controller.ControllerHelper;
+import org.entcore.common.events.EventStore;
+import org.entcore.common.events.EventStoreFactory;
+import org.vertx.java.core.http.RouteMatcher;
+
 import fr.openent.homeworkAssistance.HomeworkAssistance;
 import fr.wseduc.rs.Get;
 import fr.wseduc.security.SecuredAction;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.json.JsonObject;
-import org.entcore.common.controller.ControllerHelper;
-import org.entcore.common.events.EventStore;
-import org.entcore.common.events.EventStoreFactory;
-import org.vertx.java.core.http.RouteMatcher;
-import java.util.Map;
 
 public class HomeworkAssistanceController extends ControllerHelper {
     private EventStore eventStore;
@@ -30,7 +32,7 @@ public class HomeworkAssistanceController extends ControllerHelper {
     @Get("")
     @SecuredAction("view")
     public void view (HttpServerRequest request) {
-        renderView(request, new JsonObject());
+        renderView(request, new JsonObject(),"index.html", null);
         eventStore.createAndStoreEvent(HomeworkAssistanceEvent.ACCESS.name(), request);
     }
 }
