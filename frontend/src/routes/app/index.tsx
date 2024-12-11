@@ -1,5 +1,7 @@
 import { FC } from "react";
 
-export const App:FC = () => {
-  return <div>yoyo</div>;
+import { AppView } from "~/containers/AppView";
+
+export const App: FC = () => {
+  return <AppView />;
 };

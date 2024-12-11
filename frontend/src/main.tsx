@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import React from "react";
 
-import { OdeClientProvider, ThemeProvider } from "@edifice-ui/react";
+import { ThemeProvider } from "@cgi-learning-hub/theme";
+import {
+  OdeClientProvider,
+  ThemeProvider as ThemeProviderEdifice,
+} from "@edifice-ui/react";
 import {
   QueryCache,
   QueryClient,
@@ -49,9 +53,11 @@ root.render(
           app: "homework-assistance",
         }}
       >
-        <ThemeProvider>
-          <RouterProvider router={router} />
-        </ThemeProvider>
+        <ThemeProviderEdifice>
+          <ThemeProvider themeId="crna">
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </ThemeProviderEdifice>
       </OdeClientProvider>
     </Provider>
     <ReactQueryDevtools initialIsOpen={false} />
