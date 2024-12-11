@@ -87,7 +87,7 @@ dependency-reduced-pom.xml
 /frontend/*.local
 /frontend/.env*
 /frontend/*.lock
-
+/frontend/.pnpm-store
 /frontend/pnpm-lock.yaml
 
 # Editor directories and files
