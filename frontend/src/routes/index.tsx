@@ -1,14 +1,15 @@
 import { createHashRouter } from "react-router-dom";
 
 import Root from "~/app/root";
-import ErrorPage from "~/components/PageError";
+import { PageError } from "~/components/PageError";
+
 import "~/styles/index.scss";
 
 const routes = [
   {
     path: "/",
     element: <Root />,
-    errorElement: <ErrorPage />,
+    errorElement: <PageError />,
     children: [
       {
         index: true,
