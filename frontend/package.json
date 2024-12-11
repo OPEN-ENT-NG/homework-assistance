@@ -37,9 +37,9 @@
     ]
   },
   "dependencies": {
-    "@cgi-learning-hub/icons": "latest",
-    "@cgi-learning-hub/theme": "latest",
-    "@cgi-learning-hub/ui": "latest",
+    "@cgi-learning-hub/icons": "develop",
+    "@cgi-learning-hub/theme": "develop",
+    "@cgi-learning-hub/ui": "develop",
     "@edifice-ui/icons": "1.5.14",
     "@edifice-ui/react": "1.5.14",
     "@emotion/react": "11.11.1",

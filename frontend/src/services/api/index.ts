@@ -1,6 +1,6 @@
 import { odeServices } from "edifice-ts-client";
 
-import { AppProps } from "~/core/types";
+import { AppProps } from "~/core/types/types";
 
 export type UpdateAppProps = Pick<AppProps, "name" | "map">;
 
