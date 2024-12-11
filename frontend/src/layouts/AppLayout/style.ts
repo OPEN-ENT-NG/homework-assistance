@@ -1,21 +1,6 @@
 import { SxProps } from "@cgi-learning-hub/ui";
 
 import { flexStartBoxStyle } from "~/core/style/boxStyles";
-import { mainContainerBackgroundColor } from "~/core/style/style";
-
-export const globalStyle = {
-  "main.container-fluid": {
-    padding: "0 !important",
-    width: "100%",
-    height: "100%",
-    minHeight: "calc(100vh - 67px)",
-    maxWidth: "none",
-    "--edifice-white-rgb": mainContainerBackgroundColor,
-    "@media (max-width: 800px)": {
-      minHeight: "calc(100vh - 43px)",
-    },
-  },
-};
 
 export const mainLayout = {
   display: "flex",
@@ -67,7 +52,6 @@ export const topRowStyle: SxProps = {
 export const topItemStyle: SxProps = {
   flex: 1,
   bgcolor: "common.white",
-  p: 2,
   borderRadius: 2,
   boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
   "@media (max-width: 800px)": {

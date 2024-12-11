@@ -1,6 +1,10 @@
-import { FC, createContext, useContext, useMemo, useState } from "react";
+import { FC, createContext, useContext, useMemo } from "react";
+
+import { useOdeClient } from "@edifice-ui/react";
 
 import { GlobalContextType, GlobalProviderProps } from "./types";
+import { defineRight } from "./utils";
+import { USER_RIGHT } from "~/core/enums";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
@@ -13,13 +17,16 @@ export const useGlobal = () => {
 };
 
 export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
-  const [yes, setYes] = useState<boolean>(false);
+  const { user } = useOdeClient();
+  const userRight = defineRight(user);
+  const isAdmin = userRight === USER_RIGHT.ADMIN;
 
   const value = useMemo<GlobalContextType>(
     () => ({
-      yes,
+      userRight,
+      isAdmin,
     }),
-    [yes],
+    [userRight, isAdmin],
   );
 
   return (
