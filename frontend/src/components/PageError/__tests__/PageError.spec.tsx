@@ -3,8 +3,6 @@ import { describe, it, vi } from "vitest";
 
 import { PageError } from "..";
 
-
-
 vi.mock("react-router-dom", () => ({
   useRouteError: () => ({}),
   isRouteErrorResponse: () => false,
