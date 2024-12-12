@@ -17,6 +17,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import "~/i18n";
 
+import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
 
@@ -55,7 +56,9 @@ root.render(
       >
         <ThemeProviderEdifice>
           <ThemeProvider themeId="crna">
-            <RouterProvider router={router} />
+            <GlobalProvider>
+              <RouterProvider router={router} />
+            </GlobalProvider>
           </ThemeProvider>
         </ThemeProviderEdifice>
       </OdeClientProvider>
