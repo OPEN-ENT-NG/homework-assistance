@@ -1,6 +1,15 @@
 import { IUserInfo } from "edifice-ts-client";
 
-import { USER_ACTIONS, USER_RIGHT } from "~/core/enums";
+import { PreviewInputvalueState } from "./types";
+import { PREVIEW_INPUTS, USER_ACTIONS, USER_RIGHT } from "~/core/enums";
+
+export const initialPreviewInputvalue: PreviewInputvalueState = {
+  [PREVIEW_INPUTS.HEADER]: "",
+  [PREVIEW_INPUTS.BODY]: "",
+  [PREVIEW_INPUTS.DAYS]: "",
+  [PREVIEW_INPUTS.TIME]: "",
+  [PREVIEW_INPUTS.INFO]: "",
+};
 
 const findRight = (user: IUserInfo, userAction: USER_ACTIONS) =>
   user.authorizedActions.find((item) => item.name === (userAction as string));

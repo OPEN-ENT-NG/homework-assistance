@@ -49,7 +49,6 @@ export const EditableArea: FC<EditableAreaProps> = ({
       <StyledTextField
         isSmall={isSmall}
         multiline
-        fullWidth
         value={value}
         onChange={onChange}
         disabled={!isEditable}

@@ -2,16 +2,8 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import EventIcon from "@mui/icons-material/Event";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { EditableAreaConfig, InputvalueState } from "./types";
+import { EditableAreaConfig } from "./types";
 import { PREVIEW_INPUTS } from "~/core/enums";
-
-export const initialInputvalue: InputvalueState = {
-  [PREVIEW_INPUTS.HEADER]: "",
-  [PREVIEW_INPUTS.BODY]: "",
-  [PREVIEW_INPUTS.DAYS]: "",
-  [PREVIEW_INPUTS.TIME]: "",
-  [PREVIEW_INPUTS.INFO]: "",
-};
 
 export const previewAreaConfigs: EditableAreaConfig[] = [
   {
