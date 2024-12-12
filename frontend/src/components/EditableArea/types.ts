@@ -1,6 +1,7 @@
 import { ChangeEvent, ReactNode } from "react";
 
 export interface EditableAreaProps {
+  isSmall?: boolean;
   icon?: ReactNode | null;
   width?: string;
   height?: string;

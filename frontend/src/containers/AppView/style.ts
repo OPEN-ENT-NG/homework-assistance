@@ -8,7 +8,7 @@ export const globalStyle = {
     minHeight: "calc(100vh - 67px)",
     maxWidth: "none",
     "--edifice-white-rgb": mainContainerBackgroundColor,
-    "@media (max-width: 800px)": {
+    "@media (max-width: 767px)": {
       minHeight: "calc(100vh - 43px)",
     },
   },

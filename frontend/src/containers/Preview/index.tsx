@@ -10,20 +10,22 @@ import {
   secondPartWrapper,
   SVGWrapper,
 } from "./style";
-import { InputvalueState } from "./types";
-import { initialInputvalue } from "./utils";
+import { EditableAreaConfig, InputvalueState } from "./types";
+import {
+  dateAreaConfigs,
+  initialInputvalue,
+  previewAreaConfigs,
+} from "./utils";
 import { EditableArea } from "~/components/EditableArea";
+import { SecondpartPreviewIcon } from "~/components/SVG/SecondpartPreviewIcon";
 import { PREVIEW_INPUTS } from "~/core/enums";
 import { useGlobal } from "~/providers/GlobalProvider";
-import { SecondpartPreviewIcon } from "~/components/SVG/SecondpartPreviewIcon";
-import EventIcon from "@mui/icons-material/Event";
 
 export const Preview: FC = () => {
   const [inputValue, setInputValue] =
     useState<InputvalueState>(initialInputvalue);
   const { isAdmin } = useGlobal();
   const { t } = useTranslation("homework-assistance");
-  const { FIRST_DESC, SECOND_DESC, HOURS, DAYS, WARNING } = inputValue;
 
   const handleInputChange =
     (field: PREVIEW_INPUTS) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,53 +34,40 @@ export const Preview: FC = () => {
         [field]: event.target.value,
       }));
     };
+
   const handleSubmit = (previewType: PREVIEW_INPUTS) => () => {
     console.log(inputValue[previewType]);
   };
 
+  const renderEditableArea = (props: EditableAreaConfig) => (
+    <EditableArea
+      key={props.field}
+      isEditable={isAdmin}
+      onChange={handleInputChange(props.field)}
+      value={inputValue[props.field]}
+      height={props.height}
+      onSubmit={handleSubmit(props.field)}
+      icon={props.icon}
+      isSmall={props.isSmall}
+    />
+  );
+
+  const previewAreaInputs = previewAreaConfigs.map((item) =>
+    renderEditableArea(item),
+  );
+  const dateAreaInputs = dateAreaConfigs.map((item) =>
+    renderEditableArea(item),
+  );
+
   return (
     <Box sx={previewWrapper}>
-      <EditableArea
-        isEditable={isAdmin}
-        onChange={handleInputChange(PREVIEW_INPUTS.FIRST_DESC)}
-        value={FIRST_DESC}
-        height="10rem"
-        onSubmit={handleSubmit(PREVIEW_INPUTS.FIRST_DESC)}
-      />
-      <EditableArea
-        isEditable={isAdmin}
-        onChange={handleInputChange(PREVIEW_INPUTS.SECOND_DESC)}
-        value={SECOND_DESC}
-        height="13rem"
-        onSubmit={handleSubmit(PREVIEW_INPUTS.SECOND_DESC)}
-      />
-      <Typography sx={secondPartTitle}>
-        {t("homework-assistance.availabilityTitle")}
-      </Typography>
+      {previewAreaInputs}
       <Box sx={secondPartWrapper}>
         <Box sx={datesWrapper}>
-          <EditableArea
-            icon={<EventIcon />}
-            isEditable={isAdmin}
-            onChange={handleInputChange(PREVIEW_INPUTS.DAYS)}
-            value={DAYS}
-            height="3rem"
-            onSubmit={handleSubmit(PREVIEW_INPUTS.DAYS)}
-          />
-          <EditableArea
-            isEditable={isAdmin}
-            onChange={handleInputChange(PREVIEW_INPUTS.HOURS)}
-            value={HOURS}
-            height="3rem"
-            onSubmit={handleSubmit(PREVIEW_INPUTS.HOURS)}
-          />
-          <EditableArea
-            isEditable={isAdmin}
-            onChange={handleInputChange(PREVIEW_INPUTS.WARNING)}
-            value={WARNING}
-            height="3rem"
-            onSubmit={handleSubmit(PREVIEW_INPUTS.WARNING)}
-          />
+          <Typography sx={secondPartTitle}>
+            {t("homework-assistance.availabilityTitle")}
+          </Typography>
+          {dateAreaInputs}
         </Box>
         <Box sx={SVGWrapper}>
           <SecondpartPreviewIcon />

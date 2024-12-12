@@ -19,6 +19,7 @@ export const EditableArea: FC<EditableAreaProps> = ({
   onChange,
   onSubmit,
   icon = null,
+  isSmall = false,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -46,6 +47,7 @@ export const EditableArea: FC<EditableAreaProps> = ({
     <TextAreaWrapper width={width} height={height}>
       {icon && <Box sx={iconWrapper}>{icon}</Box>}
       <StyledTextField
+        isSmall={isSmall}
         multiline
         fullWidth
         value={value}

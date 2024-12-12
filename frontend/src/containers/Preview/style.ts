@@ -4,9 +4,10 @@ import { columnBoxStyle, spaceBetweenBoxStyle } from "~/core/style/boxStyles";
 
 export const previewWrapper: SxProps = {
   ...columnBoxStyle,
+  justifyContent: "space-between",
   boxSizing: "border-box",
   height: "100%",
-  padding: "3rem 5rem",
+  padding: "4rem 6rem",
   gap: "2rem",
 };
 
@@ -20,17 +21,20 @@ export const secondPartTitle: SxProps = {
 
 export const secondPartWrapper = {
   ...spaceBetweenBoxStyle,
+  alignItems: "flex-end",
   g: 2,
-};
-
-export const SVGWrapper = {
-  width: "40%",
   "@media (max-width: 800px)": {
-    display: "none",
+    flexDirection: "column",
+    gap: 2,
+    alignItems: "center",
   },
 };
 
 export const datesWrapper = {
   ...columnBoxStyle,
-  g: 1,
+  gap: "2rem",
+  height: "100%",
+  flex: "1 1 auto",
 };
+
+export const SVGWrapper = {};

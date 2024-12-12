@@ -9,9 +9,9 @@ export enum USER_ACTIONS {
 }
 
 export enum PREVIEW_INPUTS {
-  FIRST_DESC = "FIRST_DESC",
-  SECOND_DESC = "SECOND_DESC",
-  DAYS = "DAYS",
-  HOURS = "HOURS",
-  WARNING = "WARNING",
+  HEADER = "header",
+  BODY = "body",
+  DAYS = "days",
+  TIME = "time",
+  INFO = "info",
 }
