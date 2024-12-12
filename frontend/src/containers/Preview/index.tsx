@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 
 import { Box, Typography } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
@@ -38,11 +38,14 @@ export const Preview: FC = () => {
     />
   );
 
-  const previewAreaInputs = previewAreaConfigs.map((item) =>
-    renderEditableArea(item),
+  const previewAreaInputs = useMemo(
+    () => previewAreaConfigs.map((item) => renderEditableArea(item)),
+    [isAdmin, previewInputValue],
   );
-  const dateAreaInputs = dateAreaConfigs.map((item) =>
-    renderEditableArea(item),
+
+  const dateAreaInputs = useMemo(
+    () => dateAreaConfigs.map((item) => renderEditableArea(item)),
+    [isAdmin, previewInputValue],
   );
 
   return (

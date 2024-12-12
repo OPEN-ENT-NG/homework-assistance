@@ -1,6 +1,6 @@
 export enum USER_RIGHT {
   ADMIN = "ADMIN",
-  STUDENT = "STUDENTF",
+  STUDENT = "STUDENT",
 }
 
 export enum USER_ACTIONS {

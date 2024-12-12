@@ -6,13 +6,9 @@ export interface GlobalProviderProps {
   children: ReactNode;
 }
 
-export interface PreviewInputvalueState {
-  [PREVIEW_INPUTS.HEADER]: string;
-  [PREVIEW_INPUTS.BODY]: string;
-  [PREVIEW_INPUTS.DAYS]: string;
-  [PREVIEW_INPUTS.TIME]: string;
-  [PREVIEW_INPUTS.INFO]: string;
-}
+export type PreviewInputvalueState = {
+  [key in PREVIEW_INPUTS]: string;
+};
 
 export type GlobalContextType = {
   userRight: USER_RIGHT | null;
