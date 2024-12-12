@@ -12,10 +12,15 @@ import { useOdeClient } from "@edifice-ui/react";
 import {
   GlobalContextType,
   GlobalProviderProps,
+  OpeningDaysInputValueState,
   PreviewInputvalueState,
 } from "./types";
-import { defineRight, initialPreviewInputvalue } from "./utils";
-import { PREVIEW_INPUTS, USER_RIGHT } from "~/core/enums";
+import {
+  defineRight,
+  initialOpeningDaysInputvalue,
+  initialPreviewInputvalue,
+} from "./utils";
+import { OPENING_DAYS, PREVIEW_INPUTS, USER_RIGHT } from "~/core/enums";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
@@ -32,6 +37,9 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const userRight = defineRight(user);
   const [previewInputValue, setPreviewInputValue] =
     useState<PreviewInputvalueState>(initialPreviewInputvalue);
+  const [openingDaysInputValue, setOpeningDaysInputValue] =
+    useState<OpeningDaysInputValueState>(initialOpeningDaysInputvalue);
+
   const isAdmin = userRight === USER_RIGHT.ADMIN;
 
   const handlePreviewInputChange =
@@ -42,14 +50,23 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       }));
     };
 
+  const handleOpeningDaysInputChange = (field: OPENING_DAYS) => {
+    setOpeningDaysInputValue((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }));
+  };
+
   const value = useMemo<GlobalContextType>(
     () => ({
       userRight,
       isAdmin,
       previewInputValue,
       handlePreviewInputChange,
+      openingDaysInputValue,
+      handleOpeningDaysInputChange
     }),
-    [userRight, isAdmin, previewInputValue],
+    [userRight, isAdmin, previewInputValue,openingDaysInputValue],
   );
 
   return (

@@ -15,10 +15,11 @@ import {
 } from "./style";
 import { AppLayoutProps } from "./types";
 import { HomeworkAssistanceIcon } from "~/components/SVG/HomeworkAssistanceIcon";
+import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import { appIconColor } from "~/core/style/style";
 
 export const AppLayout: FC<AppLayoutProps> = ({ items }) => {
-  const { t } = useTranslation("homework-assistance");
+  const { t } = useTranslation(HOMEWORK_ASSISTANCE);
   const { firstItem, secondItem, thirdItem } = items;
   return (
     <Box sx={mainLayout}>

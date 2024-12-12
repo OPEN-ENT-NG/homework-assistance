@@ -1,7 +1,18 @@
-import { Preview } from "../Preview";
+import { useMemo } from "react";
 
-export const appContainers = {
-  firstItem: <Preview />,
-  secondItem: "item2",
-  thirdItem: "item3",
+import { Preview } from "../Preview";
+import { ServiceAdmin } from "../ServiceAdmin";
+import { useGlobal } from "~/providers/GlobalProvider";
+
+export const useAppContainers = () => {
+  const { isAdmin } = useGlobal();
+
+  return useMemo(
+    () => ({
+      firstItem: <Preview />,
+      secondItem: isAdmin ? <ServiceAdmin /> : "item2",
+      thirdItem: "item3",
+    }),
+    [isAdmin],
+  );
 };

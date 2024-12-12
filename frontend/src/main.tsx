@@ -17,6 +17,7 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import "~/i18n";
 
+import { HOMEWORK_ASSISTANCE } from "./core/const";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
@@ -51,7 +52,7 @@ root.render(
     <Provider store={store}>
       <OdeClientProvider
         params={{
-          app: "homework-assistance",
+          app: HOMEWORK_ASSISTANCE,
         }}
       >
         <ThemeProviderEdifice>

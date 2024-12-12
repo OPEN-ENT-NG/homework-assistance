@@ -1,7 +1,12 @@
 import { IUserInfo } from "edifice-ts-client";
 
-import { PreviewInputvalueState } from "./types";
-import { PREVIEW_INPUTS, USER_ACTIONS, USER_RIGHT } from "~/core/enums";
+import { OpeningDaysInputValueState, PreviewInputvalueState } from "./types";
+import {
+  OPENING_DAYS,
+  PREVIEW_INPUTS,
+  USER_ACTIONS,
+  USER_RIGHT,
+} from "~/core/enums";
 
 export const initialPreviewInputvalue = Object.values(PREVIEW_INPUTS).reduce(
   (acc, key) => ({
@@ -9,6 +14,13 @@ export const initialPreviewInputvalue = Object.values(PREVIEW_INPUTS).reduce(
     [key]: "",
   }),
   {} as PreviewInputvalueState,
+);
+export const initialOpeningDaysInputvalue = Object.values(OPENING_DAYS).reduce(
+  (acc, key) => ({
+    ...acc,
+    [key]: false,
+  }),
+  {} as OpeningDaysInputValueState,
 );
 
 const findRight = (user: IUserInfo, userAction: USER_ACTIONS) =>
