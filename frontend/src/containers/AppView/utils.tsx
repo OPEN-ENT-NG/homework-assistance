@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import { Preview } from "../Preview";
 import { ServiceAdmin } from "../ServiceAdmin";
+import { ServiceStudent } from "../ServiceStudent";
 import { useGlobal } from "~/providers/GlobalProvider";
 
 export const useAppContainers = () => {
@@ -10,7 +11,7 @@ export const useAppContainers = () => {
   return useMemo(
     () => ({
       firstItem: <Preview />,
-      secondItem: isAdmin ? <ServiceAdmin /> : "item2",
+      secondItem: isAdmin ? <ServiceAdmin /> : <ServiceStudent />,
       thirdItem: "item3",
     }),
     [isAdmin],

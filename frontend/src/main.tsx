@@ -20,6 +20,7 @@ import { RouterProvider } from "react-router-dom";
 import "~/i18n";
 
 import { HOMEWORK_ASSISTANCE } from "./core/const";
+import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
@@ -58,7 +59,7 @@ root.render(
         }}
       >
         <ThemeProviderEdifice>
-          <ThemeProvider themeId="crna">
+          <ThemeProvider themeId="crna" options={themeOptions}>
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
               <GlobalProvider>
                 <RouterProvider router={router} />

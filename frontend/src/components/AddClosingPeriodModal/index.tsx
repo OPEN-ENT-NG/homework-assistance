@@ -1,28 +1,23 @@
 import { FC, useState } from "react";
 
-import { Box, Typography, Button, IconButton } from "@cgi-learning-hub/ui";
-import CloseIcon from "@mui/icons-material/Close";
-import { Modal } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@cgi-learning-hub/ui";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
-import {
-  addClosingPeriodModalWrapper,
-  bottomButtonWrapper,
-  closeIconButtonStyle,
-  modalTitle,
-  cancelButtonStyle,
-  validateButtonStyle,
-  dateTextStyle,
-} from "./style";
+import { cancelButtonStyle, validateButtonStyle, dateTextStyle } from "./style";
 import { initalExclusion } from "./utils";
 import { CustomDatePicker } from "../CustomDatePicker";
 import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
 import { TIME_SCOPE } from "~/core/enums";
-import {
-  flexStartBoxStyle,
-  spaceBetweenBoxStyle,
-} from "~/core/style/boxStyles";
+import { flexStartBoxStyle } from "~/core/style/boxStyles";
 import { ModalProps } from "~/core/types/types";
 import { useGlobal } from "~/providers/GlobalProvider";
 import { Exclusion } from "~/providers/GlobalProvider/types";
@@ -78,50 +73,53 @@ export const AddClosingPeriodModal: FC<ModalProps> = ({
   };
 
   return (
-    <Modal open={isOpen} onClose={handleCancel}>
-      <Box sx={addClosingPeriodModalWrapper}>
-        <Box sx={spaceBetweenBoxStyle}>
-          <Typography sx={modalTitle}>{t("admin.add")}</Typography>
-          <IconButton onClick={handleCancel} sx={closeIconButtonStyle}>
-            <CloseIcon fontSize="large" />
-          </IconButton>
+    <Dialog
+      open={isOpen}
+      onClose={handleCancel}
+      showCloseButton
+      maxWidth="lg"
+      fullWidth
+    >
+      <DialogTitle>{t("admin.add")}</DialogTitle>
+      <DialogContent>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <Box sx={flexStartBoxStyle}>
+            <Typography sx={dateTextStyle}>{t("admin.date.begin")}</Typography>
+            <CustomDatePicker
+              value={dayjs(exclusion.start, DATE_FORMAT)}
+              onChange={handleDateChange(TIME_SCOPE.START)}
+            />
+          </Box>
+          <Box sx={flexStartBoxStyle}>
+            <Typography sx={dateTextStyle}>{t("admin.date.end")}</Typography>
+            <CustomDatePicker
+              value={dayjs(exclusion.end, DATE_FORMAT)}
+              onChange={handleDateChange(TIME_SCOPE.END)}
+              minDate={
+                exclusion?.start
+                  ? dayjs(exclusion.start, DATE_FORMAT)
+                  : dayjs().startOf("day")
+              }
+            />
+          </Box>
         </Box>
-        <Box sx={flexStartBoxStyle}>
-          <Typography sx={dateTextStyle}>{t("admin.date.begin")}</Typography>
-          <CustomDatePicker
-            value={dayjs(exclusion.start, DATE_FORMAT)}
-            onChange={handleDateChange(TIME_SCOPE.START)}
-          />
-        </Box>
-        <Box sx={flexStartBoxStyle}>
-          <Typography sx={dateTextStyle}>{t("admin.date.end")}</Typography>
-          <CustomDatePicker
-            value={dayjs(exclusion.end, DATE_FORMAT)}
-            onChange={handleDateChange(TIME_SCOPE.END)}
-            minDate={
-              exclusion?.start
-                ? dayjs(exclusion.start, DATE_FORMAT)
-                : dayjs().startOf("day")
-            }
-          />
-        </Box>
-        <Box sx={bottomButtonWrapper}>
-          <Button
-            variant="text"
-            sx={cancelButtonStyle}
-            onClick={() => handleCancel()}
-          >
-            {t("admin.cancel")}
-          </Button>
-          <Button
-            variant="contained"
-            sx={validateButtonStyle}
-            onClick={handleExclusionSubmit}
-          >
-            {t("admin.validate")}
-          </Button>
-        </Box>
-      </Box>
-    </Modal>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="text"
+          sx={cancelButtonStyle}
+          onClick={() => handleCancel()}
+        >
+          {t("admin.cancel")}
+        </Button>
+        <Button
+          variant="contained"
+          sx={validateButtonStyle}
+          onClick={handleExclusionSubmit}
+        >
+          {t("admin.validate")}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };

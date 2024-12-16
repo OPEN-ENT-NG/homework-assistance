@@ -1,22 +1,18 @@
 import { FC } from "react";
 
-import { Box, Typography, Button, IconButton } from "@cgi-learning-hub/ui";
-import CloseIcon from "@mui/icons-material/Close";
-import { Modal } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
-import {
-  bottomButtonWrapper,
-  cancelButton,
-  closeIconButtonStyle,
-  deleteButton,
-  deleteClosingPeriodModalWrapper,
-  modalTitle,
-} from "./style";
+import { cancelButton, deleteButton } from "./style";
 import { DeleteClosingPeriodModalProps } from "./types";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
-import { spaceBetweenBoxStyle } from "~/core/style/boxStyles";
-import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
 
 export const DeleteClosingPeriodModal: FC<DeleteClosingPeriodModalProps> = ({
@@ -37,37 +33,28 @@ export const DeleteClosingPeriodModal: FC<DeleteClosingPeriodModalProps> = ({
   };
 
   return (
-    <Modal open={isOpen} onClose={handleClose}>
-      <Box sx={deleteClosingPeriodModalWrapper}>
-        <Box sx={spaceBetweenBoxStyle}>
-          <Typography sx={modalTitle}>{t("admin.period.delete")}</Typography>
-          <IconButton onClick={handleClose} sx={closeIconButtonStyle}>
-            <CloseIcon fontSize="large" />
-          </IconButton>
-        </Box>
-        <Typography sx={basicTypo}>
+    <Dialog open={isOpen} onClose={handleClose} maxWidth="lg" fullWidth>
+      <DialogTitle>{t("admin.period.delete")}</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
           {t("admin.confirm.delete.period", {
             startDate: closingPeriod.start,
             endDate: closingPeriod.end,
           })}
-        </Typography>
-        <Box sx={bottomButtonWrapper}>
-          <Button
-            variant="text"
-            sx={cancelButton}
-            onClick={() => handleClose()}
-          >
-            {t("admin.cancel")}
-          </Button>
-          <Button
-            variant="contained"
-            sx={deleteButton}
-            onClick={() => void handleDeleteSubmit()}
-          >
-            {t("admin.delete")}
-          </Button>
-        </Box>
-      </Box>
-    </Modal>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="text" sx={cancelButton} onClick={() => handleClose()}>
+          {t("admin.cancel")}
+        </Button>
+        <Button
+          variant="contained"
+          sx={deleteButton}
+          onClick={() => void handleDeleteSubmit()}
+        >
+          {t("admin.delete")}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };

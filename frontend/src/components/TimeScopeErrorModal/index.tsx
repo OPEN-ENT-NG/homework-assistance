@@ -1,13 +1,16 @@
 import { FC } from "react";
 
-import { Box, Typography, Button } from "@cgi-learning-hub/ui";
-import { Modal } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
-import { timeScopeErrorModalWrapper } from "./style";
+import { cancelButtonStyle } from "./style";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
-import { flexEndBoxStyle } from "~/core/style/boxStyles";
-import { basicTypo } from "~/core/style/style";
 import { ModalProps } from "~/core/types/types";
 
 export const TimeScopeErrorModal: FC<ModalProps> = ({
@@ -17,21 +20,21 @@ export const TimeScopeErrorModal: FC<ModalProps> = ({
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
 
   return (
-    <Modal open={isOpen} onClose={handleClose}>
-      <Box sx={timeScopeErrorModalWrapper}>
-        <Typography sx={basicTypo}>
+    <Dialog open={isOpen} onClose={handleClose} fullWidth maxWidth="lg">
+      <DialogContent>
+        <DialogContentText>
           {t("admin.error.adminReverseTime")}
-        </Typography>
-        <Box sx={flexEndBoxStyle}>
-          <Button
-            variant="contained"
-            sx={{ fontSize: "1.6rem", width: "9rem" }}
-            onClick={() => handleClose()}
-          >
-            {t("admin.close")}
-          </Button>
-        </Box>
-      </Box>
-    </Modal>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="contained"
+          sx={cancelButtonStyle}
+          onClick={() => handleClose()}
+        >
+          {t("admin.close")}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
