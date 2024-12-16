@@ -2,6 +2,7 @@ import { IUserInfo } from "edifice-ts-client";
 
 import {
   DisplayModalsState,
+  ExclusionValuesState,
   OpeningDaysInputValueState,
   OpeningTimeInputValueState,
   PreviewInputvalueState,
@@ -15,6 +16,7 @@ import {
   USER_ACTIONS,
   USER_RIGHT,
 } from "~/core/enums";
+import { ConfigPayload } from "~/services/api/configApi/types";
 
 export const initialPreviewInputvalue = Object.values(PREVIEW_INPUTS).reduce(
   (acc, key) => ({
@@ -77,4 +79,21 @@ export const isTimeRangeValid = (
     parseInt(timeRange[TIME_SCOPE.END][TIME_UNIT.MINUTE]);
 
   return endMinutes > startMinutes;
+};
+
+export const createConfigPayload = (
+  preview: PreviewInputvalueState,
+  openingDays: OpeningDaysInputValueState,
+  openingTime: OpeningTimeInputValueState,
+  exclusions: ExclusionValuesState,
+): ConfigPayload => {
+  return {
+    id: null,
+    messages: preview,
+    settings: {
+      exclusions: exclusions,
+      opening_days: openingDays,
+      opening_time: openingTime,
+    },
+  };
 };

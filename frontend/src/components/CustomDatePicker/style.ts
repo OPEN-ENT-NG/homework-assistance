@@ -1,7 +1,7 @@
 import { TextFieldVariants } from "@mui/material";
 
 export const textFieldProps = {
-    fullWidth: true,
+    width:"30rem",
     size: "medium" as const,
     variant: "outlined" as TextFieldVariants,
     sx: {

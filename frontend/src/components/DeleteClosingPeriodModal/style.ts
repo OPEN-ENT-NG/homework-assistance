@@ -1,6 +1,6 @@
 import { flexEndBoxStyle } from "~/core/style/boxStyles";
 
-export const addClosingPeriodModalWrapper = {
+export const deleteClosingPeriodModalWrapper = {
   position: "absolute",
   top: "20%",
   left: "50%",

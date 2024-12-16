@@ -7,6 +7,7 @@ import {
   flexStartBoxStyle,
   spaceBetweenBoxStyle,
 } from "~/core/style/boxStyles";
+import { basicTypo } from "~/core/style/style";
 
 export const ServiceAdminWrapper: SxProps = {
   ...columnBoxStyle,
@@ -112,3 +113,26 @@ export const hoursInputItem = {
   ...flexStartBoxStyle,
   gap: "2rem",
 };
+
+export const deletePeriodButton = {
+  color: "grey.400",
+  border: "none",
+  fontSize: "1.6rem",
+  textTransform: "none",
+  "&.MuiButton-root": {
+    border: "none",
+  },
+};
+
+export const addPeriodButton = {
+  width: "fit-content",
+  color: "primary.main",
+  border: "none",
+  fontSize: "1.6rem",
+  textTransform: "none",
+  "&.MuiButton-root": {
+    border: "none",
+  },
+};
+
+export const basicTypoNoWrap = { ...basicTypo, textWrap: "nowrap" };

@@ -13,6 +13,7 @@ import { SelectChangeEvent } from "@mui/material";
 
 import {
   DisplayModalsState,
+  Exclusion,
   ExclusionValuesState,
   GlobalContextType,
   GlobalProviderProps,
@@ -21,6 +22,7 @@ import {
   PreviewInputvalueState,
 } from "./types";
 import {
+  createConfigPayload,
   defineRight,
   initialDisplayModals,
   initialOpeningDaysInputvalue,
@@ -36,6 +38,10 @@ import {
   TIME_UNIT,
   USER_RIGHT,
 } from "~/core/enums";
+import {
+  useGetConfigQuery,
+  useUpdateConfigMutation,
+} from "~/services/api/configApi";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
@@ -55,12 +61,23 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [exclusionValues, setExclusionValues] = useState<ExclusionValuesState>(
     [],
   );
+  const [updateConfig] = useUpdateConfigMutation();
   const [openingDaysInputValue, setOpeningDaysInputValue] =
     useState<OpeningDaysInputValueState>(initialOpeningDaysInputvalue);
   const [openingTimeInputValue, setOpeningTimeInputValue] =
     useState<OpeningTimeInputValueState>(initialOpeningTimeInputValue);
   const [displayModals, setDisplayModals] =
     useState<DisplayModalsState>(initialDisplayModals);
+  const { data: configData } = useGetConfigQuery();
+
+  useEffect(() => {
+    if (configData) {
+      setPreviewInputValue(configData.messages);
+      setOpeningDaysInputValue(configData.settings.opening_days);
+      setOpeningTimeInputValue(configData.settings.opening_time);
+      setExclusionValues(configData.settings.exclusions);
+    }
+  }, [configData]);
 
   const isAdmin = userRight === USER_RIGHT.ADMIN;
 
@@ -96,15 +113,41 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     }));
   };
 
-  const handleSubmit = () => {
-    if (!isTimeRangeValid(openingTimeInputValue))
+  const handleSubmit = async (exclusion?: Exclusion, isDeleting?: boolean) => {
+    if (!isTimeRangeValid(openingTimeInputValue)) {
       return toggleModal(MODAL_TYPE.TIME_SCOPE_ERROR);
-  };
+    }
 
+    const filteredExclusions =
+      exclusion && isDeleting
+        ? exclusionValues.filter(
+            (item) =>
+              !(item.start === exclusion.start && item.end === exclusion.end),
+          )
+        : exclusionValues;
+
+    const newExclusions =
+      exclusion && !isDeleting
+        ? [...exclusionValues, exclusion]
+        : filteredExclusions;
+
+    const payload = createConfigPayload(
+      previewInputValue,
+      openingDaysInputValue,
+      openingTimeInputValue,
+      newExclusions,
+    );
+
+    try {
+      await updateConfig(payload).unwrap();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   useEffect(() => {
-    handleSubmit();
-  }, [previewInputValue, openingDaysInputValue, openingTimeInputValue]);
-  console.log(displayModals.TIME_SCOPE_ERROR);
+    void handleSubmit();
+  }, [openingDaysInputValue, openingTimeInputValue]);
 
   const value = useMemo<GlobalContextType>(
     () => ({
@@ -118,6 +161,8 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       handleOpeningTimeInputChange,
       displayModals,
       toggleModal,
+      exclusionValues,
+      handleSubmit,
     }),
     [
       userRight,
@@ -126,6 +171,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       openingDaysInputValue,
       openingTimeInputValue,
       displayModals,
+      exclusionValues,
     ],
   );
 

@@ -6,6 +6,8 @@ import {
   OdeClientProvider,
   ThemeProvider as ThemeProviderEdifice,
 } from "@edifice-ui/react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
   QueryCache,
   QueryClient,
@@ -57,9 +59,11 @@ root.render(
       >
         <ThemeProviderEdifice>
           <ThemeProvider themeId="crna">
-            <GlobalProvider>
-              <RouterProvider router={router} />
-            </GlobalProvider>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
+              <GlobalProvider>
+                <RouterProvider router={router} />
+              </GlobalProvider>
+            </LocalizationProvider>
           </ThemeProvider>
         </ThemeProviderEdifice>
       </OdeClientProvider>

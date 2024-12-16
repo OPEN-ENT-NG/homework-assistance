@@ -5,11 +5,11 @@ import { GlobalStyles } from "@mui/material";
 
 import { globalStyle, loaderWrapper } from "./style";
 import { useAppContainers } from "./utils";
+import { AddClosingPeriodModal } from "~/components/AddClosingPeriodModal";
 import { TimeScopeErrorModal } from "~/components/TimeScopeErrorModal";
 import { MODAL_TYPE } from "~/core/enums";
 import { AppLayout } from "~/layouts/AppLayout";
 import { useGlobal } from "~/providers/GlobalProvider";
-import { AddClosingPeriodModal } from "~/components/AddClosingPeriod";
 
 export const AppView: FC = () => {
   const {

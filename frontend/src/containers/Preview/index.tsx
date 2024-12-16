@@ -15,16 +15,12 @@ import { dateAreaConfigs, previewAreaConfigs } from "./utils";
 import { EditableArea } from "~/components/EditableArea";
 import { SecondpartPreviewIcon } from "~/components/SVG/SecondpartPreviewIcon";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
-import { PREVIEW_INPUTS } from "~/core/enums";
 import { useGlobal } from "~/providers/GlobalProvider";
 
 export const Preview: FC = () => {
-  const { isAdmin, previewInputValue, handlePreviewInputChange } = useGlobal();
+  const { isAdmin, previewInputValue, handlePreviewInputChange, handleSubmit } =
+    useGlobal();
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
-
-  const handleSubmit = (previewType: PREVIEW_INPUTS) => () => {
-    console.log(previewInputValue[previewType]);
-  };
 
   const renderEditableArea = (props: EditableAreaConfig) => (
     <EditableArea
@@ -33,7 +29,7 @@ export const Preview: FC = () => {
       onChange={handlePreviewInputChange(props.field)}
       value={previewInputValue[props.field]}
       height={props.height}
-      onSubmit={handleSubmit(props.field)}
+      onSubmit={handleSubmit}
       icon={props.icon}
       isSmall={props.isSmall}
     />

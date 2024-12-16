@@ -1,6 +1,7 @@
 import { FC } from "react";
 
-import { DatePicker } from "@cgi-learning-hub/ui";
+import { DatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
 
 import {
   openPickerIconProps,
@@ -9,25 +10,37 @@ import {
   datePickerStyles,
   popperStyle,
 } from "./style";
+import { CustomDatePickerProps } from "./types";
+import { DATE_FORMAT } from "~/core/const";
 
-export const CustomDatePicker: FC = () => (
-  <DatePicker
-    slotProps={{
-      openPickerIcon: openPickerIconProps,
-      openPickerButton: openPickerButtonProps,
-      textField: {
-        ...textFieldProps,
-        sx: datePickerStyles.textField,
-        InputProps: {
-          sx: datePickerStyles.input,
+export const CustomDatePicker: FC<CustomDatePickerProps> = ({
+  value,
+  onChange,
+  minDate = dayjs().startOf("day"),
+}) => {
+  return (
+    <DatePicker
+      value={value}
+      onChange={onChange}
+      format={DATE_FORMAT}
+      minDate={minDate}
+      slotProps={{
+        openPickerIcon: openPickerIconProps,
+        openPickerButton: openPickerButtonProps,
+        textField: {
+          ...textFieldProps,
+          sx: datePickerStyles.textField,
+          InputProps: {
+            sx: datePickerStyles.input,
+          },
+          inputProps: {
+            ...datePickerStyles.inputProps,
+          },
         },
-        inputProps: {
-          ...datePickerStyles.inputProps,
+        popper: {
+          sx: popperStyle,
         },
-      },
-      popper: {
-        sx: popperStyle,
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+};

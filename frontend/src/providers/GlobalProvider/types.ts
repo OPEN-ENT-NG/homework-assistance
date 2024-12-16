@@ -60,4 +60,6 @@ export type GlobalContextType = {
   ) => (event: SelectChangeEvent<string>) => void;
   displayModals: DisplayModalsState;
   toggleModal: (modalType: MODAL_TYPE) => void;
+  exclusionValues: ExclusionValuesState;
+  handleSubmit: (exclusion?: Exclusion, isDeleting?: boolean) => Promise<void>;
 };

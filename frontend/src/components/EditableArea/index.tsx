@@ -24,21 +24,30 @@ export const EditableArea: FC<EditableAreaProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleSubmitAndBlur = async () => {
+    try {
+      await onSubmit();
+      setIsFocused(false);
+    } catch (error) {
+      console.error("Error during submission:", error);
+    }
+  };
+
   const handleBlur = (e: React.FocusEvent) => {
     if (e.relatedTarget?.closest("button")) {
       return;
     }
-    setIsFocused(false);
-    onSubmit();
+    void handleSubmitAndBlur();
   };
 
   const handleIconClick = (e: React.MouseEvent) => {
     e.preventDefault();
+
     if (isFocused) {
-      setIsFocused(false);
-      onSubmit();
+      void handleSubmitAndBlur();
       inputRef.current?.blur();
     } else {
+      setIsFocused(true);
       inputRef.current?.focus();
     }
   };
