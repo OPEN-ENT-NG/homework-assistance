@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 import { FormControl, Select, MenuItem } from "@cgi-learning-hub/ui";
-import { v4 as uuidv4 } from "uuid";
 
+import { selectStyle } from "./style";
 import { TimeSelectProps } from "./types";
 
 export const TimeSelect: FC<TimeSelectProps> = ({
@@ -12,13 +12,9 @@ export const TimeSelect: FC<TimeSelectProps> = ({
 }) => {
   return (
     <FormControl variant="standard">
-      <Select
-        value={value}
-        onChange={onChange}
-        sx={{ fontSize: "1.6rem", border: "none" }}
-      >
+      <Select value={value} onChange={onChange} sx={selectStyle}>
         {possibleValues.map((item) => (
-          <MenuItem key={uuidv4()} value={item}>
+          <MenuItem key={item} value={item}>
             {item}
           </MenuItem>
         ))}

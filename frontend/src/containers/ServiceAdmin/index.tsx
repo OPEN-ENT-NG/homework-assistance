@@ -42,6 +42,11 @@ export const ServiceAdmin: FC = () => {
   const startTimeProps = useTimeSelector(TIME_SCOPE.START);
   const endTimeProps = useTimeSelector(TIME_SCOPE.END);
 
+  const toggleDeleteModal = (item?: Exclusion) => {
+    toggleModal(MODAL_TYPE.DELETE_CLOSING_PERIOD);
+    setSelectedPeriod(item ?? null);
+  };
+
   return (
     <Box sx={ServiceAdminWrapper}>
       <Typography sx={titleText}>{t("admin.title")}</Typography>
@@ -58,10 +63,7 @@ export const ServiceAdmin: FC = () => {
               </Typography>
               <Button
                 startIcon={<DeleteIcon />}
-                onClick={() => {
-                  toggleModal(MODAL_TYPE.DELETE_CLOSING_PERIOD);
-                  setSelectedPeriod(item);
-                }}
+                onClick={() => toggleDeleteModal(item)}
                 sx={deletePeriodButton}
               >
                 {t("admin.delete")}
@@ -119,10 +121,7 @@ export const ServiceAdmin: FC = () => {
       {DELETE_CLOSING_PERIOD && selectedPeriod && (
         <DeleteClosingPeriodModal
           isOpen={DELETE_CLOSING_PERIOD && !!selectedPeriod}
-          handleClose={() => {
-            setSelectedPeriod(null);
-            toggleModal(MODAL_TYPE.DELETE_CLOSING_PERIOD);
-          }}
+          handleClose={() => toggleDeleteModal()}
           closingPeriod={selectedPeriod}
         />
       )}

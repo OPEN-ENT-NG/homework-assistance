@@ -7,7 +7,9 @@ import { useTranslation } from "react-i18next";
 
 import {
   bottomButtonWrapper,
+  cancelButton,
   closeIconButtonStyle,
+  deleteButton,
   deleteClosingPeriodModalWrapper,
   modalTitle,
 } from "./style";
@@ -52,14 +54,14 @@ export const DeleteClosingPeriodModal: FC<DeleteClosingPeriodModalProps> = ({
         <Box sx={bottomButtonWrapper}>
           <Button
             variant="text"
-            sx={{ fontSize: "1.6rem", width: "9rem", border: "none" }}
+            sx={cancelButton}
             onClick={() => handleClose()}
           >
             {t("admin.cancel")}
           </Button>
           <Button
             variant="contained"
-            sx={{ fontSize: "1.6rem", width: "9rem" }}
+            sx={deleteButton}
             onClick={() => void handleDeleteSubmit()}
           >
             {t("admin.delete")}
