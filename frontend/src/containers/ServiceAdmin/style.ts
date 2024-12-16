@@ -24,13 +24,6 @@ export const titleText = {
   color: "text.secondary",
 };
 
-export const basicTypo = {
-  fontWeight: "400",
-  fontSize: "1.6rem",
-  lineHeight: "1.8rem",
-  color: "grey.800",
-};
-
 export const subItemWrapper = {
   ...columnBoxStyle,
   gap: "1rem",
@@ -57,11 +50,13 @@ export const closingPeriodsMap = {
 
 export const exclusionItemWrapper = {
   ...spaceBetweenBoxStyle,
+  flexWrap: "wrap",
   boxSizing: "border-box",
 };
 
 export const weekButtonWrapper = {
   ...flexStartBoxStyle,
+  flexWrap: "wrap",
   gap: "1rem",
 };
 
@@ -101,3 +96,19 @@ export const DayButton = styled(Button, {
     }`,
   },
 }));
+
+export const hoursInputsWrapper = {
+  ...flexStartBoxStyle,
+  width: "fit-content",
+  gap: "6rem",
+  "@media (max-width: 800px)": {
+    flexDirection: "column",
+    gap: 2,
+    alignItems: "center",
+  },
+};
+
+export const hoursInputItem = {
+  ...flexStartBoxStyle,
+  gap: "2rem",
+};

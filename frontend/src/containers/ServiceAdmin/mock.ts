@@ -1,7 +1,4 @@
-interface Exclusion {
-  start: string;
-  end: string;
-}
+
 
 export const exclusions: Exclusion[] = [
   {

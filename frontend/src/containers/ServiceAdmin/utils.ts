@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 
 import { WeekDayButton } from "./types";
+import { TimeSelectorProps } from "~/components/TimeSelector/types";
 import { OPENING_DAYS } from "~/core/enums";
+import { TIME_SCOPE, TIME_UNIT } from "~/core/enums";
 import { useGlobal } from "~/providers/GlobalProvider";
 
 const WEEK_DAYS_CONFIG = [
@@ -27,4 +29,31 @@ export const useWeekDaysButtonsConfig = (): WeekDayButton[] => {
       })),
     [openingDaysInputValue],
   );
+};
+
+export const useTimeSelector = (timeScope: TIME_SCOPE): TimeSelectorProps => {
+  const { openingTimeInputValue, handleOpeningTimeInputChange } = useGlobal();
+
+  return useMemo(() => {
+    const hours = Array.from({ length: 16 }, (_, i) =>
+      (i + 8).toString().padStart(2, "0"),
+    );
+
+    const minutes = Array.from({ length: 12 }, (_, i) =>
+      (i * 5).toString().padStart(2, "0"),
+    );
+
+    return {
+      [TIME_UNIT.HOUR]: {
+        value: openingTimeInputValue[timeScope][TIME_UNIT.HOUR],
+        possibleValues: hours,
+        onChange: handleOpeningTimeInputChange(timeScope, TIME_UNIT.HOUR),
+      },
+      [TIME_UNIT.MINUTE]: {
+        value: openingTimeInputValue[timeScope][TIME_UNIT.MINUTE],
+        possibleValues: minutes,
+        onChange: handleOpeningTimeInputChange(timeScope, TIME_UNIT.MINUTE),
+      },
+    };
+  }, [timeScope, openingTimeInputValue, handleOpeningTimeInputChange]);
 };

@@ -29,6 +29,8 @@
   "admin.add": "Ajouter une période de fermeture",
   "admin.availabilityDays": "Jours de la semaine disponibles",
   "admin.availabilityHours.title": "Plages horaires disponibles",
+  "admin.date.begin":"Date de début :",
+  "admin.date.end":"Date de fin :",
   "admin.availabilityHours.from": "De :",
   "admin.availabilityHours.connector": "h",
   "admin.availabilityHours.to": "A  :",
