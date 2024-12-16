@@ -9,7 +9,7 @@ import { TimeSelect } from "../TimeSelect";
 
 export const TimeSelector: FC<TimeSelectorProps> = ({ hour, minute }) => (
   <Box sx={timeSelectorWrapper}>
-    <AccessTimeIcon sx={SVGStyle}/>
+    <AccessTimeIcon sx={SVGStyle} />
     <TimeSelect
       value={hour.value}
       possibleValues={hour.possibleValues}

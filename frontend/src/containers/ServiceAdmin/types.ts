@@ -8,5 +8,5 @@ export interface WeekDayButton {
 }
 
 export interface DayButtonProps {
-    isDayOpen: boolean;
-  }
+  isDayOpen: boolean;
+}

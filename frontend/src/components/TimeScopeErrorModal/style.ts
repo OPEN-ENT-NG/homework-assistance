@@ -5,7 +5,7 @@ export const timeScopeErrorModalWrapper = {
   transform: "translate(-50%, -50%)",
   backgroundColor: "common.white",
   borderRadius: "1rem",
-  padding:"2rem 3rem",
+  padding: "2rem 3rem",
   display: "flex",
   flexDirection: "column",
   gap: "1rem",

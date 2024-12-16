@@ -144,7 +144,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       console.error(error);
     }
   };
-  
+
   useEffect(() => {
     void handleSubmit();
   }, [openingDaysInputValue, openingTimeInputValue]);
