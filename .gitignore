@@ -80,7 +80,7 @@ dependency-reduced-pom.xml
 /frontend/yarn-error.log*
 /frontend/pnpm-debug.log*
 /frontend/lerna-debug.log*
-
+/frontend/false
 /frontend/node_modules
 /frontend/dist
 /frontend/dist-ssr

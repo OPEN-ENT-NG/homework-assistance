@@ -15,3 +15,29 @@ export enum PREVIEW_INPUTS {
   TIME = "time",
   INFO = "info",
 }
+
+export enum OPENING_DAYS {
+  MONDAY = "monday",
+  TUESDAY = "tuesday",
+  WEDNESDAY = "wednesday",
+  THURSDAY = "thursday",
+  FRIDAY = "friday",
+  SATURDAY = "saturday",
+  SUNDAY = "sunday",
+}
+
+export enum TIME_SCOPE {
+  START = "start",
+  END = "end",
+}
+
+export enum TIME_UNIT {
+  HOUR = "hour",
+  MINUTE = "minute",
+}
+
+export enum MODAL_TYPE {
+  TIME_SCOPE_ERROR = "TIME_SCOPE_ERROR",
+  ADD_CLOSTING_PERIOD = "ADD_CLOSING_PERIOD",
+  DELETE_CLOSING_PERIOD = "DELETE_CLOSING_PERIOD",
+}

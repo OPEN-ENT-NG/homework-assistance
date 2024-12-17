@@ -5,6 +5,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 
+import { HOMEWORK_ASSISTANCE } from "./core/const";
+
 i18n
   .use(Backend)
   .use(LanguageDetector)
@@ -26,7 +28,7 @@ i18n
     },
     defaultNS: "common",
     // you can add name of the app directly in the ns array
-    ns: ["common", "homework-assistance"],
+    ns: ["common", HOMEWORK_ASSISTANCE],
     fallbackLng: "fr",
     supportedLngs: ["fr", "en", "es", "de", "it", "pt"],
     interpolation: {

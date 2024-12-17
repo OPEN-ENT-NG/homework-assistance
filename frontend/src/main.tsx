@@ -6,6 +6,8 @@ import {
   OdeClientProvider,
   ThemeProvider as ThemeProviderEdifice,
 } from "@edifice-ui/react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
   QueryCache,
   QueryClient,
@@ -17,6 +19,8 @@ import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import "~/i18n";
 
+import { HOMEWORK_ASSISTANCE } from "./core/const";
+import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
@@ -51,14 +55,16 @@ root.render(
     <Provider store={store}>
       <OdeClientProvider
         params={{
-          app: "homework-assistance",
+          app: HOMEWORK_ASSISTANCE,
         }}
       >
         <ThemeProviderEdifice>
-          <ThemeProvider themeId="crna">
-            <GlobalProvider>
-              <RouterProvider router={router} />
-            </GlobalProvider>
+          <ThemeProvider themeId="crna" options={themeOptions}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
+              <GlobalProvider>
+                <RouterProvider router={router} />
+              </GlobalProvider>
+            </LocalizationProvider>
           </ThemeProvider>
         </ThemeProviderEdifice>
       </OdeClientProvider>
