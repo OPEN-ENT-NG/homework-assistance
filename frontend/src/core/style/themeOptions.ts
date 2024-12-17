@@ -29,5 +29,28 @@ export const themeOptions: ThemeOptions = {
         },
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontSize: "1.6rem",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "1.6rem",
+          lineHeight: "1.6rem",
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        input: {
+          fontSize: "1.6rem",
+          lineHeight: "2rem",
+        },
+      },
+    },
   },
 };

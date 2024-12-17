@@ -16,6 +16,14 @@ export enum PREVIEW_INPUTS {
   INFO = "info",
 }
 
+export enum STUDENT_INPUTS {
+  PHONE = "destination",
+  INFOS = "informations_complementaires",
+  SCHEDULED_DATE = "scheduled_date",
+  SCHEDULED_TIME = "scheduled_time",
+  SERVICE = "service",
+}
+
 export enum OPENING_DAYS {
   MONDAY = "monday",
   TUESDAY = "tuesday",

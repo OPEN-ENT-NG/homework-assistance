@@ -20,24 +20,34 @@ import {
   OpeningDaysInputValueState,
   OpeningTimeInputValueState,
   PreviewInputvalueState,
+  Service,
+  StudentInputValueKeys,
+  StudentInputValueState,
 } from "./types";
 import {
+  createCallbackPayload,
   createConfigPayload,
   defineRight,
   initialDisplayModals,
   initialOpeningDaysInputvalue,
   initialOpeningTimeInputValue,
   initialPreviewInputvalue,
+  initialStudentInputvalue,
   isTimeRangeValid,
 } from "./utils";
 import {
   MODAL_TYPE,
   OPENING_DAYS,
   PREVIEW_INPUTS,
+  STUDENT_INPUTS,
   TIME_SCOPE,
   TIME_UNIT,
   USER_RIGHT,
 } from "~/core/enums";
+import {
+  useCreateCallbackMutation,
+  useGetServicesQuery,
+} from "~/services/api/callBackApi";
 import {
   useGetConfigQuery,
   useUpdateConfigMutation,
@@ -68,7 +78,13 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     useState<OpeningTimeInputValueState>(initialOpeningTimeInputValue);
   const [displayModals, setDisplayModals] =
     useState<DisplayModalsState>(initialDisplayModals);
+  const [services, setServices] = useState<Service[]>([]);
+  const [studentInputValue, setStudentInputValue] =
+    useState<StudentInputValueState>(initialStudentInputvalue);
   const { data: configData } = useGetConfigQuery();
+  const { data: servicesData } = useGetServicesQuery();
+  const [createCallback] = useCreateCallbackMutation();
+  const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]})`;
 
   useEffect(() => {
     if (configData) {
@@ -78,6 +94,22 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       setExclusionValues(configData.settings.exclusions);
     }
   }, [configData]);
+
+  useEffect(() => {
+    if (servicesData) {
+      const transformedServices = Object.entries(servicesData).map(
+        ([key, value]) => ({
+          name: key,
+          value: value,
+        }),
+      );
+      setServices(transformedServices);
+      setStudentInputValue((prev) => ({
+        ...prev,
+        [STUDENT_INPUTS.SERVICE]: transformedServices[0],
+      }));
+    }
+  }, [servicesData]);
 
   const isAdmin = userRight === USER_RIGHT.ADMIN;
 
@@ -106,6 +138,16 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
         },
       }));
     };
+  const handleStudentInputChange = <K extends StudentInputValueKeys>(
+    key: K,
+    value: StudentInputValueState[K],
+  ) => {
+    setStudentInputValue((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
   const toggleModal = (modalType: MODAL_TYPE) => {
     setDisplayModals((prev) => ({
       ...prev,
@@ -114,7 +156,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const handleSubmit = async (exclusion?: Exclusion, isDeleting?: boolean) => {
-    if (!isTimeRangeValid(openingTimeInputValue)) {
+    if (!isTimeRangeValid(openingTimeInputValue) || !isAdmin) {
       return toggleModal(MODAL_TYPE.TIME_SCOPE_ERROR);
     }
 
@@ -145,6 +187,28 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     }
   };
 
+  const handleStudentSubmit = async () => {
+    const phone = studentInputValue[STUDENT_INPUTS.PHONE];
+    const isPhoneValid =
+      phone.length >= 10 && (phone.startsWith("0") || phone.startsWith("+33"));
+
+    if (!isPhoneValid || !user) {
+      return;
+    }
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      school: user.structureNames[0],
+      className: user.classNames[0],
+    };
+    const payload = createCallbackPayload(studentInputValue, userData);
+    try {
+      await createCallback(payload).unwrap();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     void handleSubmit();
   }, [openingDaysInputValue, openingTimeInputValue]);
@@ -161,8 +225,13 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       handleOpeningTimeInputChange,
       displayModals,
       toggleModal,
+      studentInputValue,
+      handleStudentInputChange,
       exclusionValues,
       handleSubmit,
+      handleStudentSubmit,
+      services,
+      userNameAndClass,
     }),
     [
       userRight,
@@ -172,6 +241,8 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       openingTimeInputValue,
       displayModals,
       exclusionValues,
+      services,
+      studentInputValue,
     ],
   );
 
