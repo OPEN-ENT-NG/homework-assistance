@@ -5,11 +5,14 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
 import { useOdeClient } from "@edifice-ui/react";
 import { SelectChangeEvent } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 import {
   DisplayModalsState,
@@ -37,6 +40,7 @@ import {
   initialTimeExclusion,
   isTimeRangeValid,
 } from "./utils";
+import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import {
   MODAL_TYPE,
   OPENING_DAYS,
@@ -68,6 +72,7 @@ export const useGlobal = () => {
 export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const { user } = useOdeClient();
   const userRight = defineRight(user);
+  const { t } = useTranslation(HOMEWORK_ASSISTANCE);
   const [previewInputValue, setPreviewInputValue] =
     useState<PreviewInputvalueState>(initialPreviewInputvalue);
   const [exclusionValues, setExclusionValues] = useState<ExclusionValuesState>(
@@ -89,9 +94,12 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const { data: servicesData } = useGetServicesQuery();
   const [createCallback] = useCreateCallbackMutation();
   const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]})`;
+  const isFromRefetch = useRef(false);
+  console.log(displayModals);
 
   useEffect(() => {
     if (configData) {
+      isFromRefetch.current = true;
       setPreviewInputValue(configData.messages);
       setOpeningDaysInputValue(configData.settings.opening_days);
       setOpeningTimeInputValue(configData.settings.opening_time);
@@ -101,6 +109,9 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
         openingDays: configData.settings.opening_days,
         openingTime: configData.settings.opening_time,
       });
+      setTimeout(() => {
+        isFromRefetch.current = false;
+      }, 0);
     }
   }, [configData]);
 
@@ -159,6 +170,8 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const toggleModal = (modalType: MODAL_TYPE) => {
+    console.log("passe");
+
     setDisplayModals((prev) => ({
       ...prev,
       [modalType]: !prev[modalType],
@@ -166,7 +179,8 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const handleSubmit = async (exclusion?: Exclusion, isDeleting?: boolean) => {
-    if (!isTimeRangeValid(openingTimeInputValue) || !isAdmin) {
+    if (!isAdmin) return;
+    if (!isTimeRangeValid(openingTimeInputValue)) {
       return toggleModal(MODAL_TYPE.TIME_SCOPE_ERROR);
     }
 
@@ -191,8 +205,11 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     );
 
     try {
+      isFromRefetch.current = true;
       await updateConfig(payload).unwrap();
+      toast.success(t("admin.save"));
     } catch (error) {
+      toast.error(t("admin.error.postConfig"));
       console.error(error);
     }
   };
@@ -214,13 +231,15 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     const payload = createCallbackPayload(studentInputValue, userData);
     try {
       await createCallback(payload).unwrap();
+      toast.success(t("student.send"));
     } catch (error) {
+      toast.error(t("student.error.sendForm"));
       console.error(error);
     }
   };
 
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading || isFromRefetch.current) return;
     void handleSubmit();
   }, [openingDaysInputValue, openingTimeInputValue]);
 

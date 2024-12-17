@@ -77,7 +77,9 @@ export const ServiceAdmin: FC = () => {
               </Box>
             ))
           ) : (
-            <Typography sx={basicTypo}>{t("admin.period.placeholder")}</Typography>
+            <Typography sx={basicTypo}>
+              {t("admin.period.placeholder")}
+            </Typography>
           )}
         </Box>
         <Button

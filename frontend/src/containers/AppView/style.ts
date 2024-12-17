@@ -1,6 +1,17 @@
 import { mainContainerBackgroundColor } from "~/core/style/style";
 
 export const globalStyle = {
+  ":root": {
+    "--toastify-color-light": "var(--theme-palette-common-white)",
+    "--toastify-color-dark": "var(--theme-palette-common-black)",
+    "--toastify-color-info": "var(--theme-palette-info-main)",
+    "--toastify-color-success": "var(--theme-palette-success-main)",
+    "--toastify-color-warning": "var(--theme-palette-warning-main)",
+    "--toastify-color-error": "var(--theme-palette-error-main)",
+    "--toastify-font-family": "helvetica",
+    "--toastify-text-color-light": "var(--theme-palette-text-primary)",
+    "--toastify-text-color-dark": "var(--theme-palette-common-white)",
+  },
   "main.container-fluid": {
     padding: "0 !important",
     width: "100%",
