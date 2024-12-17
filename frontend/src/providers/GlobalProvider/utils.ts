@@ -8,6 +8,7 @@ import {
   OpeningTimeInputValueState,
   PreviewInputvalueState,
   StudentInputValueState,
+  TimeExclusionState,
 } from "./types";
 import { DATE_FORMAT } from "~/core/const";
 import {
@@ -62,11 +63,17 @@ export const initialStudentInputvalue: StudentInputValueState = {
   [STUDENT_INPUTS.SERVICE]: null,
   [STUDENT_INPUTS.SCHEDULED_DATE]: today,
   [STUDENT_INPUTS.SCHEDULED_TIME]: {
-    [TIME_UNIT.HOUR]: "08",
+    [TIME_UNIT.HOUR]: "18",
     [TIME_UNIT.MINUTE]: "00",
   },
   [STUDENT_INPUTS.PHONE]: "",
   [STUDENT_INPUTS.INFOS]: "",
+};
+
+export const initialTimeExclusion: TimeExclusionState = {
+  exclusions: [],
+  openingDays: initialOpeningDaysInputvalue,
+  openingTime: initialOpeningTimeInputValue,
 };
 
 const findRight = (user: IUserInfo, userAction: USER_ACTIONS) =>

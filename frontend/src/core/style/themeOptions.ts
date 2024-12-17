@@ -4,11 +4,10 @@ export const themeOptions: ThemeOptions = {
   components: {
     MuiDialogTitle: {
       styleOverrides: {
-        root: ({ theme }) => ({
+        root: () => ({
           fontSize: "2rem",
           lineHeight: "3.2rem",
           fontWeight: 700,
-          color: theme.palette.secondary.main,
         }),
       },
     },

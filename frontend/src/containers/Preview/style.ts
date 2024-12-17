@@ -16,7 +16,6 @@ export const secondPartTitle: SxProps = {
   fontWeight: "400",
   fontSize: "1.8rem",
   lineHeight: "2.1rem",
-  textDecoration: "underline",
 };
 
 export const secondPartWrapper = {

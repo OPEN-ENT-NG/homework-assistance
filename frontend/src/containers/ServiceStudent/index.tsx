@@ -24,11 +24,12 @@ import {
   phoneFieldStyle,
   validateStudentButtonStyle,
 } from "./style";
-import { useStudentTime } from "./utils";
+import { useExcludedDates } from "./useExcludedDates";
+import { useStudentTime } from "./useStudentTime";
 import { basicTypoNoWrap } from "../ServiceAdmin/style";
 import { CustomDatePicker } from "~/components/CustomDatePicker";
 import { TimeSelector } from "~/components/TimeSelector";
-import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
+import { DATE_FORMAT, HOMEWORK_ASSISTANCE, REGEX_PHONE } from "~/core/const";
 import { STUDENT_INPUTS } from "~/core/enums";
 import { flexEndBoxStyle } from "~/core/style/boxStyles";
 import { basicTypo } from "~/core/style/style";
@@ -44,9 +45,9 @@ export const ServiceStudent: FC = () => {
     handleStudentSubmit,
   } = useGlobal();
   const { timeProps } = useStudentTime();
+  const { datePickerProps } = useExcludedDates();
   const phone = studentInputValue[STUDENT_INPUTS.PHONE];
-  const isPhoneValid =
-    phone.length >= 10 && (phone.startsWith("0") || phone.startsWith("+33"));
+  const isPhoneValid = REGEX_PHONE.test(phone);
 
   const handleServiceChange = (event: SelectChangeEvent) => {
     const selected = services.find(
@@ -101,6 +102,7 @@ export const ServiceStudent: FC = () => {
             <CustomDatePicker
               value={dayjs(studentInputValue.scheduled_date, DATE_FORMAT)}
               onChange={handleDateChange()}
+              {...datePickerProps}
             />
           </Box>
           <Box sx={rdvItemStyle}>
@@ -135,7 +137,7 @@ export const ServiceStudent: FC = () => {
             handleStudentInputChange(STUDENT_INPUTS.INFOS, e.target.value)
           }
           minRows={3}
-          placeholder="Informations complémentaires..."
+          placeholder={t("student.otherInformations.placeholder")}
         />
       </Box>
       <Box sx={flexEndBoxStyle}>

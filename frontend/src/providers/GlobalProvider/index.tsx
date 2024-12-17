@@ -23,6 +23,7 @@ import {
   Service,
   StudentInputValueKeys,
   StudentInputValueState,
+  TimeExclusionState,
 } from "./types";
 import {
   createCallbackPayload,
@@ -33,6 +34,7 @@ import {
   initialOpeningTimeInputValue,
   initialPreviewInputvalue,
   initialStudentInputvalue,
+  initialTimeExclusion,
   isTimeRangeValid,
 } from "./utils";
 import {
@@ -71,7 +73,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [exclusionValues, setExclusionValues] = useState<ExclusionValuesState>(
     [],
   );
-  const [updateConfig] = useUpdateConfigMutation();
+  const [updateConfig, { isLoading }] = useUpdateConfigMutation();
   const [openingDaysInputValue, setOpeningDaysInputValue] =
     useState<OpeningDaysInputValueState>(initialOpeningDaysInputvalue);
   const [openingTimeInputValue, setOpeningTimeInputValue] =
@@ -81,6 +83,8 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [services, setServices] = useState<Service[]>([]);
   const [studentInputValue, setStudentInputValue] =
     useState<StudentInputValueState>(initialStudentInputvalue);
+  const [timeExclusions, setTimeExclusions] =
+    useState<TimeExclusionState>(initialTimeExclusion);
   const { data: configData } = useGetConfigQuery();
   const { data: servicesData } = useGetServicesQuery();
   const [createCallback] = useCreateCallbackMutation();
@@ -92,6 +96,11 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       setOpeningDaysInputValue(configData.settings.opening_days);
       setOpeningTimeInputValue(configData.settings.opening_time);
       setExclusionValues(configData.settings.exclusions);
+      setTimeExclusions({
+        exclusions: configData.settings.exclusions,
+        openingDays: configData.settings.opening_days,
+        openingTime: configData.settings.opening_time,
+      });
     }
   }, [configData]);
 
@@ -127,6 +136,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       [field]: !prev[field],
     }));
   };
+
   const handleOpeningTimeInputChange =
     (firstField: TIME_SCOPE, secondField: TIME_UNIT) =>
     (event: SelectChangeEvent<string>) => {
@@ -210,6 +220,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
+    if (isLoading) return;
     void handleSubmit();
   }, [openingDaysInputValue, openingTimeInputValue]);
 
@@ -228,6 +239,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       studentInputValue,
       handleStudentInputChange,
       exclusionValues,
+      timeExclusions,
       handleSubmit,
       handleStudentSubmit,
       services,
@@ -243,6 +255,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       exclusionValues,
       services,
       studentInputValue,
+      timeExclusions,
     ],
   );
 

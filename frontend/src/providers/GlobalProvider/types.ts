@@ -47,6 +47,12 @@ export type OpeningTimeInputValueState = {
   };
 };
 
+export type TimeExclusionState = {
+  exclusions: Exclusion[];
+  openingDays: OpeningDaysInputValueState;
+  openingTime: OpeningTimeInputValueState;
+};
+
 export type StudentInputValueState = {
   [STUDENT_INPUTS.SERVICE]: Service | null;
   [STUDENT_INPUTS.SCHEDULED_DATE]: string;
@@ -82,8 +88,9 @@ export type GlobalContextType = {
     value: StudentInputValueState[K],
   ) => void;
   exclusionValues: ExclusionValuesState;
+  timeExclusions: TimeExclusionState;
   handleSubmit: (exclusion?: Exclusion, isDeleting?: boolean) => Promise<void>;
-  handleStudentSubmit: () => Promise<void>
+  handleStudentSubmit: () => Promise<void>;
   services: Service[];
   userNameAndClass: string;
 };

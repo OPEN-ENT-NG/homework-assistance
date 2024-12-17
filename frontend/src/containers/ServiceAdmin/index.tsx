@@ -20,7 +20,11 @@ import {
   titleText,
   weekButtonWrapper,
 } from "./style";
-import { useTimeSelector, useWeekDaysButtonsConfig } from "./utils";
+import {
+  sortExclusionsByStartDate,
+  useTimeSelector,
+  useWeekDaysButtonsConfig,
+} from "./utils";
 import { MODAL_TYPE } from "../../core/enums";
 import { DeleteClosingPeriodModal } from "~/components/DeleteClosingPeriodModal";
 import { TimeSelector } from "~/components/TimeSelector";
@@ -41,6 +45,7 @@ export const ServiceAdmin: FC = () => {
   const [selectedPeriod, setSelectedPeriod] = useState<Exclusion | null>(null);
   const startTimeProps = useTimeSelector(TIME_SCOPE.START);
   const endTimeProps = useTimeSelector(TIME_SCOPE.END);
+  const sortedExclusions = sortExclusionsByStartDate(exclusionValues);
 
   const toggleDeleteModal = (item?: Exclusion) => {
     toggleModal(MODAL_TYPE.DELETE_CLOSING_PERIOD);
@@ -53,23 +58,27 @@ export const ServiceAdmin: FC = () => {
       <Box sx={subItemWrapper}>
         <Typography sx={basicTypo}>{t("admin.period.title")}</Typography>
         <Box sx={closingPeriodsMap}>
-          {exclusionValues.map((item) => (
-            <Box key={uuidv4()} sx={exclusionItemWrapper}>
-              <Typography sx={basicTypo}>
-                {t("admin.period.from") +
-                  item.start +
-                  t("admin.period.to") +
-                  item.end}
-              </Typography>
-              <Button
-                startIcon={<DeleteIcon />}
-                onClick={() => toggleDeleteModal(item)}
-                sx={deletePeriodButton}
-              >
-                {t("admin.delete")}
-              </Button>
-            </Box>
-          ))}
+          {sortedExclusions.length ? (
+            sortedExclusions.map((item) => (
+              <Box key={uuidv4()} sx={exclusionItemWrapper}>
+                <Typography sx={basicTypo}>
+                  {t("admin.period.from") +
+                    item.start +
+                    t("admin.period.to") +
+                    item.end}
+                </Typography>
+                <Button
+                  startIcon={<DeleteIcon />}
+                  onClick={() => toggleDeleteModal(item)}
+                  sx={deletePeriodButton}
+                >
+                  {t("admin.delete")}
+                </Button>
+              </Box>
+            ))
+          ) : (
+            <Typography sx={basicTypo}>{t("admin.period.placeholder")}</Typography>
+          )}
         </Box>
         <Button
           startIcon={<AddCircleIcon />}
