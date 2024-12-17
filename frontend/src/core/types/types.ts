@@ -11,3 +11,8 @@ export interface AppProps {
   shared: any[];
   thumbnail: string;
 }
+
+export interface ModalProps {
+  isOpen: boolean;
+  handleClose: () => void;
+}

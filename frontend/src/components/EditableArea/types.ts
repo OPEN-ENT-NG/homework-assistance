@@ -8,7 +8,7 @@ export interface EditableAreaProps {
   isEditable: boolean;
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: () => void;
+  onSubmit: () => Promise<void>;
 }
 
 export interface TextAreaWrapperProps {

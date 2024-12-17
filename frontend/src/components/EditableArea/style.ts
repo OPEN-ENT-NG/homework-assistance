@@ -19,6 +19,10 @@ export const StyledTextField = styled(TextField, {
       fontSize: "1.6rem",
       lineHeight: "2.4rem",
       overflowY: "auto !important",
+      "&.Mui-disabled": {
+        color: `${theme.palette.grey[900]} !important`,
+        "-webkit-text-fill-color": `${theme.palette.grey[900]} !important`,
+      },
       "&::-webkit-scrollbar": {
         width: "0.8rem",
         height: "0.8rem",
@@ -32,22 +36,22 @@ export const StyledTextField = styled(TextField, {
       "& fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.grey[400]}`
-          : "1px solid transparent",
+          : `1px solid ${theme.palette.grey[400]}`,
       },
       "&:hover fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.grey[400]}`
-          : "1px solid transparent",
+          : `1px solid ${theme.palette.grey[400]}`,
       },
       "&.Mui-focused fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.primary.main}`
-          : "1px solid transparent",
+          : `1px solid ${theme.palette.grey[400]}`,
       },
       "&.Mui-blur fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.primary.main}`
-          : "1px solid transparent",
+          : `1px solid ${theme.palette.grey[400]}`,
       },
     },
   }),
