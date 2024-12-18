@@ -95,7 +95,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [createCallback] = useCreateCallbackMutation();
   const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]})`;
   const isFromRefetch = useRef(false);
-  console.log(displayModals);
 
   useEffect(() => {
     if (configData) {
@@ -170,8 +169,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const toggleModal = (modalType: MODAL_TYPE) => {
-    console.log("passe");
-
     setDisplayModals((prev) => ({
       ...prev,
       [modalType]: !prev[modalType],
