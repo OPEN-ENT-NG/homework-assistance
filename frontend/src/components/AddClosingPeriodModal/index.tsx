@@ -13,10 +13,11 @@ import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
 import { cancelButtonStyle, validateButtonStyle, dateTextStyle } from "./style";
-import { initalExclusion } from "./utils";
+import { checkForOverlap, initalExclusion } from "./utils";
 import { CustomDatePicker } from "../CustomDatePicker";
+import { DayScopeErrorModal } from "../DayScopeErrorModal";
 import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
-import { TIME_SCOPE } from "~/core/enums";
+import { MODAL_TYPE, TIME_SCOPE } from "~/core/enums";
 import { flexStartBoxStyle } from "~/core/style/boxStyles";
 import { ModalProps } from "~/core/types/types";
 import { useGlobal } from "~/providers/GlobalProvider";
@@ -26,7 +27,12 @@ export const AddClosingPeriodModal: FC<ModalProps> = ({
   isOpen,
   handleClose,
 }) => {
-  const { handleSubmit } = useGlobal();
+  const {
+    handleSubmit,
+    exclusionValues,
+    toggleModal,
+    displayModals: { DAY_SCOPE_ERROR },
+  } = useGlobal();
   const [exclusion, setExclusion] = useState<Exclusion>(initalExclusion);
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
 
@@ -37,6 +43,8 @@ export const AddClosingPeriodModal: FC<ModalProps> = ({
 
   const handleExclusionSubmit = () => {
     if (!exclusion) return;
+    if (checkForOverlap(exclusion, exclusionValues))
+      return toggleModal(MODAL_TYPE.DAY_SCOPE_ERROR);
     void handleSubmit(exclusion);
     handleCancel();
   };
@@ -103,6 +111,12 @@ export const AddClosingPeriodModal: FC<ModalProps> = ({
             />
           </Box>
         </Box>
+        {DAY_SCOPE_ERROR && (
+          <DayScopeErrorModal
+            isOpen={DAY_SCOPE_ERROR}
+            handleClose={() => toggleModal(MODAL_TYPE.DAY_SCOPE_ERROR)}
+          />
+        )}
       </DialogContent>
       <DialogActions>
         <Button

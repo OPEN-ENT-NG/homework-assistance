@@ -17,6 +17,7 @@ export const CustomDatePicker: FC<CustomDatePickerProps> = ({
   value,
   onChange,
   minDate = dayjs().startOf("day"),
+  shouldDisableDate,
 }) => {
   return (
     <DatePicker
@@ -24,6 +25,7 @@ export const CustomDatePicker: FC<CustomDatePickerProps> = ({
       onChange={onChange}
       format={DATE_FORMAT}
       minDate={minDate}
+      shouldDisableDate={shouldDisableDate}
       slotProps={{
         openPickerIcon: openPickerIconProps,
         openPickerButton: openPickerButtonProps,

@@ -16,6 +16,14 @@ export enum PREVIEW_INPUTS {
   INFO = "info",
 }
 
+export enum STUDENT_INPUTS {
+  PHONE = "destination",
+  INFOS = "informations_complementaires",
+  SCHEDULED_DATE = "scheduled_date",
+  SCHEDULED_TIME = "scheduled_time",
+  SERVICE = "service",
+}
+
 export enum OPENING_DAYS {
   MONDAY = "monday",
   TUESDAY = "tuesday",
@@ -38,6 +46,7 @@ export enum TIME_UNIT {
 
 export enum MODAL_TYPE {
   TIME_SCOPE_ERROR = "TIME_SCOPE_ERROR",
+  DAY_SCOPE_ERROR = "DAY_SCOPE_ERROR",
   ADD_CLOSTING_PERIOD = "ADD_CLOSING_PERIOD",
   DELETE_CLOSING_PERIOD = "DELETE_CLOSING_PERIOD",
 }

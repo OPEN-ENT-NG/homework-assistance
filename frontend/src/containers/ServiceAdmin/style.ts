@@ -11,7 +11,6 @@ import { basicTypo } from "~/core/style/style";
 
 export const ServiceAdminWrapper: SxProps = {
   ...columnBoxStyle,
-  justifyContent: "space-between",
   boxSizing: "border-box",
   height: "100%",
   padding: "4rem 6rem",
@@ -39,6 +38,9 @@ export const closingPeriodsMap = {
   gap: ".5rem",
   overflowY: "auto",
   padding: ".5rem",
+  border: "1px solid",
+  borderColor: "divider",
+  borderRadius: ".5rem",
   "&::-webkit-scrollbar": {
     width: "0.8rem",
     height: "0.8rem",

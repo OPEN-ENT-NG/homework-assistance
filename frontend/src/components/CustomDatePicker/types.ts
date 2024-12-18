@@ -5,4 +5,5 @@ export interface CustomDatePickerProps {
   value: Dayjs | null;
   onChange: DatePickerProps<Dayjs>["onChange"];
   minDate?: Dayjs;
+  shouldDisableDate?: (date: Dayjs) => boolean;
 }

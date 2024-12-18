@@ -6,6 +6,7 @@ import {
   MODAL_TYPE,
   OPENING_DAYS,
   PREVIEW_INPUTS,
+  STUDENT_INPUTS,
   TIME_SCOPE,
   TIME_UNIT,
   USER_RIGHT,
@@ -33,6 +34,8 @@ export type DisplayModalsState = {
   [key in MODAL_TYPE]: boolean;
 };
 
+export type Service = { name: string; value: number };
+
 export type OpeningTimeInputValueState = {
   [TIME_SCOPE.START]: {
     [TIME_UNIT.HOUR]: string;
@@ -43,6 +46,25 @@ export type OpeningTimeInputValueState = {
     [TIME_UNIT.MINUTE]: string;
   };
 };
+
+export type TimeExclusionState = {
+  exclusions: Exclusion[];
+  openingDays: OpeningDaysInputValueState;
+  openingTime: OpeningTimeInputValueState;
+};
+
+export type StudentInputValueState = {
+  [STUDENT_INPUTS.SERVICE]: Service | null;
+  [STUDENT_INPUTS.SCHEDULED_DATE]: string;
+  [STUDENT_INPUTS.SCHEDULED_TIME]: {
+    [TIME_UNIT.HOUR]: string;
+    [TIME_UNIT.MINUTE]: string;
+  };
+  [STUDENT_INPUTS.PHONE]: string;
+  [STUDENT_INPUTS.INFOS]: string;
+};
+
+export type StudentInputValueKeys = keyof StudentInputValueState;
 
 export type GlobalContextType = {
   userRight: USER_RIGHT | null;
@@ -60,6 +82,15 @@ export type GlobalContextType = {
   ) => (event: SelectChangeEvent<string>) => void;
   displayModals: DisplayModalsState;
   toggleModal: (modalType: MODAL_TYPE) => void;
+  studentInputValue: StudentInputValueState;
+  handleStudentInputChange: <K extends StudentInputValueKeys>(
+    key: K,
+    value: StudentInputValueState[K],
+  ) => void;
   exclusionValues: ExclusionValuesState;
+  timeExclusions: TimeExclusionState;
   handleSubmit: (exclusion?: Exclusion, isDeleting?: boolean) => Promise<void>;
+  handleStudentSubmit: () => Promise<void>;
+  services: Service[];
+  userNameAndClass: string;
 };
