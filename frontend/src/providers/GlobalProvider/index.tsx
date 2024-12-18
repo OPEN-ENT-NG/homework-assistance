@@ -5,11 +5,14 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
 import { useOdeClient } from "@edifice-ui/react";
 import { SelectChangeEvent } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 import {
   DisplayModalsState,
@@ -20,24 +23,37 @@ import {
   OpeningDaysInputValueState,
   OpeningTimeInputValueState,
   PreviewInputvalueState,
+  Service,
+  StudentInputValueKeys,
+  StudentInputValueState,
+  TimeExclusionState,
 } from "./types";
 import {
+  createCallbackPayload,
   createConfigPayload,
   defineRight,
   initialDisplayModals,
   initialOpeningDaysInputvalue,
   initialOpeningTimeInputValue,
   initialPreviewInputvalue,
+  initialStudentInputvalue,
+  initialTimeExclusion,
   isTimeRangeValid,
 } from "./utils";
+import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import {
   MODAL_TYPE,
   OPENING_DAYS,
   PREVIEW_INPUTS,
+  STUDENT_INPUTS,
   TIME_SCOPE,
   TIME_UNIT,
   USER_RIGHT,
 } from "~/core/enums";
+import {
+  useCreateCallbackMutation,
+  useGetServicesQuery,
+} from "~/services/api/callBackApi";
 import {
   useGetConfigQuery,
   useUpdateConfigMutation,
@@ -56,28 +72,63 @@ export const useGlobal = () => {
 export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const { user } = useOdeClient();
   const userRight = defineRight(user);
+  const { t } = useTranslation(HOMEWORK_ASSISTANCE);
   const [previewInputValue, setPreviewInputValue] =
     useState<PreviewInputvalueState>(initialPreviewInputvalue);
   const [exclusionValues, setExclusionValues] = useState<ExclusionValuesState>(
     [],
   );
-  const [updateConfig] = useUpdateConfigMutation();
+  const [updateConfig, { isLoading }] = useUpdateConfigMutation();
   const [openingDaysInputValue, setOpeningDaysInputValue] =
     useState<OpeningDaysInputValueState>(initialOpeningDaysInputvalue);
   const [openingTimeInputValue, setOpeningTimeInputValue] =
     useState<OpeningTimeInputValueState>(initialOpeningTimeInputValue);
   const [displayModals, setDisplayModals] =
     useState<DisplayModalsState>(initialDisplayModals);
+  const [services, setServices] = useState<Service[]>([]);
+  const [studentInputValue, setStudentInputValue] =
+    useState<StudentInputValueState>(initialStudentInputvalue);
+  const [timeExclusions, setTimeExclusions] =
+    useState<TimeExclusionState>(initialTimeExclusion);
   const { data: configData } = useGetConfigQuery();
+  const { data: servicesData } = useGetServicesQuery();
+  const [createCallback] = useCreateCallbackMutation();
+  const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]})`;
+  const isFromRefetch = useRef(false);
 
   useEffect(() => {
     if (configData) {
+      isFromRefetch.current = true;
       setPreviewInputValue(configData.messages);
       setOpeningDaysInputValue(configData.settings.opening_days);
       setOpeningTimeInputValue(configData.settings.opening_time);
       setExclusionValues(configData.settings.exclusions);
+      setTimeExclusions({
+        exclusions: configData.settings.exclusions,
+        openingDays: configData.settings.opening_days,
+        openingTime: configData.settings.opening_time,
+      });
+      setTimeout(() => {
+        isFromRefetch.current = false;
+      }, 0);
     }
   }, [configData]);
+
+  useEffect(() => {
+    if (servicesData) {
+      const transformedServices = Object.entries(servicesData).map(
+        ([key, value]) => ({
+          name: key,
+          value: value,
+        }),
+      );
+      setServices(transformedServices);
+      setStudentInputValue((prev) => ({
+        ...prev,
+        [STUDENT_INPUTS.SERVICE]: transformedServices[0],
+      }));
+    }
+  }, [servicesData]);
 
   const isAdmin = userRight === USER_RIGHT.ADMIN;
 
@@ -95,6 +146,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       [field]: !prev[field],
     }));
   };
+
   const handleOpeningTimeInputChange =
     (firstField: TIME_SCOPE, secondField: TIME_UNIT) =>
     (event: SelectChangeEvent<string>) => {
@@ -106,6 +158,16 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
         },
       }));
     };
+  const handleStudentInputChange = <K extends StudentInputValueKeys>(
+    key: K,
+    value: StudentInputValueState[K],
+  ) => {
+    setStudentInputValue((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
   const toggleModal = (modalType: MODAL_TYPE) => {
     setDisplayModals((prev) => ({
       ...prev,
@@ -114,6 +176,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   };
 
   const handleSubmit = async (exclusion?: Exclusion, isDeleting?: boolean) => {
+    if (!isAdmin) return;
     if (!isTimeRangeValid(openingTimeInputValue)) {
       return toggleModal(MODAL_TYPE.TIME_SCOPE_ERROR);
     }
@@ -139,13 +202,41 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     );
 
     try {
+      isFromRefetch.current = true;
       await updateConfig(payload).unwrap();
+      toast.success(t("admin.save"));
     } catch (error) {
+      toast.error(t("admin.error.postConfig"));
+      console.error(error);
+    }
+  };
+
+  const handleStudentSubmit = async () => {
+    const phone = studentInputValue[STUDENT_INPUTS.PHONE];
+    const isPhoneValid =
+      phone.length >= 10 && (phone.startsWith("0") || phone.startsWith("+33"));
+
+    if (!isPhoneValid || !user) {
+      return;
+    }
+    const userData = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      school: user.structureNames[0],
+      className: user.classNames[0],
+    };
+    const payload = createCallbackPayload(studentInputValue, userData);
+    try {
+      await createCallback(payload).unwrap();
+      toast.success(t("student.send"));
+    } catch (error) {
+      toast.error(t("student.error.sendForm"));
       console.error(error);
     }
   };
 
   useEffect(() => {
+    if (isLoading || isFromRefetch.current) return;
     void handleSubmit();
   }, [openingDaysInputValue, openingTimeInputValue]);
 
@@ -161,8 +252,14 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       handleOpeningTimeInputChange,
       displayModals,
       toggleModal,
+      studentInputValue,
+      handleStudentInputChange,
       exclusionValues,
+      timeExclusions,
       handleSubmit,
+      handleStudentSubmit,
+      services,
+      userNameAndClass,
     }),
     [
       userRight,
@@ -172,6 +269,9 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       openingTimeInputValue,
       displayModals,
       exclusionValues,
+      services,
+      studentInputValue,
+      timeExclusions,
     ],
   );
 

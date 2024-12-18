@@ -6,6 +6,7 @@ import {
   OdeClientProvider,
   ThemeProvider as ThemeProviderEdifice,
 } from "@edifice-ui/react";
+import { CssBaseline } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
@@ -18,6 +19,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import "~/i18n";
+import { ToastContainer } from "react-toastify";
 
 import { HOMEWORK_ASSISTANCE } from "./core/const";
 import { themeOptions } from "./core/style/themeOptions";
@@ -60,8 +62,21 @@ root.render(
       >
         <ThemeProviderEdifice>
           <ThemeProvider themeId="crna" options={themeOptions}>
+            <CssBaseline />
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
               <GlobalProvider>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={4000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
                 <RouterProvider router={router} />
               </GlobalProvider>
             </LocalizationProvider>

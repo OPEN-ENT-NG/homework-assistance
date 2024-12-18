@@ -1,7 +1,6 @@
 import { TextFieldVariants } from "@mui/material";
 
 export const textFieldProps = {
-  width: "30rem",
   size: "medium" as const,
   variant: "outlined" as TextFieldVariants,
   sx: {
@@ -19,6 +18,8 @@ export const textFieldProps = {
 
 export const datePickerStyles = {
   textField: {
+    width: "17rem",
+    minWidth: "17rem",
     "& .MuiInputBase-input": {
       fontSize: "1.6rem",
     },
