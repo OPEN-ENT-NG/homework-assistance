@@ -4,6 +4,7 @@ import { IUserInfo } from "edifice-ts-client";
 import {
   DisplayModalsState,
   ExclusionValuesState,
+  LinkInputvalueState,
   OpeningDaysInputValueState,
   OpeningTimeInputValueState,
   PreviewInputvalueState,
@@ -12,6 +13,7 @@ import {
 } from "./types";
 import { DATE_FORMAT } from "~/core/const";
 import {
+  LINK_INPUTS,
   MODAL_TYPE,
   OPENING_DAYS,
   PREVIEW_INPUTS,
@@ -30,6 +32,13 @@ export const initialPreviewInputvalue = Object.values(PREVIEW_INPUTS).reduce(
     [key]: "",
   }),
   {} as PreviewInputvalueState,
+);
+export const initialLinkInputvalue = Object.values(LINK_INPUTS).reduce(
+  (acc, key) => ({
+    ...acc,
+    [key]: "",
+  }),
+  {} as LinkInputvalueState,
 );
 export const initialOpeningDaysInputvalue = Object.values(OPENING_DAYS).reduce(
   (acc, key) => ({

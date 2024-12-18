@@ -24,6 +24,12 @@ export enum STUDENT_INPUTS {
   SERVICE = "service",
 }
 
+export enum LINK_INPUTS {
+  TITLE = "title",
+  DESCRIPTION = "description",
+  LINK = "link",
+}
+
 export enum OPENING_DAYS {
   MONDAY = "monday",
   TUESDAY = "tuesday",

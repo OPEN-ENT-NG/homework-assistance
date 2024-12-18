@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
 import { Preview } from "../Preview";
+import { RessourcesAndLink } from "../RessouresAndLink";
 import { ServiceAdmin } from "../ServiceAdmin";
 import { ServiceStudent } from "../ServiceStudent";
 import { useGlobal } from "~/providers/GlobalProvider";
@@ -12,7 +13,7 @@ export const useAppContainers = () => {
     () => ({
       firstItem: <Preview />,
       secondItem: isAdmin ? <ServiceAdmin /> : <ServiceStudent />,
-      thirdItem: "item3",
+      thirdItem: <RessourcesAndLink />,
     }),
     [isAdmin],
   );

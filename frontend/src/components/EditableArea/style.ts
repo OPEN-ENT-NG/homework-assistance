@@ -36,22 +36,25 @@ export const StyledTextField = styled(TextField, {
       "& fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.grey[400]}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
       },
       "&:hover fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.grey[400]}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
       },
       "&.Mui-focused fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.primary.main}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
       },
       "&.Mui-blur fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.primary.main}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
+      },
+      "&.Mui-disabled fieldset": {
+        border: "1px solid transparent !important",
       },
     },
   }),
