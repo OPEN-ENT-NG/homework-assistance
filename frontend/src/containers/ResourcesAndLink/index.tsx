@@ -4,12 +4,12 @@ import { Box, Divider } from "@cgi-learning-hub/ui";
 
 import { RessourcesAndLinkWrapper } from "./style";
 import { Link } from "../Link";
-import { Ressources } from "../Ressources";
+import { Resources } from "../Resources";
 
-export const RessourcesAndLink: FC = () => {
+export const ResourcesAndLink: FC = () => {
   return (
     <Box sx={RessourcesAndLinkWrapper}>
-      <Ressources />
+      <Resources />
       <Divider orientation="vertical" flexItem />
       <Link />
     </Box>

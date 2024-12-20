@@ -17,7 +17,7 @@ export const DayScopeErrorModal: FC<ModalProps> = ({ isOpen, handleClose }) => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
 
   return (
-    <Dialog open={isOpen} onClose={handleClose} fullWidth maxWidth="lg">
+    <Dialog open={isOpen} onClose={handleClose} fullWidth maxWidth="md">
       <DialogContent>
         <DialogContentText>
           {t("admin.error.adminExistingDate")}

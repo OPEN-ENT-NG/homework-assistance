@@ -9,10 +9,9 @@ import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
 
-export const Ressources: FC = () => {
+export const Resources: FC = () => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
   const { resources } = useGlobal();
-  console.log(resources);
 
   return (
     <Box sx={ressourcesWrapper}>
@@ -20,6 +19,7 @@ export const Ressources: FC = () => {
       <Box sx={resourcesMapper}>
         {resources.map((item) => (
           <ResourceItem
+            key={item.idRessource}
             nomRessource={item.nomRessource}
             urlVignette={item.urlVignette}
             urlAccesRessource={item.urlAccesRessource}
