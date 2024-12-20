@@ -1,7 +1,4 @@
-import {
-  columnBoxStyle,
-  spaceBetweenBoxStyle,
-} from "~/core/style/boxStyles";
+import { columnBoxStyle, spaceBetweenBoxStyle } from "~/core/style/boxStyles";
 
 export const ressourcesWrapper = {
   ...columnBoxStyle,
