@@ -7,18 +7,23 @@ import { SVGStyle, timeSelectorWrapper } from "./style";
 import { TimeSelectorProps } from "./types";
 import { TimeSelect } from "../TimeSelect";
 
-export const TimeSelector: FC<TimeSelectorProps> = ({ hour, minute }) => (
-  <Box sx={timeSelectorWrapper}>
-    <AccessTimeIcon sx={SVGStyle} />
-    <TimeSelect
-      value={hour.value}
-      possibleValues={hour.possibleValues}
-      onChange={hour.onChange}
-    />
-    <TimeSelect
-      value={minute.value}
-      possibleValues={minute.possibleValues}
-      onChange={minute.onChange}
-    />
-  </Box>
-);
+export const TimeSelector: FC<TimeSelectorProps> = ({ hour, minute }) => {
+  const prepareValue = (value: string, possibleValues: string[]) =>
+    possibleValues.includes(value) ? value : possibleValues[0];
+
+  return (
+    <Box sx={timeSelectorWrapper}>
+      <AccessTimeIcon sx={SVGStyle} />
+      <TimeSelect
+        value={prepareValue(hour.value, hour.possibleValues)}
+        possibleValues={hour.possibleValues}
+        onChange={hour.onChange}
+      />
+      <TimeSelect
+        value={prepareValue(minute.value, minute.possibleValues)}
+        possibleValues={minute.possibleValues}
+        onChange={minute.onChange}
+      />
+    </Box>
+  );
+};
