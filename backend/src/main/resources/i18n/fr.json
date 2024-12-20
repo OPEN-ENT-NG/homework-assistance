@@ -22,7 +22,7 @@
   "student.error.noConfig": "Un problème empêche l'envoi de nouvelles demandes. Veuillez revenir plus tard.",
 
   "admin.title": "Paramétrage du service Aide aux devoirs",
-  "admin.period.title": "Période(s) de fermeture",
+  "admin.period.title": "Période(s) de fermeture :",
   "admin.period.from": "du ",
   "admin.period.to": " au ",
   "admin.modify": "Modifier",
@@ -31,8 +31,8 @@
   "admin.period.delete": "Supprimer une période de fermeture",
   "admin.period.delete.confirm": "Êtes-vous sûr(e) de vouloir supprimer la période du {{startDate}} au {{endDate}} ?",
   "admin.period.placeholder": "Aucune période de fermeture n’a été définie pour le moment.",
-  "admin.availabilityDays": "Jours de la semaine disponibles",
-  "admin.availabilityHours.title": "Plages horaires disponibles",
+  "admin.availabilityDays": "Jours de la semaine disponibles :",
+  "admin.availabilityHours.title": "Plages horaires disponibles :",
   "admin.date.begin": "Date de début :",
   "admin.date.end": "Date de fin :",
   "admin.availabilityHours.from": "De :",
@@ -54,5 +54,10 @@
   "admin.error.adminReverseDate": "Attention, la date de début est supérieure ou égale à la date de fin. Veuillez essayer d'autres dates.",
   "admin.error.adminReverseTime": "Attention, l'heure de début est supérieure ou égale à l'heure de fin. Veuillez essayer d'autres heures.",
   "admin.error.noConfig": "Aucune configuration existante. Veuillez modifier/renseigner au moins un champ.",
-  "admin.error.postConfig": "Un problème est survenu lors de l'enregistrement de la configuration"
+  "admin.error.postConfig": "Un problème est survenu lors de l'enregistrement de la configuration",
+
+  "ressources.title": "Avez-vous pensé à ces ressources ?",
+
+  "link.label": "Lien du bouton :",
+  "link.button": "Donner mon avis"
 }

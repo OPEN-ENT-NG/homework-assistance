@@ -11,6 +11,7 @@ import {
   TIME_UNIT,
   USER_RIGHT,
 } from "~/core/enums";
+import { FeaturedResource } from "~/services/api/resourcesApi/types";
 
 export interface GlobalProviderProps {
   children: ReactNode;
@@ -89,6 +90,7 @@ export type GlobalContextType = {
   ) => void;
   exclusionValues: ExclusionValuesState;
   timeExclusions: TimeExclusionState;
+  resources: FeaturedResource[];
   handleSubmit: (exclusion?: Exclusion, isDeleting?: boolean) => Promise<void>;
   handleStudentSubmit: () => Promise<void>;
   services: Service[];

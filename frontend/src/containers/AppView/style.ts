@@ -23,6 +23,15 @@ export const globalStyle = {
       minHeight: "calc(100vh - 43px)",
     },
   },
+  "&.Toastify__toast": {
+    fontSize: "1.6rem !important",
+  },
+  "&.Toastify__toast-body": {
+    fontSize: "1.6rem !important",
+  },
+  "& .Toastify__toast-container .Toastify__toast .Toastify__toast-body": {
+    fontSize: "1.6rem !important",
+  },
 };
 
 export const loaderWrapper = {

@@ -5,23 +5,27 @@ import { TextAreaWrapperProps } from "./types";
 export const StyledTextField = styled(TextField, {
   shouldForwardProp: (prop) =>
     !["isEditable", "isSmall"].includes(prop as string),
-})<{ isEditable: boolean; isSmall: boolean }>(
-  ({ isEditable, isSmall, theme }) => ({
+})<{ isEditable: boolean; isSmall: boolean; isDescription: boolean }>(
+  ({ isEditable, isSmall, theme, isDescription }) => ({
     width: "95%",
     height: "100%",
     color: "grey.900",
     "& .MuiInputBase-root": {
       height: "100%",
-      padding: isSmall ? ".5rem" : "1rem",
+      padding: isSmall ? ".5rem 1rem" : "1rem",
     },
     "& .MuiInputBase-input": {
       height: "100% !important",
       fontSize: "1.6rem",
-      lineHeight: "2.4rem",
+      lineHeight: "3rem",
       overflowY: "auto !important",
       "&.Mui-disabled": {
-        color: `${theme.palette.grey[900]} !important`,
-        "-webkit-text-fill-color": `${theme.palette.grey[900]} !important`,
+        color: isDescription
+          ? `${theme.palette.grey[500]} !important`
+          : `${theme.palette.grey[900]} !important`,
+        "-webkit-text-fill-color": isDescription
+          ? `${theme.palette.grey[500]} !important`
+          : `${theme.palette.grey[900]} !important`,
       },
       "&::-webkit-scrollbar": {
         width: "0.8rem",
@@ -36,22 +40,25 @@ export const StyledTextField = styled(TextField, {
       "& fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.grey[400]}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
       },
       "&:hover fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.grey[400]}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
       },
       "&.Mui-focused fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.primary.main}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
       },
       "&.Mui-blur fieldset": {
         border: isEditable
           ? `1px solid ${theme.palette.primary.main}`
-          : `1px solid ${theme.palette.grey[400]}`,
+          : `1px solid transparent`,
+      },
+      "&.Mui-disabled fieldset": {
+        border: "1px solid transparent !important",
       },
     },
   }),

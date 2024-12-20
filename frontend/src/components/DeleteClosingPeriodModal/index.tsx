@@ -37,7 +37,7 @@ export const DeleteClosingPeriodModal: FC<DeleteClosingPeriodModalProps> = ({
       <DialogTitle>{t("admin.period.delete")}</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          {t("admin.confirm.delete.period", {
+          {t("admin.period.delete.confirm", {
             startDate: closingPeriod.start,
             endDate: closingPeriod.end,
           })}

@@ -31,6 +31,7 @@ export const initialPreviewInputvalue = Object.values(PREVIEW_INPUTS).reduce(
   }),
   {} as PreviewInputvalueState,
 );
+
 export const initialOpeningDaysInputvalue = Object.values(OPENING_DAYS).reduce(
   (acc, key) => ({
     ...acc,
