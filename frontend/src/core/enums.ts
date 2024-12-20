@@ -14,6 +14,9 @@ export enum PREVIEW_INPUTS {
   DAYS = "days",
   TIME = "time",
   INFO = "info",
+  TITLE_LINK = "title_link",
+  DESCRIPTION_LINK = "description_link",
+  LINK = "link",
 }
 
 export enum STUDENT_INPUTS {

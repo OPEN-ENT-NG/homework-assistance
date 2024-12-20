@@ -58,6 +58,8 @@ import {
   useGetConfigQuery,
   useUpdateConfigMutation,
 } from "~/services/api/configApi";
+import { useGetResourcesQuery } from "~/services/api/resourcesApi";
+import { FeaturedResource } from "~/services/api/resourcesApi/types";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
@@ -71,14 +73,19 @@ export const useGlobal = () => {
 
 export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const { user } = useOdeClient();
-  const userRight = defineRight(user);
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
+
+  const { data: configData } = useGetConfigQuery();
+  const { data: servicesData } = useGetServicesQuery();
+  const { data: resourcesData } = useGetResourcesQuery();
+  const [createCallback] = useCreateCallbackMutation();
+  const [updateConfig, { isLoading }] = useUpdateConfigMutation();
+
   const [previewInputValue, setPreviewInputValue] =
     useState<PreviewInputvalueState>(initialPreviewInputvalue);
   const [exclusionValues, setExclusionValues] = useState<ExclusionValuesState>(
     [],
   );
-  const [updateConfig, { isLoading }] = useUpdateConfigMutation();
   const [openingDaysInputValue, setOpeningDaysInputValue] =
     useState<OpeningDaysInputValueState>(initialOpeningDaysInputvalue);
   const [openingTimeInputValue, setOpeningTimeInputValue] =
@@ -90,11 +97,16 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     useState<StudentInputValueState>(initialStudentInputvalue);
   const [timeExclusions, setTimeExclusions] =
     useState<TimeExclusionState>(initialTimeExclusion);
-  const { data: configData } = useGetConfigQuery();
-  const { data: servicesData } = useGetServicesQuery();
-  const [createCallback] = useCreateCallbackMutation();
+  const [resources, setResources] = useState<FeaturedResource[]>([]);
+
+  const userRight = defineRight(user);
+  const isAdmin = userRight === USER_RIGHT.ADMIN;
   const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]})`;
   const isFromRefetch = useRef(false);
+
+  useEffect(() => {
+    if (resourcesData) setResources(resourcesData);
+  }, [resourcesData]);
 
   useEffect(() => {
     if (configData) {
@@ -115,6 +127,11 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   }, [configData]);
 
   useEffect(() => {
+    if (isLoading || isFromRefetch.current) return;
+    void handleSubmit();
+  }, [openingDaysInputValue, openingTimeInputValue]);
+
+  useEffect(() => {
     if (servicesData) {
       const transformedServices = Object.entries(servicesData).map(
         ([key, value]) => ({
@@ -129,8 +146,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       }));
     }
   }, [servicesData]);
-
-  const isAdmin = userRight === USER_RIGHT.ADMIN;
 
   const handlePreviewInputChange =
     (field: PREVIEW_INPUTS) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -219,12 +234,14 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     if (!isPhoneValid || !user) {
       return;
     }
+
     const userData = {
       firstName: user.firstName,
       lastName: user.lastName,
       school: user.structureNames[0],
       className: user.classNames[0],
     };
+
     const payload = createCallbackPayload(studentInputValue, userData);
     try {
       await createCallback(payload).unwrap();
@@ -234,11 +251,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    if (isLoading || isFromRefetch.current) return;
-    void handleSubmit();
-  }, [openingDaysInputValue, openingTimeInputValue]);
 
   const value = useMemo<GlobalContextType>(
     () => ({
@@ -256,6 +268,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       handleStudentInputChange,
       exclusionValues,
       timeExclusions,
+      resources,
       handleSubmit,
       handleStudentSubmit,
       services,
@@ -272,6 +285,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       services,
       studentInputValue,
       timeExclusions,
+      resources,
     ],
   );
 
