@@ -2,6 +2,14 @@ import { FC } from "react";
 
 import { Box, Card, Typography } from "@cgi-learning-hub/ui";
 
+import {
+  cardStyles,
+  imageContainerStyles,
+  imageStyles,
+  contentBoxStyles,
+  titleTypographyStyles,
+  descriptionTypographyStyles,
+} from "./style";
 import { ResourceItemProps } from "./types";
 
 export const ResourceItem: FC<ResourceItemProps> = ({
@@ -10,75 +18,15 @@ export const ResourceItem: FC<ResourceItemProps> = ({
   urlVignette,
   description,
 }) => (
-  <Card
-    component="a"
-    href={urlAccesRessource}
-    sx={{
-      padding: ".5rem",
-      display: "flex",
-      width: "12rem", // Gardé car c'est déjà en rem
-      height: "17.5rem",
-      flexDirection: "column",
-      textDecoration: "none",
-      cursor: "pointer",
-      border: "none",
-      boxShadow: "none",
-      transition: "transform 0.2s ease-in-out",
-      "&:hover": {
-        transform: "scale(1.02)",
-      },
-    }}
-  >
-    <Box
-      sx={{
-        height: "12.5rem",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <img
-        src={urlVignette}
-        alt={nomRessource}
-        style={{
-          maxWidth: "100%",
-          maxHeight: "100%",
-          objectFit: "contain",
-        }}
-      />
+  <Card component="a" href={urlAccesRessource} sx={cardStyles}>
+    <Box sx={imageContainerStyles}>
+      <img src={urlVignette} alt={nomRessource} style={imageStyles} />
     </Box>
 
-    <Box
-      sx={{
-        flexGrow: 1,
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.5rem",
-      }}
-    >
-      <Typography
-        sx={{
-          fontWeight: "500",
-          color: "secondary.main",
-          fontSize: "1.4rem",
-          lineHeight: "2.1rem",
-          textAlign: "center",
-        }}
-      >
-        {nomRessource}
-      </Typography>
+    <Box sx={contentBoxStyles}>
+      <Typography sx={titleTypographyStyles}>{nomRessource}</Typography>
 
-      <Typography
-        variant="body2"
-        sx={{
-          fontWeight: "400",
-          color: "grey.dark",
-          fontSize: "1.1rem",
-          lineHeight: "1.2rem",
-          textAlign: "center",
-        }}
-      >
+      <Typography variant="body2" sx={descriptionTypographyStyles}>
         {description}
       </Typography>
     </Box>

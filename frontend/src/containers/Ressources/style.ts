@@ -1,6 +1,5 @@
 import {
   columnBoxStyle,
-  flexStartBoxStyle,
   spaceBetweenBoxStyle,
 } from "~/core/style/boxStyles";
 
@@ -15,9 +14,8 @@ export const ressourcesWrapper = {
 };
 
 export const resourcesMapper = {
-  ...flexStartBoxStyle,
+  ...spaceBetweenBoxStyle,
   "@media (max-width: 1000px)": {
-    ...spaceBetweenBoxStyle,
     flexWrap: "wrap",
   },
 };
