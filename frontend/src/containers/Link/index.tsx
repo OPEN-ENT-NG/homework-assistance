@@ -21,8 +21,8 @@ export const Link: FC = () => {
   } = useGlobal();
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
 
-  return (
-    <Box sx={adminLinkWrapper}>
+  const content = isAdmin ? (
+    <>
       <EditableArea
         height="4rem"
         isEditable={isAdmin}
@@ -38,33 +38,37 @@ export const Link: FC = () => {
         onChange={handlePreviewInputChange(PREVIEW_INPUTS.DESCRIPTION_LINK)}
         onSubmit={handleSubmit}
       />
-      {isAdmin ? (
-        <>
-          <Typography sx={basicTypo}>{t("link.label")}</Typography>
-          <EditableArea
-            height="6rem"
-            isEditable={isAdmin}
-            value={link}
-            onChange={handlePreviewInputChange(PREVIEW_INPUTS.LINK)}
-            onSubmit={handleSubmit}
-          />
-        </>
-      ) : (
-        <Box sx={{ ...centerBoxStyle, flex: 1 }}>
-          <Button
-            variant="contained"
-            sx={validateStudentButtonStyle}
-            onClick={() => {
-              if (link) {
-                window.open(link, "_blank", "noopener,noreferrer");
-              }
-            }}
-            disabled={!link}
-          >
-            {t("link.button")}
-          </Button>
-        </Box>
-      )}
-    </Box>
+      <Typography sx={basicTypo}>{t("link.label")}</Typography>
+      <EditableArea
+        height="6rem"
+        isEditable={isAdmin}
+        value={link}
+        onChange={handlePreviewInputChange(PREVIEW_INPUTS.LINK)}
+        onSubmit={handleSubmit}
+      />
+    </>
+  ) : (
+    <>
+      <Typography sx={basicTypo}>{title_link}</Typography>
+      <Typography sx={{ ...basicTypo, color: "grey.500" }}>
+        {description_link}
+      </Typography>
+      <Box sx={{ ...centerBoxStyle, flex: 1 }}>
+        <Button
+          variant="contained"
+          sx={validateStudentButtonStyle}
+          onClick={() => {
+            if (link) {
+              window.open(link, "_blank", "noopener,noreferrer");
+            }
+          }}
+          disabled={!link}
+        >
+          {t("link.button")}
+        </Button>
+      </Box>
+    </>
   );
+
+  return <Box sx={adminLinkWrapper}>{content}</Box>;
 };

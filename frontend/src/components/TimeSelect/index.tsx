@@ -9,10 +9,11 @@ export const TimeSelect: FC<TimeSelectProps> = ({
   value,
   possibleValues,
   onChange,
+  error = false,
 }) => {
   return (
     <FormControl variant="standard">
-      <Select value={value} onChange={onChange} sx={selectStyle}>
+      <Select value={value} onChange={onChange} sx={selectStyle} error={error}>
         {possibleValues.map((item) => (
           <MenuItem key={item} value={item}>
             {item}

@@ -13,4 +13,5 @@ export interface TimeSelectorProps {
     possibleValues: string[];
     onChange: (event: SelectChangeEvent<string>) => void;
   };
+  error?: boolean;
 }

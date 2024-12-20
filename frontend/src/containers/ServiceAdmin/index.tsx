@@ -33,6 +33,7 @@ import { TIME_SCOPE } from "~/core/enums";
 import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
 import { Exclusion } from "~/providers/GlobalProvider/types";
+import { isTimeRangeValid } from "~/providers/GlobalProvider/utils";
 
 export const ServiceAdmin: FC = () => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
@@ -40,6 +41,7 @@ export const ServiceAdmin: FC = () => {
     toggleModal,
     exclusionValues,
     displayModals: { DELETE_CLOSING_PERIOD },
+    openingTimeInputValue,
   } = useGlobal();
   const weekDaysButtonConfig = useWeekDaysButtonsConfig();
   const [selectedPeriod, setSelectedPeriod] = useState<Exclusion | null>(null);
@@ -118,6 +120,7 @@ export const ServiceAdmin: FC = () => {
             <TimeSelector
               hour={startTimeProps.hour}
               minute={startTimeProps.minute}
+              error={!isTimeRangeValid(openingTimeInputValue)}
             />
           </Box>
           <Box sx={hoursInputItem}>
@@ -127,6 +130,7 @@ export const ServiceAdmin: FC = () => {
             <TimeSelector
               hour={endTimeProps.hour}
               minute={endTimeProps.minute}
+              error={!isTimeRangeValid(openingTimeInputValue)}
             />
           </Box>
         </Box>

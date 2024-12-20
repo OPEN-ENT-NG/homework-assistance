@@ -18,7 +18,13 @@ export const ResourceItem: FC<ResourceItemProps> = ({
   urlVignette,
   description,
 }) => (
-  <Card component="a" href={urlAccesRessource} sx={cardStyles}>
+  <Card
+    component="a"
+    target="_blank"
+    rel="noopener noreferrer"
+    href={urlAccesRessource}
+    sx={cardStyles}
+  >
     <Box sx={imageContainerStyles}>
       <img src={urlVignette} alt={nomRessource} style={imageStyles} />
     </Box>
