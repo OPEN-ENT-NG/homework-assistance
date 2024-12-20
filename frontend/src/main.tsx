@@ -21,7 +21,6 @@ import { RouterProvider } from "react-router-dom";
 import "~/i18n";
 import { ToastContainer } from "react-toastify";
 
-import { HOMEWORK_ASSISTANCE } from "./core/const";
 import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
@@ -57,7 +56,7 @@ root.render(
     <Provider store={store}>
       <OdeClientProvider
         params={{
-          app: HOMEWORK_ASSISTANCE,
+          app: "Aide aux devoirs",
         }}
       >
         <ThemeProviderEdifice>

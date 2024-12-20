@@ -12,6 +12,7 @@ import {
 import { EditableAreaProps } from "./types";
 
 export const EditableArea: FC<EditableAreaProps> = ({
+  isDescription = false,
   width = "100%",
   height = "auto",
   isEditable = false,
@@ -56,6 +57,7 @@ export const EditableArea: FC<EditableAreaProps> = ({
     <TextAreaWrapper width={width} height={height}>
       {icon && <Box sx={iconWrapper}>{icon}</Box>}
       <StyledTextField
+        isDescription={isDescription}
         isSmall={isSmall}
         multiline
         value={value}

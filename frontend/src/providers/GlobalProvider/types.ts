@@ -3,7 +3,6 @@ import { ChangeEvent, ReactNode } from "react";
 import { SelectChangeEvent } from "@mui/material";
 
 import {
-  LINK_INPUTS,
   MODAL_TYPE,
   OPENING_DAYS,
   PREVIEW_INPUTS,
@@ -26,9 +25,7 @@ export interface Exclusion {
 export type PreviewInputvalueState = {
   [key in PREVIEW_INPUTS]: string;
 };
-export type LinkInputvalueState = {
-  [key in LINK_INPUTS]: string;
-};
+
 export type ExclusionValuesState = Exclusion[];
 
 export type OpeningDaysInputValueState = {
@@ -94,10 +91,6 @@ export type GlobalContextType = {
   exclusionValues: ExclusionValuesState;
   timeExclusions: TimeExclusionState;
   resources: FeaturedResource[];
-  linkInputValues: LinkInputvalueState;
-  handleLinkInputChange: (
-    field: LINK_INPUTS,
-  ) => (event: ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (exclusion?: Exclusion, isDeleting?: boolean) => Promise<void>;
   handleStudentSubmit: () => Promise<void>;
   services: Service[];

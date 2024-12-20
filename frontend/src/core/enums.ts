@@ -14,6 +14,9 @@ export enum PREVIEW_INPUTS {
   DAYS = "days",
   TIME = "time",
   INFO = "info",
+  TITLE_LINK = "title_link",
+  DESCRIPTION_LINK = "description_link",
+  LINK = "link",
 }
 
 export enum STUDENT_INPUTS {
@@ -22,12 +25,6 @@ export enum STUDENT_INPUTS {
   SCHEDULED_DATE = "scheduled_date",
   SCHEDULED_TIME = "scheduled_time",
   SERVICE = "service",
-}
-
-export enum LINK_INPUTS {
-  TITLE = "title",
-  DESCRIPTION = "description",
-  LINK = "link",
 }
 
 export enum OPENING_DAYS {

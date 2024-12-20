@@ -20,7 +20,6 @@ import {
   ExclusionValuesState,
   GlobalContextType,
   GlobalProviderProps,
-  LinkInputvalueState,
   OpeningDaysInputValueState,
   OpeningTimeInputValueState,
   PreviewInputvalueState,
@@ -34,7 +33,6 @@ import {
   createConfigPayload,
   defineRight,
   initialDisplayModals,
-  initialLinkInputvalue,
   initialOpeningDaysInputvalue,
   initialOpeningTimeInputValue,
   initialPreviewInputvalue,
@@ -44,7 +42,6 @@ import {
 } from "./utils";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import {
-  LINK_INPUTS,
   MODAL_TYPE,
   OPENING_DAYS,
   PREVIEW_INPUTS,
@@ -101,9 +98,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [timeExclusions, setTimeExclusions] =
     useState<TimeExclusionState>(initialTimeExclusion);
   const [resources, setResources] = useState<FeaturedResource[]>([]);
-  const [linkInputValues, setLinkInputValues] = useState<LinkInputvalueState>(
-    initialLinkInputvalue,
-  );
 
   const userRight = defineRight(user);
   const isAdmin = userRight === USER_RIGHT.ADMIN;
@@ -156,14 +150,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const handlePreviewInputChange =
     (field: PREVIEW_INPUTS) => (event: ChangeEvent<HTMLInputElement>) => {
       setPreviewInputValue((prev) => ({
-        ...prev,
-        [field]: event.target.value,
-      }));
-    };
-
-  const handleLinkInputChange =
-    (field: LINK_INPUTS) => (event: ChangeEvent<HTMLInputElement>) => {
-      setLinkInputValues((prev) => ({
         ...prev,
         [field]: event.target.value,
       }));
@@ -255,7 +241,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       school: user.structureNames[0],
       className: user.classNames[0],
     };
-    
+
     const payload = createCallbackPayload(studentInputValue, userData);
     try {
       await createCallback(payload).unwrap();
@@ -283,8 +269,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       exclusionValues,
       timeExclusions,
       resources,
-      linkInputValues,
-      handleLinkInputChange,
       handleSubmit,
       handleStudentSubmit,
       services,
@@ -302,7 +286,6 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       studentInputValue,
       timeExclusions,
       resources,
-      linkInputValues,
     ],
   );
 

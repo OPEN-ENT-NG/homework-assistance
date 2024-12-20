@@ -56,5 +56,8 @@
   "admin.error.noConfig": "Aucune configuration existante. Veuillez modifier/renseigner au moins un champ.",
   "admin.error.postConfig": "Un problème est survenu lors de l'enregistrement de la configuration",
 
-  "ressources.title": "Avez-vous pensé à ces ressources ?"
+  "ressources.title": "Avez-vous pensé à ces ressources ?",
+
+  "link.label": "Lien du bouton :",
+  "link.button": "Donner mon avis"
 }

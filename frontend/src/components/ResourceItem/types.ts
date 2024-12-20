@@ -1,5 +1,4 @@
-export interface FeaturedResource {
-  idRessource: string;
+export interface ResourceItemProps {
   nomRessource: string;
   urlVignette: string;
   urlAccesRessource: string;
