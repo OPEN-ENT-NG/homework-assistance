@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   TextField,
   Button,
 } from "@cgi-learning-hub/ui";
+import { useMediaQuery } from "@mui/material";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
@@ -31,7 +32,7 @@ import { CustomDatePicker } from "~/components/CustomDatePicker";
 import { TimeSelector } from "~/components/TimeSelector";
 import { DATE_FORMAT, HOMEWORK_ASSISTANCE, REGEX_PHONE } from "~/core/const";
 import { STUDENT_INPUTS } from "~/core/enums";
-import { flexEndBoxStyle } from "~/core/style/boxStyles";
+import { centerBoxStyle, flexEndBoxStyle } from "~/core/style/boxStyles";
 import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
 
@@ -46,6 +47,8 @@ export const ServiceStudent: FC = () => {
   } = useGlobal();
   const { timeProps } = useStudentTime();
   const { datePickerProps } = useExcludedDates();
+  const [isPhoneTouched, setIsPhoneTouched] = useState(false);
+  const isColumn = useMediaQuery("(max-width:1000px)");
   const phone = studentInputValue[STUDENT_INPUTS.PHONE];
   const isPhoneValid = REGEX_PHONE.test(phone);
 
@@ -72,12 +75,17 @@ export const ServiceStudent: FC = () => {
     }
   };
 
+  const handlePhoneBlur = () => {
+    setIsPhoneTouched(true);
+  };
+
   return (
     <Box sx={serviceStudentWrapper}>
       <Box sx={subItemStyle}>
         <Typography sx={basicTypo}>{t("student.title")}</Typography>
         <Typography sx={userNameStyle}>{userNameAndClass}</Typography>
       </Box>
+
       <FormControl variant="standard" sx={formControlStyle}>
         <InputLabel>{t("student.subject")}</InputLabel>
         <Select
@@ -92,6 +100,7 @@ export const ServiceStudent: FC = () => {
           ))}
         </Select>
       </FormControl>
+
       <Box sx={subItemStyle}>
         <Typography sx={basicTypo}>{`${t("student.rdv.title")} :`}</Typography>
         <Box sx={rdvWrapperStyle}>
@@ -113,6 +122,7 @@ export const ServiceStudent: FC = () => {
           </Box>
         </Box>
       </Box>
+
       <Box sx={subItemStyle}>
         <Typography sx={basicTypo}>{t("student.tel")}</Typography>
         <TextField
@@ -120,11 +130,18 @@ export const ServiceStudent: FC = () => {
           variant="standard"
           value={studentInputValue[STUDENT_INPUTS.PHONE]}
           onChange={handlePhoneChange}
+          onBlur={handlePhoneBlur}
           placeholder="+33 (0)6..."
           type="tel"
-          error={!isPhoneValid && !!studentInputValue[STUDENT_INPUTS.PHONE]}
+          error={
+            !isPhoneValid &&
+            isPhoneTouched &&
+            !!studentInputValue[STUDENT_INPUTS.PHONE]
+          }
           helperText={
-            !isPhoneValid && !!studentInputValue[STUDENT_INPUTS.PHONE]
+            !isPhoneValid &&
+            isPhoneTouched &&
+            !!studentInputValue[STUDENT_INPUTS.PHONE]
               ? t("student.tel.error")
               : ""
           }
@@ -133,6 +150,7 @@ export const ServiceStudent: FC = () => {
           }}
         />
       </Box>
+
       <Box sx={subItemStyle}>
         <Typography sx={basicTypo}>{t("student.otherInformations")}</Typography>
         <TextField
@@ -145,7 +163,8 @@ export const ServiceStudent: FC = () => {
           placeholder={t("student.otherInformations.placeholder")}
         />
       </Box>
-      <Box sx={flexEndBoxStyle}>
+
+      <Box sx={isColumn ? centerBoxStyle : flexEndBoxStyle}>
         <Button
           variant="contained"
           sx={validateStudentButtonStyle}

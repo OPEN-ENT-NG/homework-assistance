@@ -4,6 +4,7 @@ import { Box, Typography, Button } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
 import { adminLinkWrapper } from "./style";
+import { secondPartTitle } from "../Preview/style";
 import { validateStudentButtonStyle } from "../ServiceStudent/style";
 import { EditableArea } from "~/components/EditableArea";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
@@ -47,11 +48,26 @@ export const Link: FC = () => {
     </>
   ) : (
     <>
-      <Typography sx={{ ...basicTypo, whiteSpace: "pre-line" }}>
+      <Typography
+        sx={{
+          ...secondPartTitle,
+          whiteSpace: "pre-line",
+          textWrap: "wrap",
+          wordWrap: "break-word",
+          maxWidth: "100%",
+        }}
+      >
         {title_link}
       </Typography>
       <Typography
-        sx={{ ...basicTypo, color: "grey.500", whiteSpace: "pre-line" }}
+        sx={{
+          ...basicTypo,
+          color: "grey.500",
+          whiteSpace: "pre-line",
+          textWrap: "wrap",
+          wordWrap: "break-word",
+          maxWidth: "100%",
+        }}
       >
         {description_link}
       </Typography>

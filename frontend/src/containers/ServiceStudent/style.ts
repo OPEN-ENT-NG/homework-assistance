@@ -5,11 +5,10 @@ import { basicTypo } from "~/core/style/style";
 
 export const serviceStudentWrapper: SxProps = {
   ...columnBoxStyle,
-  justifyContent: "space-between",
   boxSizing: "border-box",
   height: "100%",
   padding: "4rem 6rem",
-  gap: "2rem",
+  gap: "3.6rem",
 };
 
 export const userNameStyle: SxProps = {
@@ -29,7 +28,7 @@ export const formControlStyle: SxProps = {
 export const rdvWrapperStyle: SxProps = {
   ...flexStartBoxStyle,
   gap: "3rem",
-  "@media (max-width: 800px)": {
+  "@media (max-width: 1200px)": {
     flexDirection: "column",
     gap: "1rem",
   },
@@ -42,8 +41,9 @@ export const rdvItemStyle: SxProps = {
 
 export const phoneFieldStyle: SxProps = {
   width: "30rem",
+  maxWidth: "100%",
   "& .MuiFormHelperText-root": {
-    fontSize: "1.6rem",
+    fontSize: "1.3rem",
   },
 };
 
