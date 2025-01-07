@@ -50,12 +50,18 @@ export const topRowStyle: SxProps = {
 };
 
 export const topItemStyle: SxProps = {
+  width: "50%",
+  bgcolor: "common.white",
+  borderRadius: 2,
+  boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+  "@media (max-width: 1000px)": {
+    width: "100%",
+  },
+};
+
+export const bottomItemStyle: SxProps = {
   flex: 1,
   bgcolor: "common.white",
   borderRadius: 2,
   boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
-};
-
-export const bottomItemStyle: SxProps = {
-  ...topItemStyle,
 };

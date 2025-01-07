@@ -31,7 +31,7 @@ export const secondPartWrapper = {
 
 export const datesWrapper = {
   ...columnBoxStyle,
-  gap: "2rem",
+  gap: "1rem",
   height: "100%",
   flex: "1 1 auto",
 };

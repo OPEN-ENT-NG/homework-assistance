@@ -10,5 +10,14 @@ export const RessourcesAndLinkWrapper: SxProps = {
   gap: "2rem",
   "@media (max-width: 1000px)": {
     flexDirection: "column",
+    alignItems: "stretch",
+  },
+};
+
+export const ItemWrapper: SxProps = {
+  flex: 1,
+  minWidth: 0,
+  "@media (max-width: 1000px)": {
+    width: "100%",
   },
 };
