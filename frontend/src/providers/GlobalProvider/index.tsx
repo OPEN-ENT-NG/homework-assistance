@@ -11,6 +11,7 @@ import {
 
 import { useOdeClient } from "@edifice-ui/react";
 import { SelectChangeEvent } from "@mui/material";
+import _ from "lodash";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
@@ -80,6 +81,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const { data: resourcesData } = useGetResourcesQuery();
   const [createCallback] = useCreateCallbackMutation();
   const [updateConfig, { isLoading }] = useUpdateConfigMutation();
+  const isFromRefetch = useRef(false);
 
   const [previewInputValue, setPreviewInputValue] =
     useState<PreviewInputvalueState>(initialPreviewInputvalue);
@@ -99,18 +101,36 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     useState<TimeExclusionState>(initialTimeExclusion);
   const [resources, setResources] = useState<FeaturedResource[]>([]);
 
+  const lastBackendState = useRef({
+    openingDays: initialOpeningDaysInputvalue,
+    openingTime: initialOpeningTimeInputValue,
+    messages: initialPreviewInputvalue,
+    exclusions: [] as ExclusionValuesState,
+  });
+
   const userRight = defineRight(user);
   const isAdmin = userRight === USER_RIGHT.ADMIN;
-  const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]})`;
-  const isFromRefetch = useRef(false);
+  const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]?.split(
+    "$",
+  )[1]})`;
 
   useEffect(() => {
-    if (resourcesData) setResources(resourcesData);
+    if (resourcesData) {
+      setResources(resourcesData);
+    }
   }, [resourcesData]);
 
   useEffect(() => {
     if (configData) {
       isFromRefetch.current = true;
+
+      lastBackendState.current = {
+        openingDays: configData.settings.opening_days,
+        openingTime: configData.settings.opening_time,
+        messages: configData.messages,
+        exclusions: configData.settings.exclusions,
+      };
+
       setPreviewInputValue(configData.messages);
       setOpeningDaysInputValue(configData.settings.opening_days);
       setOpeningTimeInputValue(configData.settings.opening_time);
@@ -120,16 +140,12 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
         openingDays: configData.settings.opening_days,
         openingTime: configData.settings.opening_time,
       });
+
       setTimeout(() => {
         isFromRefetch.current = false;
       }, 0);
     }
   }, [configData]);
-
-  useEffect(() => {
-    if (isLoading || isFromRefetch.current) return;
-    void handleSubmit();
-  }, [openingDaysInputValue, openingTimeInputValue]);
 
   useEffect(() => {
     if (servicesData) {
@@ -146,6 +162,11 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       }));
     }
   }, [servicesData]);
+
+  useEffect(() => {
+    if (isLoading || isFromRefetch.current) return;
+    void handleSubmit();
+  }, [openingDaysInputValue, openingTimeInputValue]);
 
   const handlePreviewInputChange =
     (field: PREVIEW_INPUTS) => (event: ChangeEvent<HTMLInputElement>) => {
@@ -173,6 +194,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
         },
       }));
     };
+
   const handleStudentInputChange = <K extends StudentInputValueKeys>(
     key: K,
     value: StudentInputValueState[K],
@@ -188,6 +210,32 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       ...prev,
       [modalType]: !prev[modalType],
     }));
+  };
+
+  const hasStateChanged = (newExclusions: ExclusionValuesState) => {
+    const hasOpeningDaysChanged = !_.isEqual(
+      openingDaysInputValue,
+      lastBackendState.current.openingDays,
+    );
+    const hasOpeningTimeChanged = !_.isEqual(
+      openingTimeInputValue,
+      lastBackendState.current.openingTime,
+    );
+    const hasMessagesChanged = !_.isEqual(
+      previewInputValue,
+      lastBackendState.current.messages,
+    );
+    const hasExclusionsChanged = !_.isEqual(
+      newExclusions,
+      lastBackendState.current.exclusions,
+    );
+
+    return (
+      hasOpeningDaysChanged ||
+      hasOpeningTimeChanged ||
+      hasMessagesChanged ||
+      hasExclusionsChanged
+    );
   };
 
   const handleSubmit = async (exclusion?: Exclusion, isDeleting?: boolean) => {
@@ -209,6 +257,10 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
         ? [...exclusionValues, exclusion]
         : filteredExclusions;
 
+    if (!hasStateChanged(newExclusions)) {
+      return;
+    }
+
     const payload = createConfigPayload(
       previewInputValue,
       openingDaysInputValue,
@@ -219,6 +271,14 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     try {
       isFromRefetch.current = true;
       await updateConfig(payload).unwrap();
+
+      lastBackendState.current = {
+        openingDays: openingDaysInputValue,
+        openingTime: openingTimeInputValue,
+        messages: previewInputValue,
+        exclusions: newExclusions,
+      };
+
       toast.success(t("admin.save"));
     } catch (error) {
       toast.error(t("admin.error.postConfig"));

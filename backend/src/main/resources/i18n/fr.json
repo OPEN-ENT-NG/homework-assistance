@@ -5,6 +5,7 @@
   "student.title": "Élève",
   "student.subject": "Matière",
   "student.tel": "Numéro de téléphone sur lequel vous rappeler",
+  "student.tel.error": "Veuillez saisir un numéro de téléphone valide.",
   "student.rdv.title": "Date et créneau du rappel",
   "student.rdv.day": "Le",
   "student.rdv.from": "À partir de ",

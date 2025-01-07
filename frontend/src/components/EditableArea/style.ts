@@ -11,14 +11,11 @@ export const StyledTextField = styled(TextField, {
     height: "100%",
     color: "grey.900",
     "& .MuiInputBase-root": {
-      height: "100%",
       padding: isSmall ? ".5rem 1rem" : "1rem",
     },
     "& .MuiInputBase-input": {
-      height: "100% !important",
       fontSize: "1.6rem",
       lineHeight: "3rem",
-      overflowY: "auto !important",
       "&.Mui-disabled": {
         color: isDescription
           ? `${theme.palette.grey[500]} !important`
@@ -26,14 +23,6 @@ export const StyledTextField = styled(TextField, {
         "-webkit-text-fill-color": isDescription
           ? `${theme.palette.grey[500]} !important`
           : `${theme.palette.grey[900]} !important`,
-      },
-      "&::-webkit-scrollbar": {
-        width: "0.8rem",
-        height: "0.8rem",
-      },
-      "&::-webkit-scrollbar-thumb": {
-        backgroundColor: "rgba(170,170,170,1)",
-        borderRadius: "0.3rem",
       },
     },
     "& .MuiOutlinedInput-root": {
@@ -73,8 +62,7 @@ export const TextAreaWrapper = styled(Box, {
   gap: theme.spacing(2),
   width: width,
   maxWidth: width,
-  height: height,
-  maxHeight: height,
+  minHeight: height,
 }));
 
 export const iconButtonStyle = {
