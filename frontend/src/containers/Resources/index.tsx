@@ -4,9 +4,9 @@ import { Box, Typography } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
 import { resourcesMapper, ressourcesWrapper } from "./style";
+import { secondPartTitle } from "../Preview/style";
 import { ResourceItem } from "~/components/ResourceItem";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
-import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
 
 export const Resources: FC = () => {
@@ -15,7 +15,7 @@ export const Resources: FC = () => {
 
   return (
     <Box sx={ressourcesWrapper}>
-      <Typography sx={basicTypo}>{t("ressources.title")}</Typography>
+      <Typography sx={secondPartTitle}>{t("ressources.title")}</Typography>
       <Box sx={resourcesMapper}>
         {resources.map((item) => (
           <ResourceItem

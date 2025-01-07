@@ -42,6 +42,9 @@ export const rdvItemStyle: SxProps = {
 
 export const phoneFieldStyle: SxProps = {
   width: "30rem",
+  "& .MuiFormHelperText-root": {
+    fontSize: "1.6rem",
+  },
 };
 
 export const validateStudentButtonStyle = {

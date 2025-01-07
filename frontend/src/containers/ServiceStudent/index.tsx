@@ -123,6 +123,11 @@ export const ServiceStudent: FC = () => {
           placeholder="+33 (0)6..."
           type="tel"
           error={!isPhoneValid && !!studentInputValue[STUDENT_INPUTS.PHONE]}
+          helperText={
+            !isPhoneValid && !!studentInputValue[STUDENT_INPUTS.PHONE]
+              ? t("student.tel.error")
+              : ""
+          }
           inputProps={{
             maxLength: 15,
           }}

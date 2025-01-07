@@ -24,7 +24,6 @@ export const Link: FC = () => {
   const content = isAdmin ? (
     <>
       <EditableArea
-        height="4rem"
         isEditable={isAdmin}
         value={title_link}
         isSmall
@@ -40,7 +39,6 @@ export const Link: FC = () => {
       />
       <Typography sx={basicTypo}>{t("link.label")}</Typography>
       <EditableArea
-        height="6rem"
         isEditable={isAdmin}
         value={link}
         onChange={handlePreviewInputChange(PREVIEW_INPUTS.LINK)}
@@ -49,8 +47,12 @@ export const Link: FC = () => {
     </>
   ) : (
     <>
-      <Typography sx={basicTypo}>{title_link}</Typography>
-      <Typography sx={{ ...basicTypo, color: "grey.500" }}>
+      <Typography sx={{ ...basicTypo, whiteSpace: "pre-line" }}>
+        {title_link}
+      </Typography>
+      <Typography
+        sx={{ ...basicTypo, color: "grey.500", whiteSpace: "pre-line" }}
+      >
         {description_link}
       </Typography>
       <Box sx={{ ...centerBoxStyle, flex: 1 }}>

@@ -12,6 +12,8 @@ export const ressourcesWrapper = {
 
 export const resourcesMapper = {
   ...spaceBetweenBoxStyle,
+  justifyContent: "space-around",
+  gap: "3.2rem",
   "@media (max-width: 1000px)": {
     flexWrap: "wrap",
   },
