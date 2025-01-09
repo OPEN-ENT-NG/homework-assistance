@@ -73,7 +73,7 @@ export const Link: FC = () => {
       >
         {description_link}
       </Typography>
-      <Box sx={{ ...centerBoxStyle, flex: 1 }}>
+      <Box sx={centerBoxStyle}>
         <Button
           variant="contained"
           sx={validateStudentButtonStyle}
