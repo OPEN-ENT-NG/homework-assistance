@@ -37,4 +37,4 @@ export const datesWrapper = {
   flex: "1 1 auto",
 };
 
-export const SVGWrapper = {};
+export const SVGWrapper = { color: "secondary.main" };
