@@ -18,7 +18,7 @@ export const Resources: FC = () => {
 
   return (
     <Box sx={ressourcesWrapper}>
-      <Typography sx={secondPartTitle}>{t("ressources.title")}</Typography>
+      <Typography sx={secondPartTitle}>{t("resources.title")}</Typography>
       <Box sx={resourcesMapper}>
         {resources.length ? (
           resources.map((item) => (
