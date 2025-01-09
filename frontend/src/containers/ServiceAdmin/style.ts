@@ -34,7 +34,7 @@ export const closingPeriodsMap = {
   height: "10.7rem",
   maxHeight: "10.7rem",
   width: "40rem",
-  maxWidth: "40rem",
+  maxWidth: "100%",
   gap: ".5rem",
   overflowY: "auto",
   padding: ".5rem",
@@ -61,6 +61,7 @@ export const weekButtonWrapper = {
   ...flexStartBoxStyle,
   flexWrap: "wrap",
   gap: "1rem",
+  maxWidth: "100%",
 };
 
 export const DayButton = styled(Button, {

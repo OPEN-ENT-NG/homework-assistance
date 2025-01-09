@@ -28,14 +28,12 @@ export const formControlStyle: SxProps = {
 export const rdvWrapperStyle: SxProps = {
   ...flexStartBoxStyle,
   gap: "3rem",
-  "@media (max-width: 1200px)": {
-    flexDirection: "column",
-    gap: "1rem",
-  },
+  flexWrap: "wrap",
 };
 
 export const rdvItemStyle: SxProps = {
   ...flexStartBoxStyle,
+  width: "auto",
   alignItems: "center",
   gap: "1rem",
 };
@@ -51,6 +49,7 @@ export const phoneFieldStyle: SxProps = {
 export const validateStudentButtonStyle = {
   fontSize: "1.6rem",
   width: "30rem",
+  marginTop: "1rem",
   "@media (max-width: 800px)": {
     width: "100%",
   },
