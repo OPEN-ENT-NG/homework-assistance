@@ -1,5 +1,5 @@
+import { IUserInfo } from "@edifice.io/client";
 import dayjs from "dayjs";
-import { IUserInfo } from "edifice-ts-client";
 
 import {
   DisplayModalsState,
