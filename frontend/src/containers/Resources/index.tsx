@@ -35,12 +35,14 @@ export const Resources: FC = () => {
             sx={{
               ...columnBoxStyle,
               alignItems: "center",
+              justifyContent: "center",
               gap: "1.6rem",
               paddingTop: "3rem",
               boxSizing: "border-box",
+              height: "100%",
             }}
           >
-            <Box sx={{ height: "fit-content" }}>
+            <Box sx={{ height: "20rem", color: "secondary.main" }}>
               <ResourcesEmptyState />
             </Box>
             <Typography sx={basicTypo}>{t("resources.empty")}</Typography>

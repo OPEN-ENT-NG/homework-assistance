@@ -38,7 +38,9 @@ export const Link: FC = () => {
         onChange={handlePreviewInputChange(PREVIEW_INPUTS.DESCRIPTION_LINK)}
         onSubmit={handleSubmit}
       />
-      <Typography sx={basicTypo}>{t("link.label")}</Typography>
+      <Typography sx={{ ...basicTypo, marginTop: "1rem" }}>
+        {t("link.label")}
+      </Typography>
       <EditableArea
         isEditable={isAdmin}
         value={link}
