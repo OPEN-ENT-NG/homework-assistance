@@ -11,6 +11,7 @@ import {
 
 import { useOdeClient } from "@edifice-ui/react";
 import { SelectChangeEvent } from "@mui/material";
+import dayjs from "dayjs";
 import _ from "lodash";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -29,6 +30,7 @@ import {
   StudentInputValueState,
   TimeExclusionState,
 } from "./types";
+import { useFirstValidDate } from "./useFirstValidDate";
 import {
   createCallbackPayload,
   createConfigPayload,
@@ -37,11 +39,11 @@ import {
   initialOpeningDaysInputvalue,
   initialOpeningTimeInputValue,
   initialPreviewInputvalue,
+  initialStudentInputValue,
   initialTimeExclusion,
   isTimeRangeValid,
-  useInitialStudentInputvalue,
 } from "./utils";
-import { HOMEWORK_ASSISTANCE } from "~/core/const";
+import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
 import {
   MODAL_TYPE,
   OPENING_DAYS,
@@ -97,11 +99,10 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [services, setServices] = useState<Service[]>([]);
   const [timeExclusions, setTimeExclusions] =
     useState<TimeExclusionState>(initialTimeExclusion);
-  const initialStudentInputValue = useInitialStudentInputvalue(timeExclusions);
   const [studentInputValue, setStudentInputValue] =
     useState<StudentInputValueState>(initialStudentInputValue);
   const [resources, setResources] = useState<FeaturedResource[]>([]);
-
+  const firstValidDate = useFirstValidDate(timeExclusions);
   const lastBackendState = useRef({
     openingDays: initialOpeningDaysInputvalue,
     openingTime: initialOpeningTimeInputValue,
@@ -116,8 +117,12 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   )[1]})`;
 
   useEffect(() => {
-    setStudentInputValue(initialStudentInputValue);
-  }, [initialStudentInputValue]);
+    setStudentInputValue((prev) => ({
+      ...prev,
+      [STUDENT_INPUTS.SCHEDULED_DATE]:
+        dayjs(firstValidDate).format(DATE_FORMAT),
+    }));
+  }, [firstValidDate]);
 
   useEffect(() => {
     if (resourcesData) {

@@ -10,7 +10,6 @@ import {
   StudentInputValueState,
   TimeExclusionState,
 } from "./types";
-import { useFirstValidDate } from "./useFirstValidDate";
 import { DATE_FORMAT } from "~/core/const";
 import {
   MODAL_TYPE,
@@ -59,21 +58,15 @@ export const initialOpeningTimeInputValue: OpeningTimeInputValueState = {
     [TIME_UNIT.MINUTE]: "00",
   },
 };
-export const useInitialStudentInputvalue = (
-  timeExclusions: TimeExclusionState,
-) => {
-  const today = dayjs(useFirstValidDate(timeExclusions)).format(DATE_FORMAT);
-  const initialStudentInputvalue: StudentInputValueState = {
-    [STUDENT_INPUTS.SERVICE]: null,
-    [STUDENT_INPUTS.SCHEDULED_DATE]: today,
-    [STUDENT_INPUTS.SCHEDULED_TIME]: {
-      [TIME_UNIT.HOUR]: "18",
-      [TIME_UNIT.MINUTE]: "00",
-    },
-    [STUDENT_INPUTS.PHONE]: "",
-    [STUDENT_INPUTS.INFOS]: "",
-  };
-  return initialStudentInputvalue;
+export const initialStudentInputValue: StudentInputValueState = {
+  [STUDENT_INPUTS.SERVICE]: null,
+  [STUDENT_INPUTS.SCHEDULED_DATE]: dayjs().format(DATE_FORMAT),
+  [STUDENT_INPUTS.SCHEDULED_TIME]: {
+    [TIME_UNIT.HOUR]: "18",
+    [TIME_UNIT.MINUTE]: "00",
+  },
+  [STUDENT_INPUTS.PHONE]: "",
+  [STUDENT_INPUTS.INFOS]: "",
 };
 
 export const initialTimeExclusion: TimeExclusionState = {
