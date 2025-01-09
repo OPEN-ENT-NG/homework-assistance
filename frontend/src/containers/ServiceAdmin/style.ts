@@ -13,7 +13,7 @@ export const ServiceAdminWrapper: SxProps = {
   ...columnBoxStyle,
   boxSizing: "border-box",
   height: "100%",
-  padding: "4rem 6rem",
+  padding: "3rem 5rem",
   gap: "2rem",
 };
 

@@ -11,7 +11,6 @@ import {
   TextField,
   Button,
 } from "@cgi-learning-hub/ui";
-import { useMediaQuery } from "@mui/material";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
@@ -32,7 +31,7 @@ import { CustomDatePicker } from "~/components/CustomDatePicker";
 import { TimeSelector } from "~/components/TimeSelector";
 import { DATE_FORMAT, HOMEWORK_ASSISTANCE, REGEX_PHONE } from "~/core/const";
 import { STUDENT_INPUTS } from "~/core/enums";
-import { centerBoxStyle, flexEndBoxStyle } from "~/core/style/boxStyles";
+import { centerBoxStyle } from "~/core/style/boxStyles";
 import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
 
@@ -48,7 +47,6 @@ export const ServiceStudent: FC = () => {
   const { timeProps } = useStudentTime();
   const { datePickerProps } = useExcludedDates();
   const [isPhoneTouched, setIsPhoneTouched] = useState(false);
-  const isColumn = useMediaQuery("(max-width:1000px)");
   const phone = studentInputValue[STUDENT_INPUTS.PHONE];
   const isPhoneValid = REGEX_PHONE.test(phone);
 
@@ -111,6 +109,7 @@ export const ServiceStudent: FC = () => {
             <CustomDatePicker
               value={dayjs(studentInputValue.scheduled_date, DATE_FORMAT)}
               onChange={handleDateChange()}
+              helperText={"Saisissez une date valide."}
               {...datePickerProps}
             />
           </Box>
@@ -164,7 +163,7 @@ export const ServiceStudent: FC = () => {
         />
       </Box>
 
-      <Box sx={isColumn ? centerBoxStyle : flexEndBoxStyle}>
+      <Box sx={centerBoxStyle}>
         <Button
           variant="contained"
           sx={validateStudentButtonStyle}

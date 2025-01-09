@@ -8,13 +8,11 @@ import { PREVIEW_INPUTS } from "~/core/enums";
 export const previewAreaConfigs: EditableAreaConfig[] = [
   {
     field: PREVIEW_INPUTS.HEADER,
-    height: "10rem",
     icon: null,
     isSmall: false,
   },
   {
     field: PREVIEW_INPUTS.BODY,
-    height: "13rem",
     icon: null,
     isSmall: false,
   },

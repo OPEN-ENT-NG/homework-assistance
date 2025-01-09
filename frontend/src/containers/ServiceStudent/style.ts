@@ -7,8 +7,8 @@ export const serviceStudentWrapper: SxProps = {
   ...columnBoxStyle,
   boxSizing: "border-box",
   height: "100%",
-  padding: "4rem 6rem",
-  gap: "3.6rem",
+  padding: "3rem 5rem",
+  gap: "2rem",
 };
 
 export const userNameStyle: SxProps = {
@@ -36,6 +36,7 @@ export const rdvWrapperStyle: SxProps = {
 
 export const rdvItemStyle: SxProps = {
   ...flexStartBoxStyle,
+  alignItems: "center",
   gap: "1rem",
 };
 
@@ -43,11 +44,14 @@ export const phoneFieldStyle: SxProps = {
   width: "30rem",
   maxWidth: "100%",
   "& .MuiFormHelperText-root": {
-    fontSize: "1.3rem",
+    fontSize: "1.2rem",
   },
 };
 
 export const validateStudentButtonStyle = {
   fontSize: "1.6rem",
-  width: "20rem",
+  width: "30rem",
+  "@media (max-width: 800px)": {
+    width: "100%",
+  },
 };

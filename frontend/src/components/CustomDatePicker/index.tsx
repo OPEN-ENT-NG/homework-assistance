@@ -15,10 +15,12 @@ import { DATE_FORMAT } from "~/core/const";
 
 export const CustomDatePicker: FC<CustomDatePickerProps> = ({
   value,
+  helperText,
   onChange,
   minDate = dayjs().startOf("day"),
   shouldDisableDate,
 }) => {
+  const isDisabled = value ? shouldDisableDate?.(value) : false;
   return (
     <DatePicker
       value={value}
@@ -38,6 +40,7 @@ export const CustomDatePicker: FC<CustomDatePickerProps> = ({
           inputProps: {
             ...datePickerStyles.inputProps,
           },
+          helperText: isDisabled ? helperText : "",
         },
         popper: {
           sx: popperStyle,
