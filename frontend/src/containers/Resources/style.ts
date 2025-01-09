@@ -5,6 +5,7 @@ export const ressourcesWrapper = {
   gap: "1rem",
   width: "100%",
   maxWidth: "100%",
+  height: "100%",
   "@media (max-width: 1000px)": {
     width: "100%",
   },

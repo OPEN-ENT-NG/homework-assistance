@@ -17,6 +17,7 @@ export const RessourcesAndLinkWrapper: SxProps = {
 export const ItemWrapper: SxProps = {
   flex: 1,
   minWidth: 0,
+  height: "100%",
   "@media (max-width: 1000px)": {
     width: "100%",
   },

@@ -8,7 +8,6 @@ export const StyledTextField = styled(TextField, {
 })<{ isEditable: boolean; isSmall: boolean; isDescription: boolean }>(
   ({ isEditable, isSmall, theme, isDescription }) => ({
     width: "95%",
-    height: "100%",
     color: "grey.900",
     "& .MuiInputBase-root": {
       padding: isSmall ? ".5rem 1rem" : "1rem",
@@ -16,6 +15,7 @@ export const StyledTextField = styled(TextField, {
     "& .MuiInputBase-input": {
       fontSize: "1.6rem",
       lineHeight: "3rem",
+      height: "100%",
       "&.Mui-disabled": {
         color: isDescription
           ? `${theme.palette.grey[500]} !important`

@@ -37,9 +37,9 @@ import {
   initialOpeningDaysInputvalue,
   initialOpeningTimeInputValue,
   initialPreviewInputvalue,
-  initialStudentInputvalue,
   initialTimeExclusion,
   isTimeRangeValid,
+  useInitialStudentInputvalue,
 } from "./utils";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import {
@@ -95,10 +95,11 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const [displayModals, setDisplayModals] =
     useState<DisplayModalsState>(initialDisplayModals);
   const [services, setServices] = useState<Service[]>([]);
-  const [studentInputValue, setStudentInputValue] =
-    useState<StudentInputValueState>(initialStudentInputvalue);
   const [timeExclusions, setTimeExclusions] =
     useState<TimeExclusionState>(initialTimeExclusion);
+  const initialStudentInputValue = useInitialStudentInputvalue(timeExclusions);
+  const [studentInputValue, setStudentInputValue] =
+    useState<StudentInputValueState>(initialStudentInputValue);
   const [resources, setResources] = useState<FeaturedResource[]>([]);
 
   const lastBackendState = useRef({
@@ -113,6 +114,10 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]?.split(
     "$",
   )[1]})`;
+
+  useEffect(() => {
+    setStudentInputValue(initialStudentInputValue);
+  }, [initialStudentInputValue]);
 
   useEffect(() => {
     if (resourcesData) {

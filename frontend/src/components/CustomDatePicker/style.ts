@@ -1,4 +1,4 @@
-import { TextFieldVariants } from "@mui/material";
+import { TextFieldVariants } from "@mui/material/TextField";
 
 export const textFieldProps = {
   size: "medium" as const,
@@ -13,6 +13,10 @@ export const textFieldProps = {
     "& .MuiOutlinedInput-root": {
       fontSize: "1.6rem",
     },
+    "& .MuiFormHelperText-root": {
+      fontSize: "1.2rem",
+      marginLeft: 0,
+    },
   },
 };
 
@@ -25,6 +29,10 @@ export const datePickerStyles = {
     },
     "& .MuiInputLabel-root": {
       fontSize: "1.6rem",
+    },
+    "& .MuiFormHelperText-root": {
+      fontSize: "1.2rem",
+      marginLeft: 0,
     },
   },
   input: {
