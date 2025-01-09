@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
@@ -19,8 +19,14 @@ export const CustomDatePicker: FC<CustomDatePickerProps> = ({
   onChange,
   minDate = dayjs().startOf("day"),
   shouldDisableDate,
+  onValidationChange,
 }) => {
   const isDisabled = value ? shouldDisableDate?.(value) : false;
+
+  useEffect(() => {
+    onValidationChange?.(!isDisabled);
+  }, [isDisabled, onValidationChange]);
+
   return (
     <DatePicker
       value={value}
