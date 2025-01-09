@@ -47,6 +47,7 @@ export const ServiceStudent: FC = () => {
   const { timeProps } = useStudentTime();
   const { datePickerProps } = useExcludedDates();
   const [isPhoneTouched, setIsPhoneTouched] = useState(false);
+  const [isDateValid, setIsDateValid] = useState(true);
   const phone = studentInputValue[STUDENT_INPUTS.PHONE];
   const isPhoneValid = REGEX_PHONE.test(phone);
 
@@ -63,6 +64,7 @@ export const ServiceStudent: FC = () => {
       STUDENT_INPUTS.SCHEDULED_DATE,
       date.format(DATE_FORMAT),
     );
+    setIsDateValid(!datePickerProps.shouldDisableDate?.(date));
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +112,7 @@ export const ServiceStudent: FC = () => {
               value={dayjs(studentInputValue.scheduled_date, DATE_FORMAT)}
               onChange={handleDateChange()}
               helperText={"Saisissez une date valide."}
+              onValidationChange={(isValid) => setIsDateValid(isValid)}
               {...datePickerProps}
             />
           </Box>
@@ -168,7 +171,7 @@ export const ServiceStudent: FC = () => {
           variant="contained"
           sx={validateStudentButtonStyle}
           onClick={() => void handleStudentSubmit()}
-          disabled={!isPhoneValid}
+          disabled={!isPhoneValid || !isDateValid}
         >
           {t("student.validate")}
         </Button>
