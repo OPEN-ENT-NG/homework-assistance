@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 
-import { useOdeClient } from "@edifice-ui/react";
+import { useEdificeClient } from "@edifice.io/react";
 import { SelectChangeEvent } from "@mui/material";
 import dayjs from "dayjs";
 import _ from "lodash";
@@ -75,7 +75,7 @@ export const useGlobal = () => {
 };
 
 export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
-  const { user } = useOdeClient();
+  const { user } = useEdificeClient();
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
 
   const { data: configData } = useGetConfigQuery();

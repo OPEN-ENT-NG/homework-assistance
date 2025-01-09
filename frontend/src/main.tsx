@@ -2,10 +2,7 @@
 import React from "react";
 
 import { ThemeProvider } from "@cgi-learning-hub/theme";
-import {
-  OdeClientProvider,
-  ThemeProvider as ThemeProviderEdifice,
-} from "@edifice-ui/react";
+import { EdificeClientProvider, EdificeThemeProvider } from "@edifice.io/react";
 import { CssBaseline } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -54,12 +51,12 @@ const queryClient = new QueryClient({
 root.render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
-      <OdeClientProvider
+      <EdificeClientProvider
         params={{
           app: "Aide aux devoirs",
         }}
       >
-        <ThemeProviderEdifice>
+        <EdificeThemeProvider>
           <ThemeProvider themeId="crna" options={themeOptions}>
             <CssBaseline />
             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
@@ -80,8 +77,8 @@ root.render(
               </GlobalProvider>
             </LocalizationProvider>
           </ThemeProvider>
-        </ThemeProviderEdifice>
-      </OdeClientProvider>
+        </EdificeThemeProvider>
+      </EdificeClientProvider>
     </Provider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>,
