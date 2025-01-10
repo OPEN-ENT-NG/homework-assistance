@@ -103,18 +103,18 @@ export const DayButton = styled(Button, {
 
 export const hoursInputsWrapper = {
   ...flexStartBoxStyle,
-  width: "fit-content",
+  width: "100%",
   gap: "6rem",
-  "@media (max-width: 800px)": {
-    flexDirection: "column",
+  flexWrap: "wrap",
+  "@media (max-width: 600px)": {
     gap: 2,
-    alignItems: "center",
   },
 };
 
 export const hoursInputItem = {
   ...flexStartBoxStyle,
   gap: "2rem",
+  width: "fit-content",
 };
 
 export const deletePeriodButton = {

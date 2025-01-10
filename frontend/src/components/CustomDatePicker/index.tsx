@@ -51,6 +51,9 @@ export const CustomDatePicker: FC<CustomDatePickerProps> = ({
         popper: {
           sx: popperStyle,
         },
+        dialog: {
+          sx: popperStyle,
+        },
       }}
     />
   );

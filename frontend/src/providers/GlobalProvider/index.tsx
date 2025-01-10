@@ -121,8 +121,10 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
       ...prev,
       [STUDENT_INPUTS.SCHEDULED_DATE]:
         dayjs(firstValidDate).format(DATE_FORMAT),
+      [STUDENT_INPUTS.SCHEDULED_TIME]:
+        timeExclusions.openingTime[TIME_SCOPE.START],
     }));
-  }, [firstValidDate]);
+  }, [firstValidDate, timeExclusions.openingTime]);
 
   useEffect(() => {
     if (resourcesData) {
