@@ -23,7 +23,7 @@ import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
-import 'dayjs/locale/fr';
+import "dayjs/locale/fr";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement!);
@@ -50,7 +50,7 @@ const queryClient = new QueryClient({
   },
 });
 
-dayjs.locale('fr'); 
+dayjs.locale("fr");
 
 root.render(
   <QueryClientProvider client={queryClient}>

@@ -80,4 +80,25 @@ export const popperStyle = {
   "& .MuiPickersArrowSwitcher-button svg": {
     fontSize: "1.6rem",
   },
+  "& .MuiDialog-paper": {
+    "& .MuiPickersToolbar-root .MuiTypography-overline": {
+      fontSize: "1.6rem !important",
+    },
+    "& .MuiDialogContent-root": {
+      "& .MuiDateCalendar-root": {
+        "& .MuiPickersCalendarHeader-label": {
+          fontSize: "1.6rem !important",
+        },
+        "& .MuiPickersDay-root": {
+          fontSize: "1.6rem !important",
+        },
+        "& .MuiDayCalendar-weekDayLabel": {
+          fontSize: "1.6rem !important",
+        },
+      },
+    },
+    "& .MuiDialogActions-root .MuiButton-root": {
+      fontSize: "1.6rem !important",
+    },
+  },
 };
