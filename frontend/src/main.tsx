@@ -12,6 +12,7 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import dayjs from "dayjs";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
@@ -22,6 +23,7 @@ import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
+import 'dayjs/locale/fr';
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement!);
@@ -47,6 +49,8 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+dayjs.locale('fr'); 
 
 root.render(
   <QueryClientProvider client={queryClient}>
