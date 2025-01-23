@@ -101,6 +101,7 @@
     "i18next-browser-languagedetector": "7.2.1",
     "jsdom": "^25.0.1",
     "lint-staged": "14.0.1",
+    "nx": "19.6.0",
     "prettier": "3.0.3",
     "sass": "1.69.5",
     "typescript": "5.2.2",
@@ -109,8 +110,9 @@
     "vitest": "0.34.6",
     "vitest-dom": "0.1.1"
   },
-  "packageManager": "pnpm@8.6.6",
+  "packageManager": "pnpm@9.15.0",
   "engines": {
-    "node": "16 || 18"
-  }
+    "node": "20"
+  },
+  "nx": {}
 }

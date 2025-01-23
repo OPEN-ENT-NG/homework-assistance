@@ -16,14 +16,15 @@ import dayjs from "dayjs";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import "~/i18n";
 import { ToastContainer } from "react-toastify";
+import "~/i18n";
 
+import "@edifice.io/bootstrap/dist/index.css";
+import "dayjs/locale/fr";
 import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
 import { setupStore } from "./store";
-import "dayjs/locale/fr";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement!);
