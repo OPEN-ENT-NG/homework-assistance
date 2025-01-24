@@ -21,7 +21,7 @@ export const AppView: FC = () => {
     toggleModal,
   } = useGlobal();
   const appContainers = useAppContainers();
-  
+
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
   useEffect(() => {
     const checkTitle = () => {
