@@ -82,7 +82,7 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const isAdmin = userRight === USER_RIGHT.ADMIN;
   const { data: configData } = useGetConfigQuery();
   const { data: servicesData } = useGetServicesQuery(undefined, {
-    skip: !!isAdmin,
+    skip: userRight !== USER_RIGHT.STUDENT,
   });
   const { data: resourcesData } = useGetResourcesQuery();
   const [createCallback] = useCreateCallbackMutation();
