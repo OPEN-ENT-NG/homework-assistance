@@ -16,7 +16,7 @@ export const globalStyle = {
     padding: "0 !important",
     width: "100%",
     height: "100%",
-    minHeight: "calc(100vh - 67px)",
+    minHeight: "calc(100vh - 71px)",
     maxWidth: "none",
     "--edifice-white-rgb": mainContainerBackgroundColor,
     "@media (max-width: 767px)": {
@@ -36,7 +36,7 @@ export const globalStyle = {
 
 export const loaderWrapper = {
   width: "100%",
-  height: "calc(100vh - 67px)",
+  height: "calc(100vh - 71px)",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

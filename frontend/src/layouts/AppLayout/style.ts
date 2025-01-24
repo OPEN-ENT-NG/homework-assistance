@@ -7,10 +7,10 @@ export const mainLayout = {
   flexDirection: "column",
   gap: "3rem",
   padding: "2rem 4rem 4rem 4rem",
-  height: "calc(100vh - 67px)",
-  maxHeight: "calc(100vh - 67px)",
+  height: "calc(100vh - 71px)",
+  maxHeight: "calc(100vh - 71px)",
   minHeight: 0,
-  overflowY: "hidden",
+  overflowY: "auto",
   boxSizing: "border-box",
   "@media (max-width: 767px)": {
     minHeight: "calc(100vh - 43px)",
