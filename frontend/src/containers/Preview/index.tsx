@@ -3,6 +3,11 @@ import { FC, useMemo } from "react";
 import { Box, Typography } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
+import { EditableArea } from "~/components/EditableArea";
+import { SecondpartPreviewIcon } from "~/components/SVG/SecondpartPreviewIcon";
+import { HOMEWORK_ASSISTANCE } from "~/core/const";
+import { useGlobal } from "~/providers/GlobalProvider";
+
 import {
   datesWrapper,
   previewWrapper,
@@ -12,10 +17,6 @@ import {
 } from "./style";
 import { EditableAreaConfig } from "./types";
 import { dateAreaConfigs, previewAreaConfigs } from "./utils";
-import { EditableArea } from "~/components/EditableArea";
-import { SecondpartPreviewIcon } from "~/components/SVG/SecondpartPreviewIcon";
-import { HOMEWORK_ASSISTANCE } from "~/core/const";
-import { useGlobal } from "~/providers/GlobalProvider";
 
 export const Preview: FC = () => {
   const { isAdmin, previewInputValue, handlePreviewInputChange, handleSubmit } =

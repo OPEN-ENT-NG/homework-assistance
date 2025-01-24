@@ -16,6 +16,27 @@ import _ from "lodash";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
+import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
+import {
+  MODAL_TYPE,
+  OPENING_DAYS,
+  PREVIEW_INPUTS,
+  STUDENT_INPUTS,
+  TIME_SCOPE,
+  TIME_UNIT,
+  USER_RIGHT,
+} from "~/core/enums";
+import {
+  useCreateCallbackMutation,
+  useGetServicesQuery,
+} from "~/services/api/callBackApi";
+import {
+  useGetConfigQuery,
+  useUpdateConfigMutation,
+} from "~/services/api/configApi";
+import { useGetResourcesQuery } from "~/services/api/resourcesApi";
+import { FeaturedResource } from "~/services/api/resourcesApi/types";
+
 import {
   DisplayModalsState,
   Exclusion,
@@ -43,26 +64,6 @@ import {
   initialTimeExclusion,
   isTimeRangeValid,
 } from "./utils";
-import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
-import {
-  MODAL_TYPE,
-  OPENING_DAYS,
-  PREVIEW_INPUTS,
-  STUDENT_INPUTS,
-  TIME_SCOPE,
-  TIME_UNIT,
-  USER_RIGHT,
-} from "~/core/enums";
-import {
-  useCreateCallbackMutation,
-  useGetServicesQuery,
-} from "~/services/api/callBackApi";
-import {
-  useGetConfigQuery,
-  useUpdateConfigMutation,
-} from "~/services/api/configApi";
-import { useGetResourcesQuery } from "~/services/api/resourcesApi";
-import { FeaturedResource } from "~/services/api/resourcesApi/types";
 
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
@@ -77,9 +78,12 @@ export const useGlobal = () => {
 export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   const { user } = useEdificeClient();
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
-
+  const userRight = defineRight(user);
+  const isAdmin = userRight === USER_RIGHT.ADMIN;
   const { data: configData } = useGetConfigQuery();
-  const { data: servicesData } = useGetServicesQuery();
+  const { data: servicesData } = useGetServicesQuery(undefined, {
+    skip: isAdmin,
+  });
   const { data: resourcesData } = useGetResourcesQuery();
   const [createCallback] = useCreateCallbackMutation();
   const [updateConfig, { isLoading }] = useUpdateConfigMutation();
@@ -110,11 +114,11 @@ export const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
     exclusions: [] as ExclusionValuesState,
   });
 
-  const userRight = defineRight(user);
-  const isAdmin = userRight === USER_RIGHT.ADMIN;
-  const userNameAndClass = `${user?.lastName} ${user?.firstName} (${user?.classNames[0]?.split(
-    "$",
-  )[1]})`;
+  const userNameAndClass = user
+    ? `${user.lastName} ${user.firstName}${
+        user.classNames?.[0] ? ` (${user.classNames[0].split("$")[1]})` : ""
+      }`
+    : "";
 
   useEffect(() => {
     setStudentInputValue((prev) => ({

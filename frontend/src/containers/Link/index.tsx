@@ -3,15 +3,16 @@ import { FC } from "react";
 import { Box, Typography, Button } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
-import { adminLinkWrapper } from "./style";
-import { secondPartTitle } from "../Preview/style";
-import { validateStudentButtonStyle } from "../ServiceStudent/style";
 import { EditableArea } from "~/components/EditableArea";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import { PREVIEW_INPUTS } from "~/core/enums";
 import { centerBoxStyle } from "~/core/style/boxStyles";
 import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
+
+import { adminLinkWrapper } from "./style";
+import { secondPartTitle } from "../Preview/style";
+import { validateStudentButtonStyle } from "../ServiceStudent/style";
 
 export const Link: FC = () => {
   const {

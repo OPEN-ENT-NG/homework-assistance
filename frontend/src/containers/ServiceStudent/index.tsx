@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, ChangeEvent as ReactChangeEvent } from "react";
 
 import {
   Box,
@@ -14,6 +14,14 @@ import {
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
+import { CustomDatePicker } from "~/components/CustomDatePicker";
+import { TimeSelector } from "~/components/TimeSelector";
+import { DATE_FORMAT, HOMEWORK_ASSISTANCE, REGEX_PHONE } from "~/core/const";
+import { STUDENT_INPUTS } from "~/core/enums";
+import { centerBoxStyle } from "~/core/style/boxStyles";
+import { basicTypo } from "~/core/style/style";
+import { useGlobal } from "~/providers/GlobalProvider";
+
 import {
   formControlStyle,
   serviceStudentWrapper,
@@ -27,13 +35,6 @@ import {
 import { useExcludedDates } from "./useExcludedDates";
 import { useStudentTime } from "./useStudentTime";
 import { basicTypoNoWrap } from "../ServiceAdmin/style";
-import { CustomDatePicker } from "~/components/CustomDatePicker";
-import { TimeSelector } from "~/components/TimeSelector";
-import { DATE_FORMAT, HOMEWORK_ASSISTANCE, REGEX_PHONE } from "~/core/const";
-import { STUDENT_INPUTS } from "~/core/enums";
-import { centerBoxStyle } from "~/core/style/boxStyles";
-import { basicTypo } from "~/core/style/style";
-import { useGlobal } from "~/providers/GlobalProvider";
 
 export const ServiceStudent: FC = () => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);
@@ -67,7 +68,7 @@ export const ServiceStudent: FC = () => {
     setIsDateValid(!datePickerProps.shouldDisableDate?.(date));
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneChange = (e: ReactChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value === "" || /^[0-9+ ]*$/.test(value)) {
       const cleanValue = value.replace(/\s/g, "");

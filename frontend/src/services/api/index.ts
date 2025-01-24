@@ -9,7 +9,6 @@ export const getApp = async (url: string): Promise<void> => {
 };
 
 export const updateApp = async (url: string, appBody: UpdateAppProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   return await odeServices.http().putJson(url, appBody);
 };
 

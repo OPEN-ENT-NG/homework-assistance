@@ -2,12 +2,13 @@ import { useMemo } from "react";
 
 import dayjs from "dayjs";
 
-import { WeekDayButton } from "./types";
 import { TimeSelectorProps } from "~/components/TimeSelector/types";
 import { OPENING_DAYS } from "~/core/enums";
 import { TIME_SCOPE, TIME_UNIT } from "~/core/enums";
 import { useGlobal } from "~/providers/GlobalProvider";
 import { Exclusion } from "~/providers/GlobalProvider/types";
+
+import { WeekDayButton } from "./types";
 
 const WEEK_DAYS_CONFIG = [
   { label: "L", day: OPENING_DAYS.MONDAY },

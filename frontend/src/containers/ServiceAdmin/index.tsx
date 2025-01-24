@@ -6,6 +6,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useTranslation } from "react-i18next";
 import { v4 as uuidv4 } from "uuid";
 
+import { DeleteClosingPeriodModal } from "~/components/DeleteClosingPeriodModal";
+import { TimeSelector } from "~/components/TimeSelector";
+import { HOMEWORK_ASSISTANCE } from "~/core/const";
+import { TIME_SCOPE } from "~/core/enums";
+import { basicTypo } from "~/core/style/style";
+import { useGlobal } from "~/providers/GlobalProvider";
+import { Exclusion } from "~/providers/GlobalProvider/types";
+import { isTimeRangeValid } from "~/providers/GlobalProvider/utils";
+
 import {
   addPeriodButton,
   basicTypoNoWrap,
@@ -26,14 +35,6 @@ import {
   useWeekDaysButtonsConfig,
 } from "./utils";
 import { MODAL_TYPE } from "../../core/enums";
-import { DeleteClosingPeriodModal } from "~/components/DeleteClosingPeriodModal";
-import { TimeSelector } from "~/components/TimeSelector";
-import { HOMEWORK_ASSISTANCE } from "~/core/const";
-import { TIME_SCOPE } from "~/core/enums";
-import { basicTypo } from "~/core/style/style";
-import { useGlobal } from "~/providers/GlobalProvider";
-import { Exclusion } from "~/providers/GlobalProvider/types";
-import { isTimeRangeValid } from "~/providers/GlobalProvider/utils";
 
 export const ServiceAdmin: FC = () => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);

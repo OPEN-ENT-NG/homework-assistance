@@ -4,9 +4,10 @@ import dayjs, { Dayjs } from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import "dayjs/locale/en";
 
-import { UseExcludedDatesProps } from "./types";
 import { useGlobal } from "~/providers/GlobalProvider";
 import { OpeningDaysInputValueState } from "~/providers/GlobalProvider/types";
+
+import { UseExcludedDatesProps } from "./types";
 
 dayjs.extend(isBetween);
 dayjs.locale("en");

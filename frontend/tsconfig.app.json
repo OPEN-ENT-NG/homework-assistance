@@ -11,6 +11,7 @@
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
+    "moduleDetection": "force",
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
@@ -22,15 +23,21 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "~/*": ["./src/*"],
-      "@cgi-learning-hub/ui": ["node_modules/@cgi-learning-hub/ui"],
-      "@cgi-learning-hub/theme": ["node_modules/@cgi-learning-hub/theme"],
       "@cgi-learning-hub/icons": ["node_modules/@cgi-learning-hub/icons"],
+      "@cgi-learning-hub/theme": ["node_modules/@cgi-learning-hub/theme"],
+      "@cgi-learning-hub/ui": ["node_modules/@cgi-learning-hub/ui"],
       "@images/*": ["node_modules/@edifice.io/bootstrap/dist/images/*"]
     },
 
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    /* Test */
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "vitest/importMeta",
+      "vitest",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": ["src"],
-  "exclude": ["old"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules", "dist", "../old"]
 }

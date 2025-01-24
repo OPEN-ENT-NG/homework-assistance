@@ -2,8 +2,9 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import EventIcon from "@mui/icons-material/Event";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { EditableAreaConfig } from "./types";
 import { PREVIEW_INPUTS } from "~/core/enums";
+
+import { EditableAreaConfig } from "./types";
 
 export const previewAreaConfigs: EditableAreaConfig[] = [
   {

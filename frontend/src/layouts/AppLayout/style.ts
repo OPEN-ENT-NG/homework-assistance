@@ -10,7 +10,7 @@ export const mainLayout = {
   height: "calc(100vh - 67px)",
   maxHeight: "calc(100vh - 67px)",
   minHeight: 0,
-  overflowY: "auto",
+  overflowY: "hidden",
   boxSizing: "border-box",
   "@media (max-width: 767px)": {
     minHeight: "calc(100vh - 43px)",

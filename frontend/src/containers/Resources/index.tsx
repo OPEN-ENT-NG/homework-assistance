@@ -3,14 +3,15 @@ import { FC } from "react";
 import { Box, Typography } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
-import { resourcesMapper, ressourcesWrapper } from "./style";
-import { secondPartTitle } from "../Preview/style";
 import { ResourceItem } from "~/components/ResourceItem";
 import { ResourcesEmptyState } from "~/components/SVG/ResourcesEmptyState";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import { columnBoxStyle } from "~/core/style/boxStyles";
 import { basicTypo } from "~/core/style/style";
 import { useGlobal } from "~/providers/GlobalProvider";
+
+import { resourcesMapper, ressourcesWrapper } from "./style";
+import { secondPartTitle } from "../Preview/style";
 
 export const Resources: FC = () => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);

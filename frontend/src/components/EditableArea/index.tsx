@@ -1,4 +1,10 @@
-import { FC, useRef, useState } from "react";
+import {
+  FC,
+  useRef,
+  useState,
+  FocusEvent as ReactFocusEvent,
+  MouseEvent as ReactMouseEvent,
+} from "react";
 
 import { Box, IconButton } from "@cgi-learning-hub/ui";
 import EditIcon from "@mui/icons-material/Edit";
@@ -34,14 +40,14 @@ export const EditableArea: FC<EditableAreaProps> = ({
     }
   };
 
-  const handleBlur = (e: React.FocusEvent) => {
+  const handleBlur = (e: ReactFocusEvent) => {
     if (e.relatedTarget?.closest("button")) {
       return;
     }
     void handleSubmitAndBlur();
   };
 
-  const handleIconClick = (e: React.MouseEvent) => {
+  const handleIconClick = (e: ReactMouseEvent) => {
     e.preventDefault();
 
     if (isFocused) {

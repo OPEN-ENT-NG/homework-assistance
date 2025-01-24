@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import React from "react";
 
 import { ThemeProvider } from "@cgi-learning-hub/theme";
@@ -21,6 +20,7 @@ import "~/i18n";
 
 import "@edifice.io/bootstrap/dist/index.css";
 import "dayjs/locale/fr";
+import { HOMEWORK_ASSISTANCE } from "./core/const";
 import { themeOptions } from "./core/style/themeOptions";
 import { GlobalProvider } from "./providers/GlobalProvider";
 import { router } from "./routes";
@@ -58,7 +58,7 @@ root.render(
     <Provider store={store}>
       <EdificeClientProvider
         params={{
-          app: "Aide aux devoirs",
+          app: HOMEWORK_ASSISTANCE,
         }}
       >
         <EdificeThemeProvider>

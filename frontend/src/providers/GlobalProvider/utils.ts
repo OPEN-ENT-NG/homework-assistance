@@ -1,15 +1,6 @@
 import { IUserInfo } from "@edifice.io/client";
 import dayjs from "dayjs";
 
-import {
-  DisplayModalsState,
-  ExclusionValuesState,
-  OpeningDaysInputValueState,
-  OpeningTimeInputValueState,
-  PreviewInputvalueState,
-  StudentInputValueState,
-  TimeExclusionState,
-} from "./types";
 import { DATE_FORMAT } from "~/core/const";
 import {
   MODAL_TYPE,
@@ -23,6 +14,16 @@ import {
 } from "~/core/enums";
 import { CallbackPayload } from "~/services/api/callBackApi/types";
 import { ConfigPayload } from "~/services/api/configApi/types";
+
+import {
+  DisplayModalsState,
+  ExclusionValuesState,
+  OpeningDaysInputValueState,
+  OpeningTimeInputValueState,
+  PreviewInputvalueState,
+  StudentInputValueState,
+  TimeExclusionState,
+} from "./types";
 
 export const initialPreviewInputvalue = Object.values(PREVIEW_INPUTS).reduce(
   (acc, key) => ({

@@ -12,16 +12,17 @@ import {
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
-import { cancelButtonStyle, validateButtonStyle, dateTextStyle } from "./style";
-import { checkForOverlap, initalExclusion } from "./utils";
-import { CustomDatePicker } from "../CustomDatePicker";
-import { DayScopeErrorModal } from "../DayScopeErrorModal";
 import { DATE_FORMAT, HOMEWORK_ASSISTANCE } from "~/core/const";
 import { MODAL_TYPE, TIME_SCOPE } from "~/core/enums";
 import { flexStartBoxStyle } from "~/core/style/boxStyles";
 import { ModalProps } from "~/core/types/types";
 import { useGlobal } from "~/providers/GlobalProvider";
 import { Exclusion } from "~/providers/GlobalProvider/types";
+
+import { cancelButtonStyle, validateButtonStyle, dateTextStyle } from "./style";
+import { checkForOverlap, initalExclusion } from "./utils";
+import { CustomDatePicker } from "../CustomDatePicker";
+import { DayScopeErrorModal } from "../DayScopeErrorModal";
 
 export const AddClosingPeriodModal: FC<ModalProps> = ({
   isOpen,

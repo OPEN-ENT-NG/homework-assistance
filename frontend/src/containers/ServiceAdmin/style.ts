@@ -1,13 +1,14 @@
 import { Button } from "@cgi-learning-hub/ui";
 import { SxProps, styled } from "@mui/material";
 
-import { DayButtonProps } from "./types";
 import {
   columnBoxStyle,
   flexStartBoxStyle,
   spaceBetweenBoxStyle,
 } from "~/core/style/boxStyles";
 import { basicTypo } from "~/core/style/style";
+
+import { DayButtonProps } from "./types";
 
 export const ServiceAdminWrapper: SxProps = {
   ...columnBoxStyle,

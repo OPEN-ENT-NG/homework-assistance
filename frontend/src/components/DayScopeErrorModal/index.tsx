@@ -9,9 +9,10 @@ import {
 } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
-import { cancelButtonStyle } from "./style";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import { ModalProps } from "~/core/types/types";
+
+import { cancelButtonStyle } from "./style";
 
 export const DayScopeErrorModal: FC<ModalProps> = ({ isOpen, handleClose }) => {
   const { t } = useTranslation(HOMEWORK_ASSISTANCE);

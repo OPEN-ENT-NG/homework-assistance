@@ -10,10 +10,11 @@ import {
 } from "@cgi-learning-hub/ui";
 import { useTranslation } from "react-i18next";
 
-import { cancelButton, deleteButton } from "./style";
-import { DeleteClosingPeriodModalProps } from "./types";
 import { HOMEWORK_ASSISTANCE } from "~/core/const";
 import { useGlobal } from "~/providers/GlobalProvider";
+
+import { cancelButton, deleteButton } from "./style";
+import { DeleteClosingPeriodModalProps } from "./types";
 
 export const DeleteClosingPeriodModal: FC<DeleteClosingPeriodModalProps> = ({
   isOpen,
