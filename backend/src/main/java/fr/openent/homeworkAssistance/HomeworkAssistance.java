@@ -5,7 +5,9 @@ import fr.openent.homeworkAssistance.controller.HomeworkAssistanceController;
 import fr.openent.homeworkAssistance.core.constants.Field;
 import fr.openent.homeworkAssistance.helper.KiamoHelper;
 import fr.openent.homeworkAssistance.service.ServiceFactory;
+import io.vertx.core.Future;
 import io.vertx.core.Promise;
+import io.vertx.core.Vertx;
 import io.vertx.core.net.ProxyOptions;
 import io.vertx.ext.web.client.WebClient;
 import io.vertx.ext.web.client.WebClientOptions;
@@ -19,9 +21,14 @@ public class HomeworkAssistance extends BaseServer {
 
 	@Override
 	public void start(Promise<Void> startPromise) throws Exception {
+		final Promise<Void> promise = Promise.promise();
+		super.start(promise);
+		promise.future()
+			.compose(v -> this.init())
+			.onComplete(startPromise);
+	}
 
-		super.start(startPromise);
-
+	private Future<Void> init() {
 		WebClient webClient = initWebClient();
 		KiamoConfig kiamoConfig = new KiamoConfig(config);
 		KiamoHelper kiamoHelper = new KiamoHelper(kiamoConfig, webClient);
@@ -31,8 +38,7 @@ public class HomeworkAssistance extends BaseServer {
 		addController(new ConfigurationController());
 		addController(new CallbackController(serviceFactory));
 		addController(new ResourcesController(vertx));
-		startPromise.tryComplete();
-		startPromise.tryFail("[Homework-assistance@HomeworkAssistance::start] Fail to start Homework-assistance");
+		return Future.succeededFuture();
 	}
 
 	private WebClient initWebClient() {
