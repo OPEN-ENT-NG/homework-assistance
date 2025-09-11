@@ -23,16 +23,14 @@ public class ConfigurationController extends ControllerHelper {
         super();
         this.configurationService = new DefaultConfigurationService("homework-assistance");
     }
-
-    @Put("/config")
+    @Put("/parameters")
     @ApiDoc("Update config")
     @SecuredAction(HomeworkAssistance.ADMIN)
     public void update(HttpServerRequest request) {
         RequestUtils.bodyToJson(request, settings ->
                 configurationService.save(defaultResponseHandler(request), settings));
     }
-
-    @Get("/config")
+    @Get("/parameters")
     @ApiDoc("Get config")
     @SecuredAction(value="", type = ActionType.AUTHENTICATED)
     public void get(HttpServerRequest request) {

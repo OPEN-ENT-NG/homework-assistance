@@ -4,14 +4,14 @@ import { emptySplitApi } from "../emptySplitApi.service";
 export const configApi = emptySplitApi.injectEndpoints({
   endpoints: (builder) => ({
     getConfig: builder.query<ConfigPayload, void>({
-      query: () => "config",
+      query: () => "parameters",
       providesTags: ["Config"],
     }),
     updateConfig: builder.mutation<ConfigPayload, ConfigPayload>({
       query: (
         config: ConfigPayload & { toJson: () => Record<string, any> },
       ) => ({
-        url: "config",
+        url: "parameters",
         method: "PUT",
         body: config,
       }),
