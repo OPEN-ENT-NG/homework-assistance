@@ -42,7 +42,7 @@ public class HomeworkAssistanceController extends ControllerHelper {
         eventStore.createAndStoreEvent(HomeworkAssistanceEvent.ACCESS.name(), request);
     }
 
-    @Get("/config-infos")
+    @Get("/config")
     @SecuredAction(value = "", type = ActionType.RESOURCE)
     @ResourceFilter(SuperAdminFilter.class)
     public void getConfig(final HttpServerRequest request) {
