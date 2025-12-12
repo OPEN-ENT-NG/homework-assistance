@@ -30,7 +30,7 @@ pipeline {
           sh 'mkdir -p ./src/main/resources/public/img'
           sh 'mkdir -p ./src/main/resources/public/js'
           sh 'mv ./src/main/resources/*.html ./src/main/resources/view'
-          sh 'chmod +x build.sh && ./build.sh clean build publish'
+          sh 'chmod +x build.sh && ./build.sh init clean build publish'
           sh 'rm -rf ../frontend/dist'
         }
       }
