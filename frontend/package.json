@@ -1,6 +1,6 @@
 {
   "name": "Homework-assistance",
-  "version": "2.0.1-dev.0",
+  "version": "2.1.0",
   "type": "module",
   "description": "Homework-assistance",
   "private": true,
@@ -38,12 +38,12 @@
     ]
   },
   "dependencies": {
-    "@cgi-learning-hub/icons": "develop",
-    "@cgi-learning-hub/theme": "develop",
-    "@cgi-learning-hub/ui": "develop",
-    "@edifice.io/bootstrap": "zookeeper",
-    "@edifice.io/client": "zookeeper",
-    "@edifice.io/react": "zookeeper",
+    "@cgi-learning-hub/icons": "1.12.0",
+    "@cgi-learning-hub/theme": "1.12.0",
+    "@cgi-learning-hub/ui": "1.12.0",
+    "@edifice.io/bootstrap": "2.5.8",
+    "@edifice.io/client": "2.5.8",
+    "@edifice.io/react": "2.5.8",
     "@emotion/react": "11.11.1",
     "@emotion/styled": "11.11.0",
     "@mui/icons-material": "5.15.0",
