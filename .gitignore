@@ -22,6 +22,8 @@ coverage/
 .env
 target
 dependency-reduced-pom.xml
+edifice
+build.compose.yaml
 
 # BACKEND
 /backend/.DS_Store
