@@ -38,9 +38,9 @@
     ]
   },
   "dependencies": {
-    "@cgi-learning-hub/icons": "develop",
-    "@cgi-learning-hub/theme": "develop",
-    "@cgi-learning-hub/ui": "develop",
+    "@cgi-learning-hub/icons": "1.13.0",
+    "@cgi-learning-hub/theme": "1.13.0",
+    "@cgi-learning-hub/ui": "1.13.0",
     "@edifice.io/bootstrap": "develop",
     "@edifice.io/client": "develop",
     "@edifice.io/react": "develop",
@@ -52,7 +52,7 @@
     "@react-spring/web": "9.7.3",
     "@reduxjs/toolkit": "^2.0.1",
     "@splidejs/react-splide": "^0.7.8",
-    "@tanstack/react-query": "4.36.1",
+    "@tanstack/react-query": "5.62.7",
     "animejs": "3.2.1",
     "dayjs": "1.11.10",
     "i18next": "23.5.1",
@@ -76,7 +76,7 @@
   "devDependencies": {
     "@axe-core/react": "4.8.0",
     "@eslint/js": "^9.18.0",
-    "@tanstack/react-query-devtools": "4.36.1",
+    "@tanstack/react-query-devtools": "5.62.7",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.5.2",
